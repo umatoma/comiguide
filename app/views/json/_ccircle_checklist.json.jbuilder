@@ -1,0 +1,11 @@
+json.(ccircle_checklist, :id,
+                          :comiket_id,
+                          :clayout_id,
+                          :day,
+                          :circle_name,
+                          :circle_url,
+                          :comment,
+                          :cost,
+                          :color,
+                          :updated_at,
+                          :created_at)

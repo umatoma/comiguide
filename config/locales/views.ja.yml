@@ -1,0 +1,44 @@
+ja:
+  views:
+    users:
+      sign_in: 'ログイン'
+      sign_up: 'ユーザー登録'
+      sign_out: 'ログアウト'
+      edit: 'ユーザー設定'
+      new_password: 'パスワードを忘れた'
+      new_confirmation: '登録確認メールが届いていない'
+      new_unlock: "Didn't receive unlock instructions?"
+      mypage: 'マイページ'
+      profile: 'プロフィール'
+      confirmations:
+        new:
+          form_submit: '登録確認メール再送信'
+      passwords:
+        new:
+          form_submit: 'パスワード再設定メール送信'
+      registrations:
+        edit:
+          form_message_password: 'パスワードを変更しない場合は入力しないで下さい。'
+          form_message_current_password: '設定の変更には現在のパスワードが必要です。'
+          form_submit: 'ユーザー情報更新'
+          cancel_title: 'ユーザー情報削除'
+          form_delete: 'ユーザー情報を削除する'
+          confirm_delete: '本当に削除しますか？'
+          button_back: '戻る'
+      restful:
+        mypage:
+          title: 'マイページ'
+        profile:
+          title: 'プロフィール'
+    ckigyos:
+      index:
+        title: 'C%{comiket_id} 企業ブース'
+    ccircle_checklists:
+      index:
+        title: 'C%{comiket_id} サークルチェックリスト'
+    c1circle_checklists:
+      index:
+        title: 'COMIC1☆%{comic1_id} サークルチェックリスト'
+    admin:
+      notifications:
+        title_index: 'お知らせ'

@@ -1,0 +1,22 @@
+<% set_page_sub_title t('views.c1circle_checklists.index.title', comic1_id: @comic1.id) %>
+
+<div id="c1circle_checklists_controller"
+     ng-controller="C1circleChecklistsCtrl"
+     data-comic1-id="<%= @comic1.id %>">
+
+  <%= render 'share/page_title' %>
+
+  <div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-5">
+
+    </div>
+    <!-- //.col -->
+    <div class="col-md-5">
+      <%= render 'c1circle_checklists/checklists' %>
+    </div>
+    <!-- //.col -->
+  </div>
+</div>

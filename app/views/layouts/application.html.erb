@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja" ng-app="ComiGuideApp">
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="description" content="<%= @page_description %>" />
+  <meta name="keywords" content="<%= @page_keywords.join(',') %>" />
+  <title>ComiGuide<%= " | #{yield(:title)}" if content_for?(:title) %></title>
+
+  <%= favicon_link_tag '/assets/favicon.ico' %>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <% @page_stylesheets.each do |style| %>
+    <%= stylesheet_link_tag style %>
+  <% end %>
+
+  <%= javascript_include_tag 'application' %>
+  <% @page_scripts.each do |script| %>
+    <%= javascript_include_tag script %>
+  <% end %>
+
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+<%= render 'layouts/header' %>
+
+<div id="<%= uniq_view_id %>" class="content_main <%= controller_view_class %>">
+  <%= render 'layouts/flash' %>
+  <%= yield %>
+</div>
+
+<%= render 'layouts/footer' %>
+
+<%= render 'layouts/modal' %>
+
+</body>
+</html>

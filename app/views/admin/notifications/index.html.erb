@@ -1,0 +1,64 @@
+<% set_page_sub_title t('views.admin.notifications.title_index') %>
+
+<div class="page-header">
+  <h1><%= t('views.admin.notifications.title_index') %></h1>
+</div>
+
+<div id="admin-notifications-controller"
+     ng-controller="AdminNotificationsCtrl">
+  <div class="row">
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><%= Notification.model_name.human %></h3>
+        </div>
+        <div class="panel-body">
+          <form class="form-create-notification" onSubmit="return false;">
+            <div class="form-group">
+              <label><%= Notification.human_attribute_name(:title) %></label>
+              <input class="form-control"
+                     type="text"
+                     data-ng-model="new_notification.title">
+            </div>
+            <div class="form-group">
+              <label><%= Notification.human_attribute_name(:content) %></label>
+              <textarea class="form-control"
+                        rows="10"
+                        data-ng-model="new_notification.content">
+              </textarea>
+            </div>
+            <div class="form-group">
+              <label><%= Notification.human_attribute_name(:status) %></label>
+              <select class="form-control"
+                      data-ng-options="s.key as s.value for s in new_notification.status_options"
+                      data-ng-model="new_notification.status">
+              </select>
+            </div>
+            <div class="btn btn-primary btn-block" ng-click="createNotification(new_notification)">
+              Create
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <!-- //.col -->
+    <div class="col-md-6">
+      <div class="notifications">
+        <div class="panel panel-default panel-notification"
+             ng-repeat="notification in notifications">
+          <div class="panel-heading">
+            <span class="label label-default pull-right">
+              <i class="fa fa-tag"></i> {{ notification.status_name }}
+            </span>
+            <h3 class="panel-title">{{ notification.title }}</h3>
+          </div>
+          <div class="panel-body">{{ notification.content }}</div>
+          <div class="panel-footer">
+            <%= Notification.human_attribute_name(:created_at) %> : {{ notification.created_at | date : 'yy/MM/dd HH:mm' }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- //.col -->
+  </div>
+</div>

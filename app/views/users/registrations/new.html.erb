@@ -1,0 +1,40 @@
+<% set_page_sub_title t('views.users.sign_up') %>
+
+<div class="page-header">
+  <h1><%= t('views.users.sign_up') %></h1>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="well">
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= render 'share/validation_errors', resource: resource %>
+
+        <div class="form-group">
+          <%= f.label :username %>
+          <%= f.text_field :username, autofocus: true, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :email %>
+          <%= f.email_field :email, class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password %>
+          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+        </div>
+
+        <div class="form-group">
+          <%= f.label :password_confirmation %>
+          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+        </div>
+
+        <div><%= f.submit t('views.users.sign_up'), class: "btn btn-primary" %></div>
+      <% end %>
+    </div><!-- //.well -->
+
+    <%= render "users/shared/links" %>
+
+  </div>
+</div>

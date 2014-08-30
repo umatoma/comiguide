@@ -1,0 +1,28 @@
+
+<%= render 'share/page_title' %>
+
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title">企業ブース一覧</h3>
+      </div>
+      <ul class="media-list">
+        <% @ckigyo_checklists.each do |checklist| %>
+          <li class="media">
+            <a class="pull-left" href="#">
+              <img class="media-object" src="http://placehold.jp/64x64.png">
+            </a>
+            <div class="media-body">
+              <h4 class="media-heading"><%= checklist.ckigyo.name %></h4>
+              <p></p>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div><!-- //col-md-6 -->
+  <div class="col-md-6">
+
+  </div><!-- //col-md-6 -->
+</div>

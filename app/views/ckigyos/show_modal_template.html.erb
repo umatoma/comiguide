@@ -1,0 +1,54 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="close()">&times;</button>
+  <h4 class="modal-title">企業ブース詳細</h4>
+</div>
+<div class="modal-body">
+  <ul class="pager">
+    <li class="previous" ng-show="hasPrevCkigyo()">
+      <a href="javascript:void(0);" ng-click="showPrevCkigyo()">
+        &larr; {{ prev_ckigyo.kigyo_no }}
+      </a>
+    </li>
+    <li class="next" ng-show="hasNextCkigyo()">
+      <a href="javascript:void(0);" ng-click="showNextCkigyo()">
+        {{ next_ckigyo.kigyo_no }}&rarr;
+      </a>
+    </li>
+  </ul>
+
+  <h3>{{ ckigyo.full_info }}</h3>
+
+  <div class="panel panel-default" ng-show="ckigyo.ckigyo_links.length > 0">
+    <div class="panel-heading">リンク</div>
+    <div class="list-group">
+      <a href="{{ link.url }}"
+         class="list-group-item"
+         target="_blank"
+         ng-repeat="link in ckigyo.ckigyo_links">
+        {{ link.url }}
+      </a>
+    </div>
+  </div>
+
+  <div class="panel panel-default modal-ckigyo-checklists" ng-show="ckigyo_checklists.length > 0">
+    <div class="panel-heading">チェックリスト</div>
+    <ul class="list-group">
+      <li class="list-group-item ckigyo-checklist"
+          style="border-left-color: {{ checklist.color }};"
+          ng-repeat="checklist in ckigyo_checklists">
+        <div class="comment">
+          <span class="glyphicon glyphicon-comment"></span> {{ checklist.comment }}
+        </div>
+        <div class="cost">
+          <span class="glyphicon glyphicon-usd"></span> {{ checklist.cost }}
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div class="alert alert-info" ng-hide="ckigyo_checklists.length > 0">
+    チェックリストがありません。
+  </div>
+</div>
+<div class="modal-footer">
+  <button class="btn btn-primary" ng-click="close()">Close</button>
+</div>

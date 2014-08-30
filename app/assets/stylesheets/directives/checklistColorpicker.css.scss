@@ -1,0 +1,25 @@
+@import 'compass/css3/box-shadow';
+
+ul.checklist-colorpicker {
+  list-style: none;
+  padding-left: 0;
+
+  > li {
+    border-radius: 3px;
+    cursor: pointer;
+    display: inline-block;
+    height: 30px;
+    margin: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: 30px;
+
+    &.active {
+      @include single-box-shadow;
+    }
+
+    &:hover:not(.active) {
+      @include single-box-shadow(#f00);
+    }
+  }
+}

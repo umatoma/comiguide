@@ -1,0 +1,50 @@
+<% set_page_sub_title t('views.ckigyos.index.title', comiket_id: @comiket.id) %>
+
+<%= render 'share/page_title' %>
+
+<div class="row">
+  <div class="col-md-7" id="ckigyos_controller" ng-controller="CkigyosCtrl" comiket-id="<%= @comiket.id %>">
+  　<div class="panel panel-default hidden-xs hidden-sm">
+      <div class="panel-body">
+        <div class="ckigyo-map-wrapper">
+          <a href="javascript:void(0);"
+             style="{{ ckigyo.map_style }}"
+             ckigyo-id="{{ ckigyo.id }}"
+             ng-repeat="ckigyo in ckigyos" ckigyo-modal>{{ ckigyo.kigyo_no }}</a>
+        </div>
+      </div>
+    </div>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="pull-right btn btn-xs btn-default" ng-click="toggleListActive()">
+          <i class="fa" ng-class="{ 'fa-toggle-on': list_active, 'fa-toggle-off': !list_active }"></i>
+        </div>
+        <h3 class="panel-title">企業ブース一覧</h3>
+      </div>
+      <ul class="list-group" ng-show="list_active">
+        <li class="list-group-item" ng-repeat="ckigyo in ckigyos | orderBy:list_order">
+          <a href="javascript:void(0);" ckigyo-id="{{ ckigyo.id }}" ckigyo-modal>
+            {{ ckigyo.full_info }}
+          </a>
+          <span class="pull-right">
+            <% if user_signed_in? %>
+              <button class="btn btn-default btn-xs">
+                <i class="fa fa-plus" ng-click="createCheckList(ckigyo)"></i>
+              </button>
+            <% end %>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div><!-- //col-md-7 -->
+  <div class="col-md-5">
+    <% if user_signed_in? %>
+      <%= render "/ckigyo_checklists/checklists", comiket: @comiket  %>
+    <% else %>
+      <div class="alert alert-info">
+        <p>ユーザー登録をすることでチェックリストを作成することが出来ます。</p>
+        <p><%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %></p>
+      </div>
+    <% end %>
+  </div><!-- //col-md-5 -->
+</div>

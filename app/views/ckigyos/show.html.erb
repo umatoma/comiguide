@@ -1,0 +1,55 @@
+<div id="ckigyos_show">
+  <ul class="pager">
+    <% if @prev_ckigyo %>
+    <li class="previous">
+      <%= link_to raw("&larr; #{@prev_ckigyo.kigyo_no}"), "#",
+                  class: "show-modal",
+                  "modal-href" => ckigyo_path(@prev_ckigyo),
+                  "modal-title" => t("modal.ckigyos.show"),
+                  "modal-keep" => 1 %>
+    </li>
+    <% end %>
+    <% if @next_ckigyo %>
+    <li class="next">
+      <%= link_to raw("#{@next_ckigyo.kigyo_no} &rarr;"), "#",
+                  class: "show-modal",
+                  "modal-href" => ckigyo_path(@next_ckigyo),
+                  "modal-title" => t("modal.ckigyos.show"),
+                  "modal-keep" => 1 %>
+    </li>
+    <% end %>
+  </ul>
+
+  <h3><%= @ckigyo.full_info %></h3>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">リンク</div>
+    <div class="list-group">
+    <% @ckigyo.ckigyo_links.each do |link| %>
+      <%= link_to link.url, link.url, class: "list-group-item", target: :blank %>
+    <% end %>
+    </div>
+  </div>
+
+  <% if user_signed_in? %>
+    <% if @ckigyo_checklists.present? %>
+      <div class="panel panel-default modal-ckigyo-checklists">
+        <div class="panel-heading">チェックリスト</div>
+        <ul class="list-group">
+        <% @ckigyo_checklists.each do |checklist| %>
+          <li class="list-group-item ckigyo-checklist" style="border-left-color: <%= checklist.color %>;">
+            <div class="comment">
+              <span class="glyphicon glyphicon-comment"></span> <%= checklist.comment %>
+            </div>
+            <div class="cost">
+              <span class="glyphicon glyphicon-usd"></span> <%= checklist.cost %>
+            </div>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    <% else %>
+      <div class="alert alert-info">チェックリストがありません。</div>
+    <% end %>
+  <% end %>
+</div>

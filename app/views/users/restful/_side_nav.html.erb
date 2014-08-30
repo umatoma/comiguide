@@ -1,0 +1,11 @@
+<div class="nav nav-pills nav-stacked" id="user-mypage-side-nav">
+  <li class="<%= 'active' if controller.action_name == 'mypage' %>">
+    <%= link_to t('views.users.mypage'), mypage_users_path %>
+  </li>
+  <li class="<%= 'active' if controller.action_name == 'profile' %>">
+    <%= link_to t('views.users.profile'), profile_users_path %>
+  </li>
+  <li class="<%= 'active' if controller.action_name == 'edit' %>">
+    <%= link_to t('views.users.edit'), edit_user_registration_path %>
+  </li>
+</div>

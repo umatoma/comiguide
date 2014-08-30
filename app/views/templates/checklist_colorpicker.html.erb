@@ -1,0 +1,6 @@
+<ul class="checklist-colorpicker">
+  <li ng-repeat="c in colors"
+      ng-class="{ active: isSelected(c) }"
+      ng-style="{ 'background-color': c }"
+      ng-click="setColor(c)"></li>
+</ul>

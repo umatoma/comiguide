@@ -1,0 +1,88 @@
+<!-- form.form-create-ccircle-checklist -->
+<form class="form-create-ccircle-checklist" name="form_create" onSubmit="return false;">
+  <div class="row">
+    <div class="col-xs-6 col-md-3">
+      <div class="form-group">
+        <label><%= CcircleChecklist.human_attribute_name(:day) %></label>
+        <select name="day"
+                data-ng-options="day.key as day.value for day in new_ccircle_checklist.days"
+                class="form-control"
+                data-ng-model="new_ccircle_checklist.day">
+        </select>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+      <div class="form-group">
+        <label><%= Carea.model_name.human %></label>
+        <select name="carea_id"
+                data-ng-options="a.id as a.name for a in new_ccircle_checklist.careas"
+                class="form-control"
+                data-ng-model="new_ccircle_checklist.carea_id">
+        </select>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+      <div class="form-group">
+        <label><%= Cblock.model_name.human %></label>
+        <select name="cblock_id"
+                data-ng-options="b.id as b.name for b in new_ccircle_checklist.cblocks"
+                class="form-control"
+                data-ng-model="new_ccircle_checklist.cblock_id">
+        </select>
+      </div>
+    </div>
+    <div class="col-xs-6 col-md-3">
+      <div class="form-group">
+        <label><%= Clayout.model_name.human %></label>
+        <select name="clayout_id"
+                data-ng-options="l.id as l.space_no for l in new_ccircle_checklist.clayouts"
+                class="form-control"
+                data-ng-model="new_ccircle_checklist.clayout_id">
+        </select>
+      </div>
+    </div>
+  </div>
+  <!-- //.row -->
+  <div class="form-group">
+    <label><%= CcircleChecklist.human_attribute_name(:circle_name) %></label>
+    <input class="form-control"
+           name="circle_name"
+           type="text"
+           data-ng-model="new_ccircle_checklist.circle_name">
+  </div>
+  <div class="form-group">
+    <label><%= CcircleChecklist.human_attribute_name(:circle_url) %></label>
+    <input class="form-control"
+           name="circle_url"
+           type="text"
+           data-ng-model="new_ccircle_checklist.circle_url">
+  </div>
+  <div class="form-group">
+    <label><%= CcircleChecklist.human_attribute_name(:comment) %></label>
+    <input class="form-control"
+           name="comment"
+           type="text"
+           data-ng-model="new_ccircle_checklist.comment">
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label><%= CcircleChecklist.human_attribute_name(:cost) %></label>
+        <input class="form-control"
+               name="cost"
+               type="text"
+               data-ng-model="new_ccircle_checklist.cost"
+               integer>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label><%= CcircleChecklist.human_attribute_name(:color) %></label>
+        <checklist-colorpicker ng-model="new_ccircle_checklist.color"></checklist-colorpicker>
+      </div>
+    </div>
+  </div>
+  <!-- //.row -->
+  <div class="btn btn-primary btn-block" ng-click="createCheckList(new_ccircle_checklist)">Create</div>
+</form>
+<!-- //form.form-create-ccircle-checklist -->

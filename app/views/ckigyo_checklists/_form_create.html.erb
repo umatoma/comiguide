@@ -1,0 +1,47 @@
+  <div class="panel panel-default" ng-show="create_form_active">
+    <div class="panel-heading">
+      <h3 class="panel-title">チェックリスト作成</h3>
+    </div>
+    <div class="panel-body">
+      <!-- form.form-create-ckigyo-checklist -->
+      <form class="form-create-ckigyo-checklist"
+            name="form_create"
+            onSubmit="return false;">
+        <div class="form-group">
+          <label><%= Ckigyo.model_name.human %></label>
+          <select name="ckigyo_id"
+                  data-ng-options="c.id as c.full_info for c in ckigyos"
+                  class="form-control"
+                  data-ng-model="new_ckigyo_checklist.ckigyo_id">
+          </select>
+        </div>
+        <div class="form-group">
+          <label><%= CkigyoChecklist.human_attribute_name(:comment) %></label>
+          <input class="form-control"
+                 name="comment"
+                 type="text"
+                 data-ng-model="new_ckigyo_checklist.comment">
+        </div>
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label><%= CkigyoChecklist.human_attribute_name(:cost) %></label>
+              <input class="form-control"
+                     name="cost"
+                     type="text"
+                     data-ng-model="new_ckigyo_checklist.cost"
+                     integer>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label><%= CkigyoChecklist.human_attribute_name(:color) %></label>
+              <checklist-colorpicker ng-model="new_ckigyo_checklist.color"></checklist-colorpicker>
+            </div>
+          </div>
+        </div>
+        <div class="btn btn-primary btn-block" ng-click="createCheckList(new_ckigyo_checklist)">Create</div>
+      </form>
+      <!-- //form.form-create-ckigyo-checklist -->
+    </div>
+  </div>

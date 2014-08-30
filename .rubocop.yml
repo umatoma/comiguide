@@ -1,0 +1,17 @@
+# This file overrides https://github.com/bbatsov/rubocop/blob/master/config/default.yml
+
+# Use UTF-8 as the source file encoding.
+Encoding:
+  Enabled: false
+
+# Limit lines to 80 characters.
+LineLength:
+  Enabled: 120
+
+# Avoid methods longer than 10 lines of code
+MethodLength:
+  Enabled: 20
+
+# Use only ascii symbols in comments.
+AsciiComments:
+  Enabled: false
