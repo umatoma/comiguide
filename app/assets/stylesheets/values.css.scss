@@ -9,3 +9,24 @@ $color-niagara: #26AE90;
 $color-bright-sun: #ECB935;
 $color-nugget: #C69D2B;
 $color-california: #E9872E;
+
+
+//== Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+
+$btn-submit-color:                 #fff !default;
+$btn-submit-bg:                    #3498db !default;
+$btn-submit-border:                darken($btn-submit-bg, 5%) !default;
+
+$btn-update-color:                 #fff !default;
+$btn-update-bg:                    #1abc9c !default;
+$btn-update-border:                darken($btn-update-bg, 5%) !default;
+
+$btn-delete-color:                 #fff !default;
+$btn-delete-bg:                    #e74c3c !default;
+$btn-delete-border:                darken($btn-delete-bg, 5%) !default;
+
+$btn-dark-color:                   #fff !default;
+$btn-dark-bg:                      #474747 !default;
+$btn-dark-border:                  darken($btn-dark-bg, 5%) !default;

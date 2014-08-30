@@ -1,0 +1,20 @@
+@import 'bootstrap';
+@import 'values';
+
+// Button
+// --------------------------------------------------
+.btn-submit {
+  @include button-variant($btn-submit-color, $btn-submit-bg, $btn-submit-border);
+}
+
+.btn-update {
+  @include button-variant($btn-update-color, $btn-update-bg, $btn-update-border);
+}
+
+.btn-delete {
+  @include button-variant($btn-delete-color, $btn-delete-bg, $btn-delete-border);
+}
+
+.btn-dark {
+  @include button-variant($btn-dark-color, $btn-dark-bg, $btn-dark-border);
+}
