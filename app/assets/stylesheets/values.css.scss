@@ -1,11 +1,58 @@
-$color-link-water: #CCD0D5;
-$color-regend-gray: #7C858E;
-$color-licorice: #27313D;
-$color-black-pearl: #0F1419;
-$color-cinnabar: #DE4830;
-$color-fire-brick: #A6341F;
-$color-medium-aquamarine: #60C4B0;
-$color-niagara: #26AE90;
-$color-bright-sun: #ECB935;
-$color-nugget: #C69D2B;
-$color-california: #E9872E;
+//== Colors
+//
+
+$color-link-water: #ccd0d5;
+$color-regend-gray: #7c858e;
+$color-licorice: #27313d;
+$color-black-pearl: #0f1419;
+$color-cinnabar: #de4830;
+$color-fire-brick: #a6341f;
+$color-medium-aquamarine: #60c4b0;
+$color-niagara: #26ae90;
+$color-bright-sun: #ecb935;
+$color-nugget: #c69d2b;
+$color-california: #e9872e;
+
+$color-turquoise: #1abc9c;
+$color-green-sea: #16a085;
+$color-emerald: #2ecc71;
+$color-nephritis: #27ae60;
+$color-peter-river: #3498db;
+$color-belize-hole: #2980b9;
+$color-amethyst: #9b59b6;
+$color-wisteria: #8e44ad;
+$color-wet-asphalt: #34495e;
+$color-sun-flower: #f1c40f;
+$color-orange: #f39c12;
+$color-carrot: #e67e22;
+$color-pumpkin: #d35400;
+$color-alizarin: #e74c3c;
+$color-pomegranate: #c0392b;
+$color-clouds: #ecf0f1;
+$color-silver: #bdc3c7;
+$color-conclete: #95a5a6;
+$color-asbestos: #7f8c8d;
+
+//== Buttons
+//
+//## For each of Bootstrap's buttons, define text, background and border color.
+
+$btn-submit-color:                 #fff !default;
+$btn-submit-bg:                    $color-peter-river !default;
+$btn-submit-border:                darken($btn-submit-bg, 5%) !default;
+
+$btn-update-color:                 #fff !default;
+$btn-update-bg:                    $color-turquoise !default;
+$btn-update-border:                darken($btn-update-bg, 5%) !default;
+
+$btn-delete-color:                 #fff !default;
+$btn-delete-bg:                    $color-alizarin !default;
+$btn-delete-border:                darken($btn-delete-bg, 5%) !default;
+
+$btn-navy-color:                   #fff !default;
+$btn-navy-bg:                      $color-wet-asphalt !default;
+$btn-navy-border:                  darken($btn-navy-bg, 5%) !default;
+
+$btn-dark-color:                   #fff !default;
+$btn-dark-bg:                      #474747 !default;
+$btn-dark-border:                  darken($btn-dark-bg, 5%) !default;

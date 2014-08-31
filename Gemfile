@@ -20,6 +20,7 @@ gem 'rolify',                     '~> 3.4.0'
 gem 'rspec',                      '~> 3.0.0'
 gem 'rspec-rails',                '~> 3.0.1'
 gem 'sass-rails',                 '~> 4.0.3'
+gem 'settingslogic',              '~> 2.0.9'
 gem 'therubyracer',               '~> 0.12.1', platforms: :ruby
 gem 'uglifier',                   '~> 1.3.0'
 gem 'unicorn',                    '~> 4.8.3'

@@ -16,6 +16,9 @@ ja:
       passwords:
         new:
           form_submit: 'パスワード再設定メール送信'
+        edit:
+          title: 'パスワード再設定'
+          form_submit: 'パスワード再設定'
       registrations:
         edit:
           form_message_password: 'パスワードを変更しない場合は入力しないで下さい。'
@@ -33,6 +36,11 @@ ja:
     ckigyos:
       index:
         title: 'C%{comiket_id} 企業ブース'
+        register_message: 'ユーザー登録をすることでチェックリストを作成することが出来ます。'
+      show_modal_template:
+        blank_checklist_message: 'チェックリストがありません。'
+        register_message: 'ユーザー登録をすることでチェックリストを作成することが出来ます。'
+        btn_close: '閉じる'
     ccircle_checklists:
       index:
         title: 'C%{comiket_id} サークルチェックリスト'

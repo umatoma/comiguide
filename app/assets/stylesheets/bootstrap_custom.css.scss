@@ -1,0 +1,68 @@
+@import 'bootstrap';
+@import 'values';
+
+// Page header
+// -------------------------
+.page-header {
+  &.header-main {
+    border-bottom: dotted 1px $color-licorice;
+    margin-top: 20px;
+
+    h1 {
+      border-left: solid 5px $color-licorice;
+      margin-bottom: 0;
+      padding-left: 10px;
+    }
+  }
+}
+
+// Button
+// --------------------------------------------------
+.btn-submit {
+  @include button-variant($btn-submit-color, $btn-submit-bg, $btn-submit-border);
+}
+
+.btn-update {
+  @include button-variant($btn-update-color, $btn-update-bg, $btn-update-border);
+}
+
+.btn-delete {
+  @include button-variant($btn-delete-color, $btn-delete-bg, $btn-delete-border);
+}
+
+.btn-navy {
+  @include button-variant($btn-navy-color, $btn-navy-bg, $btn-navy-border);
+}
+
+.btn-dark {
+  @include button-variant($btn-dark-color, $btn-dark-bg, $btn-dark-border);
+}
+
+// Pills
+// -------------------------
+.nav-pills {
+  &.nav-sidebar {
+    margin-bottom: 15px;
+
+    > li {
+      background-color: $color-clouds;
+
+      a {
+        color: #000;
+      }
+
+      &:hover, &:focus {
+        a {
+          background-color: $color-silver;
+        }
+      }
+
+      &.active {
+        a {
+          background-color: $color-licorice;
+          color: #fff;
+        }
+      }
+    }
+  }
+}
