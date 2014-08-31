@@ -1,28 +1,35 @@
-== README
+ComiGuide
+-----
+ComicMarket & COMIC1 participants support site.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Ruby version
+-----
+2.1.2 (rbenv)
 
-Things you may want to cover:
+Ruby on Rails version
+-----
+4.1.5
 
-* Ruby version
+System dependencies
+-----
+* ruby
+* bundler
+* MySQL
 
-* System dependencies
+Configuration
+-----
 
-* Configuration
+Database creation
+-----
 
-* Database creation
+Database initialization
+-----
 
-* Database initialization
+How to run the test suite
+-----
 
-* How to run the test suite
+Services (job queues, cache servers, search engines, etc.)
+-----
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+Deployment instructions
+-----
