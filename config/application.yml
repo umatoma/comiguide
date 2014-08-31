@@ -1,0 +1,14 @@
+# config/application.yml
+defaults: &defaults
+  site_name: 'ComiGuide'
+  twitter_url: 'https://twitter.com/umatoma'
+  blog_url: 'http://comiguide.hatenablog.com/'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
