@@ -1,12 +1,12 @@
-<div class="page-header">
-  <h1>Change your password</h1>
-</div>
+<% set_page_sub_title t('views.users.passwords.edit.title') %>
+
+<%= render 'share/page_title' %>
 
 <div class="row">
   <div class="col-md-4">
     <div class="well">
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-        <%= devise_error_messages! %>
+        <%= render 'share/validation_errors', resource: resource %>
         <%= f.hidden_field :reset_password_token %>
 
         <div class="form-group">
@@ -19,7 +19,7 @@
           <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
         </div>
 
-        <div><%= f.submit "Change my password", class: "btn btn-default" %></div>
+        <div><%= f.submit t('views.users.passwords.edit.form_submit'), class: "btn btn-update" %></div>
       <% end %>
     </div>
   </div>

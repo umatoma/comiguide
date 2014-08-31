@@ -8,14 +8,14 @@
   <div class="col-md-4">
     <div class="well">
       <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-        <%= devise_error_messages! %>
+        <%= render 'share/validation_errors', resource: resource %>
 
         <div class="form-group">
           <%= f.label :email %>
           <%= f.email_field :email, autofocus: true, class: "form-control" %>
         </div>
 
-        <div><%= f.submit t('views.users.confirmations.new.form_submit'), class: "btn btn-primary" %></div>
+        <div><%= f.submit t('views.users.confirmations.new.form_submit'), class: "btn btn-submit" %></div>
       <% end %>
     </div>
   </div>

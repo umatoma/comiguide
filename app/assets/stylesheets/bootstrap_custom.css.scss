@@ -30,6 +30,10 @@
   @include button-variant($btn-delete-color, $btn-delete-bg, $btn-delete-border);
 }
 
+.btn-navy {
+  @include button-variant($btn-navy-color, $btn-navy-bg, $btn-navy-border);
+}
+
 .btn-dark {
   @include button-variant($btn-dark-color, $btn-dark-bg, $btn-dark-border);
 }

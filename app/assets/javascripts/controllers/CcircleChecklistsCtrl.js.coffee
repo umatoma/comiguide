@@ -6,6 +6,7 @@
   ($scope, $attrs, $http, CcircleChecklist, ErrorNotify, SuccessNotify) ->
     $scope.comiket_id = $attrs.comiketId
     $scope.list_order = "-id"
+    $scope.create_form_active = false
     $scope.ccircle_checklists = []
 
     $http.get("/comikets/#{$scope.comiket_id}/ccircle_checklists.json").success (data) ->
@@ -48,4 +49,7 @@
         new SuccessNotify("リストを削除しました。", checklist.circle_name)
       .error (data, status, headers, config) ->
         new ErrorNotify("リストの削除に失敗しました。", data, status)
+
+    $scope.toggleCreateFormActive = ->
+      $scope.create_form_active = !$scope.create_form_active
 ]

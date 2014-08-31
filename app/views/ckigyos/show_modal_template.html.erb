@@ -45,10 +45,20 @@
       </li>
     </ul>
   </div>
-  <div class="alert alert-info" ng-hide="ckigyo_checklists.length > 0">
-    チェックリストがありません。
-  </div>
+  <% if user_signed_in? %>
+    <div class="alert alert-info" ng-hide="ckigyo_checklists.length > 0">
+      <%= t('views.ckigyos.show_modal_template.blank_checklist_message') %>
+    </div>
+  <% else %>
+    <div class="alert alert-info">
+      <%= t('views.ckigyos.show_modal_template.register_message') %><br>
+      <%= link_to t('views.users.sign_up'), new_user_registration_path, class: 'btn btn-default btn-xs' %>
+      <%= link_to t('views.users.sign_in'), new_user_session_path, class: 'btn btn-default btn-xs' %>
+    </div>
+  <% end %>
 </div>
 <div class="modal-footer">
-  <button class="btn btn-primary" ng-click="close()">Close</button>
+  <button class="btn btn-navy" ng-click="close()">
+    <%= t('views.ckigyos.show_modal_template.btn_close') %>
+  </button>
 </div>

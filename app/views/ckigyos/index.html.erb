@@ -42,8 +42,9 @@
       <%= render "/ckigyo_checklists/checklists", comiket: @comiket  %>
     <% else %>
       <div class="alert alert-info">
-        <p>ユーザー登録をすることでチェックリストを作成することが出来ます。</p>
-        <p><%= link_to "新規登録", new_user_registration_path, class: "btn btn-primary" %></p>
+        <%= t('views.ckigyos.index.register_message') %><br>
+        <%= link_to t('views.users.sign_up'), new_user_registration_path, class: 'btn btn-default' %>
+        <%= link_to t('views.users.sign_in'), new_user_session_path, class: 'btn btn-default' %>
       </div>
     <% end %>
   </div><!-- //col-md-5 -->
