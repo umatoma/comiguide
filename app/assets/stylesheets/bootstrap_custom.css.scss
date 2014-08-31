@@ -1,6 +1,21 @@
 @import 'bootstrap';
 @import 'values';
 
+// Page header
+// -------------------------
+
+.page-header {
+  &.header-main {
+    border-bottom: dotted 1px $color-licorice;
+
+    h1 {
+      border-left: solid 5px $color-licorice;
+      margin-bottom: 0;
+      padding-left: 10px;
+    }
+  }
+}
+
 // Button
 // --------------------------------------------------
 .btn-submit {
