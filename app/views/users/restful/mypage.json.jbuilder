@@ -5,7 +5,9 @@ json.notifications do
   end
 end
 json.ckigyo_checklists do
-  json.count @ckigyo_checklists.size
+  json.array! @ckigyo_checklists.first(5) do |checklist|
+    json.partial! 'json/ckigyo_checklist', ckigyo_checklist: checklist
+  end
 end
 json.partial! 'json/ccircle_checklists', ccircle_checklists: @ccircle_checklists.first(5)
 json.c1circle_checklists do
@@ -26,5 +28,6 @@ json.c1circle_checklists do
 end
 json.list_count do
   json.ccircle_checklists @ccircle_checklists.size
+  json.ckigyo_checklists @ckigyo_checklists.size
   json.c1circle_checklists @c1circle_checklists.size
 end

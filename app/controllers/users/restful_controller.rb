@@ -12,7 +12,9 @@ class Users::RestfulController < ApplicationController
       @comiket = Comiket.find(Comiket::MAIN_ID)
       @notifications = Notification.publish.recent
       @ckigyo_checklists = @comiket.ckigyo_checklists
+                                   .includes(ckigyo: :comiket)
                                    .where(user: current_user)
+                                   .order(created_at: :desc)
       @ccircle_checklists = @comiket.ccircle_checklists
                                     .includes(clayout: :cblock)
                                     .where(user: current_user)
