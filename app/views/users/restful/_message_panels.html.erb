@@ -26,6 +26,7 @@
           </ul>
       </div>
   </div>
+  <!-- //.col -->
   <div class="col-md-4">
       <div class="panel panel-success">
           <div class="panel-heading">
@@ -56,4 +57,33 @@
           </ul>
       </div>
   </div>
+  <!-- //.col -->
+  <div class="col-md-4">
+      <div class="panel panel-info">
+          <div class="panel-heading">
+              <div class="row">
+                  <div class="col-xs-2">
+                      <i class="fa fa-users fa-3x"></i>
+                  </div>
+                  <div class="col-xs-10 text-right">
+                      <div class="count">サークルリスト {{ c1circle_checklists.length }} 件</div>
+                      <div class="message">
+                        <%= link_to 'サークルチェックリスト一覧', comic1_c1circle_checklists_path(comic1_id: Comic1::MAIN_ID) %>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <!-- //.panel-heading -->
+          <ul class="list-group">
+            <li class="list-group-item">
+              <b>COMIC1☆{{ comic1_id }} 新着チェックリスト</b>
+            </li>
+            <li class="list-group-item" ng-repeat="checklist in c1circle_checklists | limitTo : 5">
+              {{ checklist.circle_name }}
+              <span class="badge pull-right">{{ checklist.created_at | date : 'MM/dd HH:mm' }}</span>
+            </li>
+          </ul>
+      </div>
+  </div>
+  <!-- //.col -->
 </div>
