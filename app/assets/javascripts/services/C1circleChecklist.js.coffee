@@ -29,7 +29,8 @@
       $rootScope.$watch ->
         self.c1block_id
       , (newValue, oldValue) ->
-        self.updateC1layouts() if newValue == null || newValue != oldValue
+        if newValue != null && newValue != oldValue
+          self.updateC1layouts()
 
     create: ->
       data =

@@ -2,21 +2,17 @@
 
 <div id="users-mypage-ctrl"
      ng-controller="UsersMypageCtrl"
-     data-comiket-id="<%= Comiket::MAIN_ID %>">
+     data-comiket-id="<%= Comiket::MAIN_ID %>"
+     data-comic1-id="<%= Comic1::MAIN_ID %>">
 
   <%= render 'share/page_title' %>
 
   <div class="row">
     <div class="col-md-2">
       <%= render 'users/restful/side_nav' %>
-      <sidebar></sidebar>
     </div>
 
     <div class="col-md-10">
-      <div class="row">
-        <%= render 'users/restful/message_panels' %>
-      </div>
-      <!-- //.row -->
       <div class="row">
         <div class="col-md-4">
           <div class="panel panel-default">
@@ -40,7 +36,39 @@
           </div>
         </div>
         <!-- //.col -->
+        <div class="col-md-4">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <i class="fa fa-bell fa-3x"></i>
+                        </div>
+                        <div class="col-xs-10 text-right">
+                            <div class="count">新着メッセージ {{ notifications.length }} 件</div>
+                            <div class="message">
+                              <%= link_to 'メッセージ一覧', notifications_path %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- //.panel-heading -->
+                <ul class="list-group">
+                  <li class="list-group-item">
+                    <b>新着メッセージ</b>
+                  </li>
+                  <li class="list-group-item" ng-repeat="notification in notifications | limitTo : 5">
+                    {{ notification.title }}
+                  </li>
+                </ul>
+            </div>
+        </div>
+        <!-- //.col -->
       </div>
+      <!-- //.row -->
+      <div class="row">
+        <%= render 'users/restful/message_panels' %>
+      </div>
+      <!-- //.row -->
     </div>
   </div>
 </div>

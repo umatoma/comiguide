@@ -12,12 +12,18 @@ class Users::RestfulController < ApplicationController
       @comiket = Comiket.find(Comiket::MAIN_ID)
       @notifications = Notification.publish.recent
       @ckigyo_checklists = @comiket.ckigyo_checklists
+                                   .includes(ckigyo: :comiket)
                                    .where(user: current_user)
+                                   .order(created_at: :desc)
       @ccircle_checklists = @comiket.ccircle_checklists
+                                    .includes(clayout: :cblock)
                                     .where(user: current_user)
                                     .order(created_at: :desc)
-    else
-      @page_sub_title = 'マイページ'
+      @comic1 = Comic1.find(Comic1::MAIN_ID)
+      @c1circle_checklists = @comic1.c1circle_checklists
+                                     .includes(c1layout: { c1block: :c1layouts })
+                                     .where(user: current_user)
+                                     .order(created_at: :desc)
     end
 
     respond_to do |format|
