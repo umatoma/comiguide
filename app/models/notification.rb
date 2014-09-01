@@ -27,7 +27,7 @@ class Notification < ActiveRecord::Base
   scope :publish, -> { where(status: STATUS[:publish]) }
   scope :draft, -> { where(status: STATUS[:draft]) }
   scope :close, -> { where(status: STATUS[:close]) }
-  scope :recent, -> { where(Notification.arel_table[:created_at].gt(1.week.ago)) }
+  scope :recent, -> { where(Notification.arel_table[:created_at].gt(1.month.ago)) }
 
   default_scope { order(id: :desc) }
 
