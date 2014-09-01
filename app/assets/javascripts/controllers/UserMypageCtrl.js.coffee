@@ -11,6 +11,7 @@
 
     $http.get('/users/mypage.json').success (data) ->
       $scope.user = new User(data.user)
+      $scope.list_count = data.list_count
       $scope.ckigyo_checklists = data.ckigyo_checklists
 
       angular.forEach data.notifications, (v, k) ->

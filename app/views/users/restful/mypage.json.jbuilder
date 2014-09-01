@@ -7,9 +7,9 @@ end
 json.ckigyo_checklists do
   json.count @ckigyo_checklists.size
 end
-json.partial! 'json/ccircle_checklists', ccircle_checklists: @ccircle_checklists
+json.partial! 'json/ccircle_checklists', ccircle_checklists: @ccircle_checklists.first(5)
 json.c1circle_checklists do
-  json.array! @c1circle_checklists do |checklist|
+  json.array! @c1circle_checklists.first(5) do |checklist|
     json.partial! 'json/c1circle_checklist', c1circle_checklist: checklist
     json.c1block_id checklist.c1layout.c1block_id
     json.c1blocks do
@@ -23,4 +23,8 @@ json.c1circle_checklists do
       end
     end
   end
+end
+json.list_count do
+  json.ccircle_checklists @ccircle_checklists.size
+  json.c1circle_checklists @c1circle_checklists.size
 end
