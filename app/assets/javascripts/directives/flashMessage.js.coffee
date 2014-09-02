@@ -1,5 +1,4 @@
-@comiguideApp.directive 'flashMessage',
-['$window', ($window) ->
+@comiguideApp.directive 'flashMessage', ->
   restrict: 'E'
   scope:
     message: '@'
@@ -18,4 +17,3 @@
         scope.notify('Error', 'error')
       when 'notice'
         scope.notify('Info', 'info')
-]
