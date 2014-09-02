@@ -1,7 +1,9 @@
-<p>Hello <%= @resource.email %>!</p>
+<p><%= @resource.username %> 様</p>
 
-<p>Your account has been locked due to an excessive number of unsuccessful sign in attempts.</p>
+<p>登録回数が一定数を超えたため、アカウントがロックされています。</p>
 
-<p>Click the link below to unlock your account:</p>
+<p>下記リンクからアカウントのロックを解除する事が出来ます:</p>
 
-<p><%= link_to 'Unlock my account', unlock_url(@resource, unlock_token: @token) %></p>
+<p><%= link_to 'ロック解除', unlock_url(@resource, unlock_token: @token) %></p>
+
+<%= render 'share/mailer/footer' %>
