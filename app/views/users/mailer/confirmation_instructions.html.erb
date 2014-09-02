@@ -1,5 +1,7 @@
-<p>Welcome <%= @email %>!</p>
+<p><%= @resource.username %> 様</p>
 
-<p>You can confirm your account email through the link below:</p>
+<p>下記リンクからアカウントを承認することができます:</p>
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+<p><%= link_to 'アカウント承認', confirmation_url(@resource, confirmation_token: @token) %></p>
+
+<%= render 'share/mailer/footer' %>
