@@ -1,5 +1,6 @@
 <ul class="list-group">
   <li class="list-group-item" ng-repeat="c1circle in c1circles">
-    {{ c1circle.name }}
+    <span class="badge">{{ c1circle.spaceInfo() }}</span>
+    <a ng-href="{{ c1circle.url }}">{{ c1circle.name }}</a>
   </li>
 </ul>

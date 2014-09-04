@@ -2,8 +2,8 @@
 # AngularC1circleCheckListController
 # ----------------------------------------------------------
 @comiguideApp.controller 'C1circleChecklistsCtrl',
-['$scope', '$attrs', '$http', 'C1circleChecklist', 'ErrorNotify', 'SuccessNotify',
-  ($scope, $attrs, $http, C1circleChecklist, ErrorNotify, SuccessNotify) ->
+['$scope', '$attrs', '$http', 'C1circleChecklist', 'C1circle', 'ErrorNotify', 'SuccessNotify',
+  ($scope, $attrs, $http, C1circleChecklist, C1circle, ErrorNotify, SuccessNotify) ->
     $scope.comic1_id = $attrs.comic1Id
     $scope.list_order = "-id"
     $scope.create_form_active = false
@@ -11,7 +11,8 @@
     $scope.c1circles = []
 
     $http.get("/comic1s/#{$scope.comic1_id}/c1circles.json").success (data) ->
-      $scope.c1circles = data.c1circles
+      angular.forEach data.c1circles, (v, k) ->
+        $scope.c1circles.push new C1circle(v)
 
     $http.get("/comic1s/#{$scope.comic1_id}/c1circle_checklists.json").success (data) ->
       $scope.new_c1circle_checklist = new C1circleChecklist(data.new_c1circle_checklist)
