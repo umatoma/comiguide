@@ -39,7 +39,7 @@
       , (newValue, oldValue) ->
         if self.carea_id != null && self.cblock_id != null
           url = "/careas/#{self.carea_id}/cblocks/#{self.cblock_id}/clayouts.json"
-          $http.get(url).success (data) ->
+          $http.get(url, { cache: true }).success (data) ->
             self.clayout_id = data.clayouts[0].id
             self.clayouts = data.clayouts
 

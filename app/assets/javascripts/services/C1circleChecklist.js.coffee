@@ -77,7 +77,8 @@
 
     updateC1layouts: ->
       self = @
-      $http.get("/c1blocks/#{self.c1block_id}/c1layouts.json").success (data) ->
+      url = "/c1blocks/#{self.c1block_id}/c1layouts.json"
+      $http.get(url, { cache: true }).success (data) ->
         self.c1layout_id = data.c1layouts[0].id
         self.c1layouts = data.c1layouts
 
