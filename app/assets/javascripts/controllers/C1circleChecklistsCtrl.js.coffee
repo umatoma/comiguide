@@ -8,6 +8,10 @@
     $scope.list_order = "-id"
     $scope.create_form_active = false
     $scope.c1circle_checklists = []
+    $scope.c1circles = []
+
+    $http.get("/comic1s/#{$scope.comic1_id}/c1circles.json").success (data) ->
+      $scope.c1circles = data.c1circles
 
     $http.get("/comic1s/#{$scope.comic1_id}/c1circle_checklists.json").success (data) ->
       $scope.new_c1circle_checklist = new C1circleChecklist(data.new_c1circle_checklist)
