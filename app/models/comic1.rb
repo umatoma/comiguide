@@ -9,6 +9,7 @@ class Comic1 < ActiveRecord::Base
   # ----------------------------------------------------------
   has_many :c1blocks
   has_many :c1layouts, through: :c1blocks
+  has_many :c1circles
   has_many :c1circle_checklists
 
   # ----------------------------------------------------------
