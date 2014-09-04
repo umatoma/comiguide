@@ -9,7 +9,6 @@
         title: title
         text: scope.message
         type: type
-        hide: false
         animation: 'slide'
 
     switch scope.type
