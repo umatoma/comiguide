@@ -51,7 +51,8 @@
         color: #000;
       }
 
-      &:hover, &:focus {
+      &:hover,
+      &:focus {
         a {
           background-color: $color-silver;
         }
