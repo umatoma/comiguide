@@ -9,8 +9,13 @@
     $scope.create_form_active = false
     $scope.c1circle_checklists = []
     $scope.c1circles = []
+    $scope.c1circle_current_page = 0
+    $scope.c1circle_total_pages = 0
+    $scope.c1circle_total_count = 0
 
     $http.get("/comic1s/#{$scope.comic1_id}/c1circles.json").success (data) ->
+      $scope.c1circle_current_page = data.current_page
+      $scope.c1circle_total_count = data.total_count
       angular.forEach data.c1circles, (v, k) ->
         $scope.c1circles.push new C1circle(v)
 
@@ -58,4 +63,14 @@
 
     $scope.toggleCreateFormActive = ->
       $scope.create_form_active = !$scope.create_form_active
+
+    $scope.pageChanged = ->
+      url = "/comic1s/#{$scope.comic1_id}/c1circles.json"
+      config =
+        params:
+          page: $scope.c1circle_current_page
+      $http.get(url, config).success (data) ->
+        $scope.c1circles = []
+        angular.forEach data.c1circles, (v, k) ->
+          $scope.c1circles.push new C1circle(v)
   ]

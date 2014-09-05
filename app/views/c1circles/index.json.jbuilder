@@ -9,3 +9,5 @@ json.c1circles do
     end
   end
 end
+json.current_page @c1circles.current_page
+json.total_count @c1circles.total_count
