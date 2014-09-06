@@ -1,32 +1,34 @@
-<div class="panel panel-default">
-  <div class="panel-heading">
-    <h3 class="panel-title">COMIC1☆{{ comic1_id }} 参加サークル一覧</h3>
+<div ng-controller="C1circlesCtrl" data-comic1-id="<%= comic1.id %>">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">COMIC1☆{{ comic1_id }} 参加サークル一覧</h3>
+    </div>
+    <ul class="list-group">
+      <li class="list-group-item" ng-repeat="c1circle in c1circles">
+        <span class="badge">{{ c1circle.spaceInfo() }}</span>
+        <a ng-href="{{ c1circle.url }}" ng-hide="{{ c1circle.url == null }}" target="_blank">
+          {{ c1circle.name }}
+        </a>
+        <span ng-show="{{ c1circle.url == null }}">{{ c1circle.name }}</span>
+      </li>
+    </ul>
+    <div class="panel-footer">
+      Page : {{ c1circleCurrentPages }} / {{ c1circleTotalPages }}
+    </div>
   </div>
-  <ul class="list-group">
-    <li class="list-group-item" ng-repeat="c1circle in c1circles">
-      <span class="badge">{{ c1circle.spaceInfo() }}</span>
-      <a ng-href="{{ c1circle.url }}" ng-hide="{{ c1circle.url == null }}" target="_blank">
-        {{ c1circle.name }}
-      </a>
-      <span ng-show="{{ c1circle.url == null }}">{{ c1circle.name }}</span>
-    </li>
-  </ul>
-  <div class="panel-footer">
-    Page : {{ c1circleCurrentPages }} / {{ c1circleTotalPages }}
+  <div class="text-center">
+    <pagination boundary-links="true"
+                total-items="c1circleTotalCount"
+                num-pages="c1circleTotalPages"
+                ng-model="c1circleCurrentPages"
+                ng-change="pageChanged()"
+                items-per-page="15"
+                max-size="5"
+                align="false"
+                previous-text="&lsaquo;"
+                next-text="&rsaquo;"
+                first-text="&laquo;"
+                last-text="&raquo;">
+    </pagination>
   </div>
-</div>
-<div class="text-center">
-  <pagination boundary-links="true"
-              total-items="c1circleTotalCount"
-              num-pages="c1circleTotalPages"
-              ng-model="c1circleCurrentPages"
-              ng-change="pageChanged()"
-              items-per-page="15"
-              max-size="5"
-              align="false"
-              previous-text="&lsaquo;"
-              next-text="&rsaquo;"
-              first-text="&laquo;"
-              last-text="&raquo;">
-  </pagination>
 </div>
