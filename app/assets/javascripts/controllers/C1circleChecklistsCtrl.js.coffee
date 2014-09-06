@@ -8,6 +8,7 @@
     $scope.list_order = "-id"
     $scope.create_form_active = false
     $scope.c1circle_checklists = []
+    $scope.c1circles = []
 
     $http.get("/comic1s/#{$scope.comic1_id}/c1circle_checklists.json").success (data) ->
       $scope.new_c1circle_checklist = new C1circleChecklist(data.new_c1circle_checklist)
@@ -53,4 +54,4 @@
 
     $scope.toggleCreateFormActive = ->
       $scope.create_form_active = !$scope.create_form_active
-  ]
+]

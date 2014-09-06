@@ -44,6 +44,9 @@ ja:
     ccircle_checklists:
       index:
         title: 'C%{comiket_id} サークルチェックリスト'
+    c1circles:
+      index:
+        title: 'COMIC1☆%{comic1_id} サークル一覧'
     c1circle_checklists:
       index:
         title: 'COMIC1☆%{comic1_id} サークルチェックリスト'

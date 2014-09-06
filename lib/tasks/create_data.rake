@@ -232,7 +232,7 @@ namespace :create_data do
           space_no_sub: row[7].to_i,
           name: row[2],
           kana: row[3],
-          url: row[4],
+          url: row[4] == 'NULL' ? nil : row[4],
           created_at: Time.at(row[8].to_i),
           updated_at: Time.at(row[9].to_i)
         }

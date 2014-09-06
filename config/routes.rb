@@ -69,13 +69,6 @@ Rails.application.routes.draw do
   resources :ckigyo_checklists, only: [:create, :update, :destroy]
 
   # -----------------------------------------------------
-  # C1blocks
-  # -----------------------------------------------------
-  resources :c1blocks, only: [:index] do
-    resources :c1layouts, only: [:index]
-  end
-
-  # -----------------------------------------------------
   # CcircleChecklists
   # -----------------------------------------------------
   resources :ccircle_checklists, only: [:create, :update, :destroy]
@@ -84,7 +77,15 @@ Rails.application.routes.draw do
   # Comic1s
   # -----------------------------------------------------
   resources :comic1s, only: [:index, :show] do
+    resources :c1circles, only: [:index]
     resources :c1circle_checklists, only: [:index]
+  end
+
+  # -----------------------------------------------------
+  # C1blocks
+  # -----------------------------------------------------
+  resources :c1blocks, only: [:index] do
+    resources :c1layouts, only: [:index]
   end
 
   # -----------------------------------------------------
