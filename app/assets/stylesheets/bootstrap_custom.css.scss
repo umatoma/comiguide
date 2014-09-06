@@ -13,6 +13,12 @@
       margin-bottom: 0;
       padding-left: 10px;
     }
+
+    @media(max-width: 767px) {
+      h1 {
+        font-size: 26px;
+      }
+    }
   }
 }
 
