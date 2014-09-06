@@ -12,14 +12,14 @@
     </li>
   </ul>
   <div class="panel-footer">
-    Page : {{ c1circle_current_page }} / {{ c1circle_total_pages }}
+    Page : {{ c1circleCurrentPages }} / {{ c1circleTotalPages }}
   </div>
 </div>
 <div class="text-center">
   <pagination boundary-links="true"
-              total-items="c1circle_total_count"
-              num-pages="c1circle_total_pages"
-              ng-model="c1circle_current_page"
+              total-items="c1circleTotalCount"
+              num-pages="c1circleTotalPages"
+              ng-model="c1circleCurrentPages"
               ng-change="pageChanged()"
               items-per-page="15"
               max-size="5"
