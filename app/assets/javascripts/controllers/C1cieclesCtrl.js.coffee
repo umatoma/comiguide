@@ -25,4 +25,4 @@
         $scope.c1circles = []
         angular.forEach data.c1circles, (v, k) ->
           $scope.c1circles.push new C1circle(v)
-  ]
+]
