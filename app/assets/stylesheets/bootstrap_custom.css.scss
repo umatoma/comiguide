@@ -44,6 +44,32 @@
   @include button-variant($btn-dark-color, $btn-dark-bg, $btn-dark-border);
 }
 
+// Panels
+// --------------------------------------------------
+.panel-red {
+  @include panel-variant($panel-red-border, $panel-red-text, $panel-red-heading-bg, $panel-red-border);
+}
+
+.panel-blue {
+  @include panel-variant($panel-blue-border, $panel-blue-text, $panel-blue-heading-bg, $panel-blue-border);
+}
+
+.panel-green {
+  @include panel-variant($panel-green-border, $panel-green-text, $panel-green-heading-bg, $panel-green-border);
+}
+
+.panel-orange {
+  @include panel-variant($panel-orange-border, $panel-orange-text, $panel-orange-heading-bg, $panel-orange-border);
+}
+
+.panel-navy {
+  @include panel-variant($panel-navy-border, $panel-navy-text, $panel-navy-heading-bg, $panel-navy-border);
+}
+
+.panel-dark {
+  @include panel-variant($panel-dark-border, $panel-dark-text, $panel-dark-heading-bg, $panel-dark-border);
+}
+
 // Pills
 // -------------------------
 .nav-pills {

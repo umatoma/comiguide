@@ -51,5 +51,9 @@ ja:
       index:
         title: 'COMIC1☆%{comic1_id} サークルチェックリスト'
     admin:
+      home:
+        layouts:
+          title: 'レイアウト'
       notifications:
-        title_index: 'お知らせ'
+        index:
+          title: 'お知らせ'
