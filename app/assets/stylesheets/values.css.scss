@@ -32,6 +32,7 @@ $color-clouds: #ecf0f1;
 $color-silver: #bdc3c7;
 $color-conclete: #95a5a6;
 $color-asbestos: #7f8c8d;
+$color-dark: #474747;
 
 //== Buttons
 //
@@ -54,29 +55,33 @@ $btn-navy-bg:                      $color-wet-asphalt !default;
 $btn-navy-border:                  darken($btn-navy-bg, 5%) !default;
 
 $btn-dark-color:                   #fff !default;
-$btn-dark-bg:                      #474747 !default;
+$btn-dark-bg:                      $color-dark !default;
 $btn-dark-border:                  darken($btn-dark-bg, 5%) !default;
 
 //== Panels
 //
 //##
 
-$panel-red-text:          #fff !default;
-$panel-red-border:        lighten($color-alizarin, 15%) !default;
-$panel-red-heading-bg:    $panel-red-border !default;
+$panel-red-text:            darken($color-alizarin, 25%) !default;
+$panel-red-border:          lighten($color-alizarin, 25%) !default;
+$panel-red-heading-bg:      $panel-red-border !default;
 
-$panel-blue-text:          #fff !default;
-$panel-blue-border:        lighten($color-peter-river, 15%) !default;
-$panel-blue-heading-bg:    $panel-blue-border !default;
+$panel-blue-text:           darken($color-peter-river, 25%) !default;
+$panel-blue-border:         lighten($color-peter-river, 25%) !default;
+$panel-blue-heading-bg:     $panel-blue-border !default;
 
-$panel-green-text:          #fff !default;
-$panel-green-border:        lighten($color-nephritis, 15%) !default;
+$panel-green-text:          darkten($color-nephritis, 25%) !default;
+$panel-green-border:        lighten($color-nephritis, 25%) !default;
 $panel-green-heading-bg:    $panel-green-border !default;
 
-$panel-navy-text:          #fff !default;
-$panel-navy-border:        lighten($color-wet-asphalt, 15%) !default;
-$panel-navy-heading-bg:    $panel-navy-border !default;
+$panel-orange-text:         darken($color-carrot, 25%) !default;
+$panel-orange-border:       lighten($color-carrot, 25%) !default;
+$panel-orange-heading-bg:   $panel-orange-border !default;
 
-$panel-dark-text:          #fff !default;
-$panel-dark-border:        lighten(#474747, 15%) !default;
-$panel-dark-heading-bg:    $panel-dark-border !default;
+$panel-navy-text:           #fff !default;
+$panel-navy-border:         lighten($color-wet-asphalt, 25%) !default;
+$panel-navy-heading-bg:     $panel-navy-border !default;
+
+$panel-dark-text:           #fff !default;
+$panel-dark-border:         lighten($color-dark, 25%) !default;
+$panel-dark-heading-bg:     $panel-dark-border !default;

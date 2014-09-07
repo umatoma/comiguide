@@ -58,6 +58,10 @@
   @include panel-variant($panel-green-border, $panel-green-text, $panel-green-heading-bg, $panel-green-border);
 }
 
+.panel-orange {
+  @include panel-variant($panel-orange-border, $panel-orange-text, $panel-orange-heading-bg, $panel-orange-border);
+}
+
 .panel-navy {
   @include panel-variant($panel-navy-border, $panel-navy-text, $panel-navy-heading-bg, $panel-navy-border);
 }
