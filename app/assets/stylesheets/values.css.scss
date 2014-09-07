@@ -42,7 +42,7 @@ $btn-submit-bg:                    $color-peter-river !default;
 $btn-submit-border:                darken($btn-submit-bg, 5%) !default;
 
 $btn-update-color:                 #fff !default;
-$btn-update-bg:                    $color-turquoise !default;
+$btn-update-bg:                    $color-nephritis !default;
 $btn-update-border:                darken($btn-update-bg, 5%) !default;
 
 $btn-delete-color:                 #fff !default;
@@ -56,3 +56,27 @@ $btn-navy-border:                  darken($btn-navy-bg, 5%) !default;
 $btn-dark-color:                   #fff !default;
 $btn-dark-bg:                      #474747 !default;
 $btn-dark-border:                  darken($btn-dark-bg, 5%) !default;
+
+//== Panels
+//
+//##
+
+$panel-red-text:          #fff !default;
+$panel-red-border:        lighten($color-alizarin, 15%) !default;
+$panel-red-heading-bg:    $panel-red-border !default;
+
+$panel-blue-text:          #fff !default;
+$panel-blue-border:        lighten($color-peter-river, 15%) !default;
+$panel-blue-heading-bg:    $panel-blue-border !default;
+
+$panel-green-text:          #fff !default;
+$panel-green-border:        lighten($color-nephritis, 15%) !default;
+$panel-green-heading-bg:    $panel-green-border !default;
+
+$panel-navy-text:          #fff !default;
+$panel-navy-border:        lighten($color-wet-asphalt, 15%) !default;
+$panel-navy-heading-bg:    $panel-navy-border !default;
+
+$panel-dark-text:          #fff !default;
+$panel-dark-border:        lighten(#474747, 15%) !default;
+$panel-dark-heading-bg:    $panel-dark-border !default;
