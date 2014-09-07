@@ -25,6 +25,8 @@ gem 'settingslogic',              '~> 2.0.9'
 gem 'therubyracer',               '~> 0.12.1', platforms: :ruby
 gem 'uglifier',                   '~> 1.3.0'
 gem 'unicorn',                    '~> 4.8.3'
+gem 'wicked_pdf',                 '~> 0.11.0'
+gem 'wkhtmltopdf-binary',         '~> 0.9.9.3'
 
 group :doc do
   gem 'sdoc'
