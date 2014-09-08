@@ -46,6 +46,20 @@ class CkigyoChecklistsController < ApplicationController
     end
   end
 
+  def create_map
+    @comiket = Comiket.includes(:ckigyos).find(params[:comiket_id])
+    @ckigyos = @comiket.ckigyos
+    @ckigyo_checklists = @comiket.ckigyo_checklists
+      .includes(ckigyo: :comiket)
+      .where(user: current_user)
+    respond_to do |format|
+      format.pdf do
+        pdf = Prawn::Document.new
+        send_data pdf.render, filename: 'report.pdf'
+      end
+    end
+  end
+
   # ----------------------------------------------------------
   # PrivateMethod
   # ----------------------------------------------------------

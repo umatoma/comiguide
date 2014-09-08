@@ -41,7 +41,11 @@ Rails.application.routes.draw do
         get :ranking
       end
     end
-    resources :ckigyo_checklists, only: [:index]
+    resources :ckigyo_checklists, only: [:index] do
+      collection do
+        get :create_map
+      end
+    end
     resources :ccircle_checklists, only: [:index]
   end
 
