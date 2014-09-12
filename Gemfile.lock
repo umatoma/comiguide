@@ -131,6 +131,7 @@ GEM
     prawn (1.2.1)
       pdf-core (~> 0.2.5)
       ttfunk (~> 1.2.0)
+    prawn-table (0.1.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -277,6 +278,7 @@ DEPENDENCIES
   mysql2 (~> 0.3.16)
   pnotify-rails (~> 2.0.1.1)
   prawn (~> 1.2.1)
+  prawn-table (~> 0.1.1)
   pry-byebug
   pry-rails
   rack-mini-profiler
