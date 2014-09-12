@@ -31,7 +31,8 @@ class CkigyoChecklistMapPdf < Prawn::Document
 
   def draw_footer
     repeat(:all) do
-      number_pages('<page> / <total>', align: :right, at: [bounds.right - 150, 0])
+      text = "created by #{Settings.site_name} - #{Settings.site_url}  Page : <page> / <total>"
+      number_pages(text, align: :right, at: [bounds.right - 300, 0])
     end
   end
 
