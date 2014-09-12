@@ -47,15 +47,11 @@ class CkigyoChecklistsController < ApplicationController
   end
 
   def create_map
-    @comiket = Comiket.includes(:ckigyos).find(params[:comiket_id])
-    @ckigyos = @comiket.ckigyos
-    @ckigyo_checklists = @comiket.ckigyo_checklists
-      .includes(ckigyo: :comiket)
-      .where(user: current_user)
+    @comiket = Comiket.find(params[:comiket_id])
     respond_to do |format|
       format.pdf do
-        pdf = Prawn::Document.new
-        send_data pdf.render, filename: 'report.pdf'
+        pdf = CkigyoChecklistMapPdf.new(@comiket.id, current_user.id)
+        send_data pdf.render, filename: "ckigyo_checklist_#{Time.now.to_i}.pdf", disposition: 'inline'
       end
     end
   end
