@@ -4,6 +4,7 @@ defaults: &defaults
   site_url: 'https://comiguide.net/'
   email_info: 'info@comiguide.net'
   email_my: 'umatomakun@gmail.com'
+  name_my: 'umatoma'
   twitter_url: 'https://twitter.com/umatoma'
   blog_url: 'http://comiguide.hatenablog.com/'
 
