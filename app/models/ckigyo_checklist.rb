@@ -1,17 +1,5 @@
 class CkigyoChecklist < ActiveRecord::Base
-  # ----------------------------------------------------------
-  # Constant
-  # ----------------------------------------------------------
-  SELECT_COLOR_HASH = {
-    black:  :black,
-    gray:   :gray,
-    red:    :red,
-    green:  :green,
-    blue:   :blue,
-    yellow: :yellow,
-    orange: :orange,
-    purple: :purple
-  }
+  include Colors
 
   # ----------------------------------------------------------
   # Relation
