@@ -17,12 +17,14 @@ class CkigyoChecklistMapPdf < Prawn::Document
     font 'lib/assets/ipaexg.ttf'
     font_size 9
 
-    @comiket_id = comiket_id
-    @user_id = user_id
-    @ckigyo_positions_hash = {}
+    comiket = Comiket.includes(:ckigyos).find(comiket_id)
+    ckigyos = comiket.ckigyos
+    ckigyo_checklists = comiket.ckigyo_checklists
+      .includes(:ckigyo)
+      .where(user_id: user_id)
 
     draw_header
-    draw_content
+    draw_content(comiket, ckigyos, ckigyo_checklists)
     draw_footer
   end
 
@@ -36,13 +38,8 @@ class CkigyoChecklistMapPdf < Prawn::Document
     end
   end
 
-  def draw_content
-    comiket = Comiket.includes(:ckigyos).find(@comiket_id)
-    ckigyos = comiket.ckigyos
-    ckigyo_checklists = comiket.ckigyo_checklists
-      .includes(:ckigyo)
-      .where(user_id: @user_id)
-
+  def draw_content(comiket, ckigyos, ckigyo_checklists)
+    ckigyo_positions_hash = {}
     define_grid(columns: comiket.kigyo_w, rows: comiket.kigyo_h, gutter: 0)
 
     ckigyos.each do |ckigyo|
@@ -53,7 +50,7 @@ class CkigyoChecklistMapPdf < Prawn::Document
 
       grid([y, x], [y2, x2]).bounding_box do
         transparent(0.5) { stroke_bounds }
-        @ckigyo_positions_hash[ckigyo.id] = bounds_hash(bounds)
+        ckigyo_positions_hash[ckigyo.id] = bounds_hash(bounds)
         text ckigyo.kigyo_no.to_s, align: :center, valign: :center
       end
     end
@@ -78,7 +75,7 @@ class CkigyoChecklistMapPdf < Prawn::Document
         end
       end
 
-      ckigyo_pos = @ckigyo_positions_hash[checklist.ckigyo_id]
+      ckigyo_pos = ckigyo_positions_hash[checklist.ckigyo_id]
       stroke do
         ckigyo = checklist.ckigyo
         line_x = line_ckigyo_x(ckigyo, ckigyo_pos[:absolute_left], ckigyo_pos[:right])
