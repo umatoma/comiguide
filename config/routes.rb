@@ -46,7 +46,11 @@ Rails.application.routes.draw do
         get :create_map
       end
     end
-    resources :ccircle_checklists, only: [:index]
+    resources :ccircle_checklists, only: [:index] do
+      collection do
+        get :create_map
+      end
+    end
   end
 
   # -----------------------------------------------------
