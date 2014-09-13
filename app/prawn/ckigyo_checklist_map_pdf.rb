@@ -78,8 +78,8 @@ class CkigyoChecklistMapPdf < Prawn::Document
       ckigyo_pos = ckigyo_positions_hash[checklist.ckigyo_id]
       stroke do
         ckigyo = checklist.ckigyo
-        line_x = line_ckigyo_x(ckigyo, ckigyo_pos[:absolute_left], ckigyo_pos[:right])
-        line_y = line_ckigyo_y(ckigyo, ckigyo_pos[:absolute_bottom], ckigyo_pos[:top])
+        line_x = line_ckigyo_x(ckigyo_pos[:absolute_left], ckigyo_pos[:right])
+        line_y = line_ckigyo_y(ckigyo_pos[:absolute_bottom], ckigyo_pos[:top])
         line_x2 = line_list_x(list_pos[:absolute_left], list_pos[:right])
         line_y2 = line_list_y(list_pos[:absolute_bottom], list_pos[:top])
 
@@ -105,27 +105,27 @@ class CkigyoChecklistMapPdf < Prawn::Document
     }
   end
 
-  def line_ckigyo_y(ckigyo, absolute_bottom, top)
-    box_bottom = absolute_bottom - (top - ckigyo.h + 1) / ckigyo.h
+  def line_ckigyo_y(absolute_bottom, top)
+    box_bottom = absolute_bottom
     box_top = box_bottom + top
-    (box_top + box_bottom).to_f / 2.0 - ckigyo.h.to_f
+    (box_top + box_bottom).to_f / 2.0 - 20
   end
 
-  def line_ckigyo_x(ckigyo, absolute_left, right)
-    box_left = absolute_left - (right - ckigyo.w + 1) / ckigyo.w
+  def line_ckigyo_x(absolute_left, right)
+    box_left = absolute_left
     box_right = box_left + right
-    (box_right + box_left).to_f / 2.0 + ckigyo.w.to_f
+    (box_right + box_left).to_f / 2.0 - 20
   end
 
   def line_list_y(absolute_bottom, top)
-    box_bottom = absolute_bottom - top
+    box_bottom = absolute_bottom
     box_top = box_bottom + top
-    (box_top + box_bottom).to_f / 2.0
+    (box_top + box_bottom).to_f / 2.0 - 20
   end
 
   def line_list_x(absolute_left, right)
-    box_left = absolute_left - right
+    box_left = absolute_left
     box_right = box_left + right
-    (box_right + box_left).to_f / 2.0
+    (box_right + box_left).to_f / 2.0 - 20
   end
 end
