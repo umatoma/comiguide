@@ -46,6 +46,16 @@ class CkigyoChecklistsController < ApplicationController
     end
   end
 
+  def create_map
+    @comiket = Comiket.find(params[:comiket_id])
+    respond_to do |format|
+      format.pdf do
+        pdf = CkigyoChecklistMapPdf.new(@comiket.id, current_user.id)
+        send_data pdf.render, filename: "ckigyo_checklist_#{Time.now.to_i}.pdf", disposition: 'inline'
+      end
+    end
+  end
+
   # ----------------------------------------------------------
   # PrivateMethod
   # ----------------------------------------------------------

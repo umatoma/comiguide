@@ -24,6 +24,6 @@ module Comiguide
     config.i18n.default_locale = :ja
 
     # to auto load lib/ directory
-    config.autoload_paths += %W(#{config.root}/lib)
+    config.autoload_paths += %W(#{config.root}/lib #{config.root}/app/prawn)
   end
 end

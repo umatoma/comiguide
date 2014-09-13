@@ -16,6 +16,8 @@ gem 'jquery-rails',               '~> 3.1.0'
 gem 'kaminari',                   '~> 0.16.1'
 gem 'mysql2',                     '~> 0.3.16'
 gem 'pnotify-rails',              '~> 2.0.1.1'
+gem 'prawn',                      '~> 1.2.1'
+gem 'prawn-table',                '~> 0.1.1'
 gem 'ranked-model',               '~> 0.4.0'
 gem 'rolify',                     '~> 3.4.0'
 gem 'rspec',                      '~> 3.0.0'
@@ -25,6 +27,8 @@ gem 'settingslogic',              '~> 2.0.9'
 gem 'therubyracer',               '~> 0.12.1', platforms: :ruby
 gem 'uglifier',                   '~> 1.3.0'
 gem 'unicorn',                    '~> 4.8.3'
+gem 'wicked_pdf',                 '~> 0.11.0'
+gem 'wkhtmltopdf-binary',         '~> 0.9.9.3'
 
 group :doc do
   gem 'sdoc'
