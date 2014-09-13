@@ -71,6 +71,7 @@ class CkigyoChecklistMapPdf < Prawn::Document
       ]
       list_datum.each.with_index do |data, i|
         grid([y, data[:x]], [y2, data[:x2]]).bounding_box do
+          stroke_color '000000'
           list_pos = bounds_hash(bounds) if i == 0
           transparent(0.5) { stroke_bounds }
           text data[:text], align: :center, valign: :center, overflow: :shrink_to_fit
@@ -84,6 +85,8 @@ class CkigyoChecklistMapPdf < Prawn::Document
         line_y = line_ckigyo_y(ckigyo, ckigyo_pos[:absolute_bottom], ckigyo_pos[:top])
         line_x2 = line_list_x(list_pos[:absolute_left], list_pos[:right])
         line_y2 = line_list_y(list_pos[:absolute_bottom], list_pos[:top])
+
+        stroke_color checklist.color_hex
         line [line_x, line_y], [line_x2, line_y2]
       end
     end
