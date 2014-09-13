@@ -23,8 +23,11 @@ class CkigyoChecklistMapPdf < Prawn::Document
       .includes(:ckigyo)
       .where(user_id: user_id)
 
-    draw_header
-    draw_content(comiket, ckigyos, ckigyo_checklists)
+    ckigyo_checklists.each_slice(22).with_index do |checklists, index|
+      start_new_page unless index == 0
+      draw_header
+      draw_content(comiket, ckigyos, checklists)
+    end
     draw_footer
   end
 
@@ -32,10 +35,8 @@ class CkigyoChecklistMapPdf < Prawn::Document
   end
 
   def draw_footer
-    repeat(:all) do
-      text = "created by #{Settings.site_name} - #{Settings.site_url}  Page : <page> / <total>"
-      number_pages(text, align: :right, at: [bounds.right - 300, 0])
-    end
+    text = "created by #{Settings.site_name} - #{Settings.site_url}  Page : <page> / <total>"
+    number_pages(text, align: :right, at: [bounds.right - 300, 0])
   end
 
   def draw_content(comiket, ckigyos, ckigyo_checklists)
@@ -68,7 +69,6 @@ class CkigyoChecklistMapPdf < Prawn::Document
       ]
       list_datum.each.with_index do |data, i|
         grid([y, data[:x]], [y2, data[:x2]]).bounding_box do
-          stroke_color '000000'
           list_pos = bounds_hash(bounds) if i == 0
           transparent(0.5) { stroke_bounds }
           text data[:text], align: :center, valign: :center, overflow: :shrink_to_fit
@@ -86,6 +86,7 @@ class CkigyoChecklistMapPdf < Prawn::Document
         stroke_color checklist.color_hex
         line [line_x, line_y], [line_x2, line_y2]
       end
+      stroke_color '000000'
     end
   end
 
