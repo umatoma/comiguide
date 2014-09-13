@@ -77,7 +77,6 @@ class CkigyoChecklistMapPdf < Prawn::Document
 
       ckigyo_pos = ckigyo_positions_hash[checklist.ckigyo_id]
       stroke do
-        ckigyo = checklist.ckigyo
         line_x = line_ckigyo_x(ckigyo_pos[:absolute_left], ckigyo_pos[:right])
         line_y = line_ckigyo_y(ckigyo_pos[:absolute_bottom], ckigyo_pos[:top])
         line_x2 = line_list_x(list_pos[:absolute_left], list_pos[:right])
@@ -94,14 +93,14 @@ class CkigyoChecklistMapPdf < Prawn::Document
 
   def bounds_hash(b)
     {
-      top: bounds.top,
-      bottom: bounds.bottom,
-      right: bounds.right,
-      left: bounds.left,
-      absolute_top: bounds.absolute_top,
-      absolute_bottom: bounds.absolute_bottom,
-      absolute_right: bounds.absolute_right,
-      absolute_left: bounds.absolute_left
+      top: b.top,
+      bottom: b.bottom,
+      right: b.right,
+      left: b.left,
+      absolute_top: b.absolute_top,
+      absolute_bottom: b.absolute_bottom,
+      absolute_right: b.absolute_right,
+      absolute_left: b.absolute_left
     }
   end
 
