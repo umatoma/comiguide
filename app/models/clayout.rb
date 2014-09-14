@@ -20,6 +20,10 @@ class Clayout < ActiveRecord::Base
   validates :pos_x,     presence: true, numericality: true
   validates :pos_y,     presence: true, numericality: true
 
+  def layout_info_simple
+    "#{cblock.name} - #{space_no}"
+  end
+
   def scaled_pos_x
     pos_x - MARGIN_X
   end
