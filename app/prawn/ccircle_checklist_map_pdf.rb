@@ -76,6 +76,17 @@ class CcircleChecklistMapPdf < Prawn::Document
           text clayout.space_no.to_s, align: :center, valign: :center
         end
       end
+
+      font_size 8
+      cblocks.each do |cblock|
+        x = cblock.scaled_pos_x
+        y = cblock.scaled_pos_y
+        x2 = x + ccircle_w * 2.0
+        y2 = y + ccircle_h * 2.0
+        grid([y, x], [y2, x2]).bounding_box do
+          text cblock.name, align: :center, valign: :center
+        end
+      end
     end
 
     move_down 5
@@ -150,6 +161,17 @@ class CcircleChecklistMapPdf < Prawn::Document
             clayout_positions_hash[clayout.id] = bounds_hash(bounds)
           end
           text clayout.space_no.to_s, align: :center, valign: :center
+        end
+      end
+
+      font_size 8
+      cblocks.each do |cblock|
+        x = cblock.scaled_pos_x
+        y = cblock.scaled_pos_y
+        x2 = x + ccircle_w * 2.0
+        y2 = y + ccircle_h * 2.0
+        grid([y, x], [y2, x2]).bounding_box do
+          text cblock.name, align: :center, valign: :center
         end
       end
     end
