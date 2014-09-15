@@ -1,5 +1,5 @@
 class CcircleChecklistMapPdf < Prawn::Document
-  def initialize(comiket_id, user_id)
+  def initialize(comiket_id, user_id, cmap_id, day)
     super(
       page_layout: :landscape,
       margin: 20,
@@ -18,12 +18,13 @@ class CcircleChecklistMapPdf < Prawn::Document
     font_size 9
 
     comiket = Comiket.find(comiket_id)
-    careas = Carea.where(cmap_id: 1)
+    careas = Carea.where(cmap_id: cmap_id)
     cblocks = Cblock.includes(:clayouts).where(carea_id: careas.map(&:id))
     clayouts = Clayout.where(cblock_id: cblocks.map(&:id))
     ccircle_checklists = comiket.ccircle_checklists
       .includes(clayout: { cblock: :carea })
       .where(user_id: user_id)
+      .where(day: day)
       .where(clayout_id: clayouts.map(&:id))
 
     ccircle_checklists.each_slice(12).with_index do |checklists, index|

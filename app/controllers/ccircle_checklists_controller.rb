@@ -57,7 +57,7 @@ class CcircleChecklistsController < ApplicationController
     @comiket = Comiket.find(params[:comiket_id])
     respond_to do |format|
       format.pdf do
-        pdf = CcircleChecklistMapPdf.new(@comiket.id, current_user.id)
+        pdf = CcircleChecklistMapPdf.new(@comiket.id, current_user.id, params[:cmap_id], params[:day])
         send_data pdf.render, filename: "ccircle_checklist_#{Time.now.to_i}.pdf", disposition: 'inline'
       end
     end
