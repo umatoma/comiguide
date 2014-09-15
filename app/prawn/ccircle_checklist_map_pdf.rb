@@ -1,5 +1,14 @@
 class CcircleChecklistMapPdf < Prawn::Document
-  def initialize(comiket_id, user_id, cmap_id, day)
+  include ActiveModel::Validations
+
+  attr_accessor :comiket_id, :user_id, :cmap_id, :day, :hoge_id
+
+  validates :comiket_id, presence: true, numericality: true
+  validates :user_id,    presence: true, numericality: true
+  validates :cmap_id,    presence: true, numericality: true
+  validates :day,        presence: true, numericality: true
+
+  def initialize(attributes = {})
     super(
       page_layout: :landscape,
       margin: 20,
@@ -17,11 +26,12 @@ class CcircleChecklistMapPdf < Prawn::Document
     font 'lib/assets/ipaexg.ttf'
     font_size 9
 
-    @comiket_id = comiket_id.to_i
-    @user_id = user_id.to_i
-    @cmap_id = cmap_id.to_i
-    @day = day.to_i
+    attributes.each do |name, value|
+      send("#{name}=", value)
+    end
+  end
 
+  def draw
     comiket = Comiket.find(comiket_id)
     careas = Carea.where(cmap_id: cmap_id)
     cblocks = Cblock.includes(:clayouts).where(carea_id: careas.map(&:id))
@@ -32,7 +42,7 @@ class CcircleChecklistMapPdf < Prawn::Document
       .where(day: day)
       .where(clayout_id: clayouts.map(&:id))
 
-    if @cmap_id == 3
+    if west?
       ccircle_checklists.each_slice(20).with_index do |checklists, index|
         start_new_page unless index == 0
         draw_content_west(cblocks, clayouts, checklists)
@@ -238,28 +248,32 @@ class CcircleChecklistMapPdf < Prawn::Document
   def line_clayout_y(absolute_bottom, top)
     box_bottom = absolute_bottom
     box_top = box_bottom + top
-    margin = @cmap_id == 3 ? 25 : 20
+    margin = west? ? 25 : 20
     (box_top + box_bottom).to_f / 2.0 - margin
   end
 
   def line_clayout_x(absolute_left, right)
     box_left = absolute_left
     box_right = box_left + right
-    margin = @cmap_id == 3 ? 20 : 20
+    margin = west? ? 20 : 20
     (box_right + box_left).to_f / 2.0 - margin
   end
 
   def line_list_y(absolute_bottom, top)
     box_bottom = absolute_bottom
     box_top = box_bottom + top
-    margin = @cmap_id == 3 ? 25 : 20
+    margin = west? ? 25 : 20
     (box_top + box_bottom).to_f / 2.0 - margin
   end
 
   def line_list_x(absolute_left, right)
     box_left = absolute_left
     box_right = box_left + right
-    margin = @cmap_id == 3 ? 20 : 20
+    margin = west? ? 20 : 20
     (box_right + box_left).to_f / 2.0 - margin
+  end
+
+  def west?
+    cmap_id == 3 || cmap_id == '3'
   end
 end
