@@ -2,12 +2,12 @@
 <div class="btn-group btn-group-justified checklists-functions">
   <div class="btn-group">
     <button type="button" class="btn btn-default" ng-click="reloadCheckLists()">
-      <span class="glyphicon glyphicon-refresh"></span>
+      <i class="fa fa-refresh"></i>
     </button>
   </div>
   <div class="btn-group">
     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-      <span class="glyphicon glyphicon-sort"></span>
+      <i class="fa fa-sort"></i>
     </button>
     <ul class="dropdown-menu" role="menu">
       <li><a href="javascript:void(0);" ng-click="setListOrder('-id')">Id</a></li>
@@ -18,17 +18,25 @@
   </div>
   <div class="btn-group">
     <button type="button" class="btn btn-default" ng-click="toggleCreateFormActive()">
-      <span class="glyphicon glyphicon-plus"></span>
+      <i class="fa fa-plus"></i>
     </button>
+  </div>
+  <div class="btn-group" dropdown>
+    <button type="button" class="btn btn-default dropdown-toggle">
+      <i class="fa fa-file-pdf-o"></i>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+      <% (1..3).each do |day| %>
+        <li class="dropdown-header"><%= day %>日目</li>
+        <li><%= link_to '東124マップ', create_map_comiket_ccircle_checklists_path(cmap_id: 1, day: day, format: :pdf), target: :blank %></li>
+        <li><%= link_to '東456マップ', create_map_comiket_ccircle_checklists_path(cmap_id: 2, day: day, format: :pdf), target: :blank %></li>
+        <li><%= link_to '西12マップ', create_map_comiket_ccircle_checklists_path(cmap_id: 3, day: day, format: :pdf), target: :blank %></li>
+      <% end %>
+    </ul>
   </div>
   <div class="btn-group">
     <button type="button" class="btn btn-default">
-      <span class="glyphicon glyphicon-map-marker"></span>
-    </button>
-  </div>
-  <div class="btn-group">
-    <button type="button" class="btn btn-default">
-      <span class="glyphicon glyphicon-download-alt"></span>
+      <i class="fa fa-cloud-download"></i>
     </button>
   </div>
 </div>

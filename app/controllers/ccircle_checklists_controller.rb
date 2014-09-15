@@ -53,6 +53,26 @@ class CcircleChecklistsController < ApplicationController
     end
   end
 
+  def create_map
+    @comiket = Comiket.find(params[:comiket_id])
+    pdf = CcircleChecklistMapPdf.new(
+      comiket_id: @comiket.id,
+      user_id: current_user.id,
+      cmap_id: params[:cmap_id],
+      day: params[:day]
+    )
+    respond_to do |format|
+      if pdf.valid?
+        format.pdf do
+          pdf.draw
+          send_data pdf.render, filename: "ccircle_checklist_#{Time.now.to_i}.pdf", disposition: 'inline'
+        end
+      else
+        format.pdf { head :no_content }
+      end
+    end
+  end
+
   # ----------------------------------------------------------
   # PrivateMethod
   # ----------------------------------------------------------
