@@ -40,7 +40,7 @@ class CcircleChecklistMapPdf < Prawn::Document
     else
       ccircle_checklists.each_slice(12).with_index do |checklists, index|
         start_new_page unless index == 0
-        draw_content_west(cblocks, clayouts, checklists)
+        draw_content_east(cblocks, clayouts, checklists)
       end
     end
     draw_footer
