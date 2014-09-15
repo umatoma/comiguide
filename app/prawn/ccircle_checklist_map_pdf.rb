@@ -17,6 +17,11 @@ class CcircleChecklistMapPdf < Prawn::Document
     font 'lib/assets/ipaexg.ttf'
     font_size 9
 
+    @comiket_id = comiket_id.to_i
+    @user_id = user_id.to_i
+    @cmap_id = cmap_id.to_i
+    @day = day.to_i
+
     comiket = Comiket.find(comiket_id)
     careas = Carea.where(cmap_id: cmap_id)
     cblocks = Cblock.includes(:clayouts).where(carea_id: careas.map(&:id))
@@ -27,9 +32,16 @@ class CcircleChecklistMapPdf < Prawn::Document
       .where(day: day)
       .where(clayout_id: clayouts.map(&:id))
 
-    ccircle_checklists.each_slice(12).with_index do |checklists, index|
-      start_new_page unless index == 0
-      draw_content(cblocks, clayouts, checklists)
+    if @cmap_id == 3
+      ccircle_checklists.each_slice(20).with_index do |checklists, index|
+        start_new_page unless index == 0
+        draw_content_west(cblocks, clayouts, checklists)
+      end
+    else
+      ccircle_checklists.each_slice(12).with_index do |checklists, index|
+        start_new_page unless index == 0
+        draw_content_west(cblocks, clayouts, checklists)
+      end
     end
     draw_footer
   end
@@ -39,13 +51,15 @@ class CcircleChecklistMapPdf < Prawn::Document
     number_pages(text, align: :right, at: [bounds.right - 300, 0])
   end
 
-  def draw_content(cblocks, clayouts, ccircle_checklists)
+  def draw_content_east(cblocks, clayouts, ccircle_checklists)
     clayout_positions_hash = {}
     ccircle_w = 9
     ccircle_h = 5
-    bounding_box([0, cursor], width: bounds.right, height: bounds.top * 0.8) do
+    box_scale = 0.8
+
+    bounding_box([0, cursor], width: bounds.right, height: bounds.top * box_scale) do
       grid_x = clayouts.max_by(&:pos_x).scaled_pos_x + ccircle_w
-      grid_y = clayouts.max_by(&:pos_y).scaled_pos_y + ccircle_h
+      grid_y = clayouts.max_by(&:pos_y).scaled_pos_y + ccircle_h * 2
       define_grid(columns: grid_x, rows: grid_y, gutter: 0)
 
       font_size 4
@@ -65,9 +79,15 @@ class CcircleChecklistMapPdf < Prawn::Document
     end
 
     move_down 5
+    list_box_x = 0
+    list_box_y = cursor
+    list_box_w = bounds.right
+    list_box_h = bounds.top * 0.2 - 5.0
+    columns = 40
+    rows = 6
 
-    bounding_box([0, cursor], width: bounds.right, height: bounds.top * 0.2 - 5.0) do
-      define_grid(columns: 40, rows: 6, gutter: 0)
+    bounding_box([list_box_x, list_box_y], width: list_box_w, height: list_box_h) do
+      define_grid(columns: columns, rows: rows, gutter: 0)
       font_size 8
       ccircle_checklists.each.with_index do |checklist, index|
         list_pos = {}
@@ -107,6 +127,77 @@ class CcircleChecklistMapPdf < Prawn::Document
     end
   end
 
+  def draw_content_west(cblocks, clayouts, ccircle_checklists)
+    clayout_positions_hash = {}
+    ccircle_w = 9
+    ccircle_h = 7
+    box_scale = 1.0
+
+    bounding_box([0, cursor], width: bounds.right, height: bounds.top * box_scale) do
+      grid_x = clayouts.max_by(&:pos_x).scaled_pos_x + ccircle_w
+      grid_y = clayouts.max_by(&:pos_y).scaled_pos_y + ccircle_h * 2
+      define_grid(columns: grid_x, rows: grid_y, gutter: 0)
+
+      font_size 4
+      checklist_layout_ids = ccircle_checklists.map(&:clayout_id).uniq
+      clayouts.each do |clayout|
+        x = clayout.scaled_pos_x
+        y = clayout.scaled_pos_y
+        grid([y, x], [y + ccircle_h, x + ccircle_w]).bounding_box do
+          self.line_width = 0.3
+          transparent(1.0) { stroke_bounds }
+          if checklist_layout_ids.include?(clayout.id)
+            clayout_positions_hash[clayout.id] = bounds_hash(bounds)
+          end
+          text clayout.space_no.to_s, align: :center, valign: :center
+        end
+      end
+    end
+
+    move_to 190, 385
+    list_box_x = 190
+    list_box_y = 385
+    list_box_w = 360
+    list_box_h = 380
+    columns = 19
+    rows = 20
+
+    bounding_box([list_box_x, list_box_y], width: list_box_w, height: list_box_h) do
+      define_grid(columns: columns, rows: rows, gutter: 0)
+      font_size 8
+      ccircle_checklists.each.with_index do |checklist, index|
+        list_pos = {}
+        x_margin = 0
+        y = y2 = index
+        list_datum = [
+          { x: 0 + x_margin, x2: 1 + x_margin, text: checklist.clayout.layout_info_simple },
+          { x: 2 + x_margin, x2: 7 + x_margin, text: checklist.circle_name },
+          { x: 8 + x_margin, x2: 17 + x_margin, text: checklist.comment },
+          { x: 18 + x_margin, x2: 19 + x_margin, text: checklist.cost }
+        ]
+        list_datum.each.with_index do |data, i|
+          grid([y, data[:x]], [y2, data[:x2]]).bounding_box do
+            list_pos = bounds_hash(bounds) if i == 0
+            transparent(0.5) { stroke_bounds }
+            text data[:text], align: :center, valign: :center, overflow: :shrink_to_fit
+          end
+        end
+
+        clayout_pos = clayout_positions_hash[checklist.clayout_id]
+        stroke do
+          line_x = line_clayout_x(clayout_pos[:absolute_left], clayout_pos[:right]) - list_box_x
+          line_y = line_clayout_y(clayout_pos[:absolute_bottom], clayout_pos[:top])
+          line_x2 = line_list_x(list_pos[:absolute_left], list_pos[:right]) - list_box_x
+          line_y2 = line_list_y(list_pos[:absolute_bottom], list_pos[:top])
+
+          stroke_color checklist.color_hex
+          line [line_x, line_y], [line_x2, line_y2]
+        end
+        stroke_color '000000'
+      end
+    end
+  end
+
   private
 
   def bounds_hash(b)
@@ -125,24 +216,28 @@ class CcircleChecklistMapPdf < Prawn::Document
   def line_clayout_y(absolute_bottom, top)
     box_bottom = absolute_bottom
     box_top = box_bottom + top
-    (box_top + box_bottom).to_f / 2.0 - 20
+    margin = @cmap_id == 3 ? 25 : 20
+    (box_top + box_bottom).to_f / 2.0 - margin
   end
 
   def line_clayout_x(absolute_left, right)
     box_left = absolute_left
     box_right = box_left + right
-    (box_right + box_left).to_f / 2.0 - 20
+    margin = @cmap_id == 3 ? 20 : 20
+    (box_right + box_left).to_f / 2.0 - margin
   end
 
   def line_list_y(absolute_bottom, top)
     box_bottom = absolute_bottom
     box_top = box_bottom + top
-    (box_top + box_bottom).to_f / 2.0 - 20
+    margin = @cmap_id == 3 ? 25 : 20
+    (box_top + box_bottom).to_f / 2.0 - margin
   end
 
   def line_list_x(absolute_left, right)
     box_left = absolute_left
     box_right = box_left + right
-    (box_right + box_left).to_f / 2.0 - 20
+    margin = @cmap_id == 3 ? 20 : 20
+    (box_right + box_left).to_f / 2.0 - margin
   end
 end
