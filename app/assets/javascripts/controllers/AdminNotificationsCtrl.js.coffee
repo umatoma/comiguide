@@ -27,4 +27,13 @@
         new SuccessNotify('お知らせを更新しました。', notification.title)
       .error (data, status, headers, config) ->
         new ErrorNotify('お知らせの更新に失敗しました。', data, status)
+
+    $scope.destroyNotification = (notification) ->
+      notification.destroy()
+      .success (data, status, headers, config) ->
+        index = $scope.notifications.indexOf(notification)
+        $scope.notifications.splice(index, 1)
+        new SuccessNotify('リストを削除しました。', notification.title)
+      .error (data, status, headers, config) ->
+        new ErrorNotify('リストの削除に失敗しました。', data, status)
 ]

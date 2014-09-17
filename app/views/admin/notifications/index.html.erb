@@ -56,6 +56,9 @@
                 <div class="btn btn-update btn-xs" ng-click="notification.updateFormActive = !notification.updateFormActive">
                   <i class="fa fa-pencil-square-o"></i> Edit
                 </div>
+                <div class="btn btn-delete btn-xs" ng-click="notification.destroyFormActive = !notification.destroyFormActive">
+                  <i class="fa fa-pencil-square-o"></i> Delete
+                </div>
               </div>
               <%= Notification.human_attribute_name(:created_at) %> : {{ notification.created_at | date : 'yy/MM/dd HH:mm' }}
             </div>
@@ -64,6 +67,9 @@
             <div class="panel-body">
               <%= render 'admin/notifications/form_update' %>
             </div>
+          </div>
+          <div class="panel panel-default" ng-show="!!notification.destroyFormActive">
+            <div class="btn btn-block btn-delete" ng-click="destroyNotification(notification)">Destroy</div>
           </div>
         </div>
       </div>
