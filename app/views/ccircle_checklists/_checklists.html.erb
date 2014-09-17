@@ -28,9 +28,9 @@
     <ul class="dropdown-menu" role="menu">
       <% (1..3).each do |day| %>
         <li class="dropdown-header"><%= day %>日目</li>
-        <li><%= link_to '東124マップ', create_map_comiket_ccircle_checklists_path(cmap_id: 1, day: day, format: :pdf), target: :blank %></li>
-        <li><%= link_to '東456マップ', create_map_comiket_ccircle_checklists_path(cmap_id: 2, day: day, format: :pdf), target: :blank %></li>
-        <li><%= link_to '西12マップ', create_map_comiket_ccircle_checklists_path(cmap_id: 3, day: day, format: :pdf), target: :blank %></li>
+        <li><%= link_to '東124マップ', create_map_comiket_ccircle_checklists_path(cmap_id: 1, day: day, format: :pdf), target: :_blank %></li>
+        <li><%= link_to '東456マップ', create_map_comiket_ccircle_checklists_path(cmap_id: 2, day: day, format: :pdf), target: :_blank %></li>
+        <li><%= link_to '西12マップ', create_map_comiket_ccircle_checklists_path(cmap_id: 3, day: day, format: :pdf), target: :_blank %></li>
       <% end %>
     </ul>
   </div>
