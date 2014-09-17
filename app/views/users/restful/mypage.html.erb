@@ -58,6 +58,7 @@
               </li>
               <li class="list-group-item" ng-repeat="notification in notifications | limitTo : 5">
                 {{ notification.title }}
+                <span class="badge pull-right">{{ notification.published_at | date : 'MM/dd HH:mm' }}</span>
               </li>
             </ul>
           </div>
