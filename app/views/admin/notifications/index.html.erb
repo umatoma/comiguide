@@ -57,7 +57,7 @@
                   <i class="fa fa-pencil-square-o"></i> Edit
                 </div>
                 <div class="btn btn-delete btn-xs" ng-click="notification.destroyFormActive = !notification.destroyFormActive">
-                  <i class="fa fa-pencil-square-o"></i> Delete
+                  <i class="fa fa-trash"></i> Delete
                 </div>
               </div>
               <%= Notification.human_attribute_name(:created_at) %> : {{ notification.created_at | date : 'yy/MM/dd HH:mm' }}
