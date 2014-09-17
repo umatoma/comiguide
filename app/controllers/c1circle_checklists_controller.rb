@@ -52,6 +52,16 @@ class C1circleChecklistsController < ApplicationController
     end
   end
 
+  def create_map
+    @comic1 = Comic1.find(params[:comic1_id])
+    pdf = C1circleChecklistMapPdf.new(comic1_id: @comic1.id, user_id: current_user.id)
+    respond_to do |format|
+      format.pdf do
+        send_data pdf.render, filename: "c1circle_checklist_#{Time.now.to_i}.pdf", disposition: 'inline'
+      end
+    end
+  end
+
   # ----------------------------------------------------------
   # PrivateMethod
   # ----------------------------------------------------------
