@@ -13,4 +13,8 @@ class C1layout < ActiveRecord::Base
   validates :layout,     presence: true, numericality: true
   validates :pos_x,      presence: true, numericality: true
   validates :pos_y,      presence: true, numericality: true
+
+  def layout_info_simple
+    "#{c1block.name} - #{space_no}"
+  end
 end
