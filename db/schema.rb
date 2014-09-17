@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917072058) do
+ActiveRecord::Schema.define(version: 20140917100339) do
 
   create_table "c1blocks", force: true do |t|
     t.integer "comic1_id", null: false
@@ -198,9 +198,10 @@ ActiveRecord::Schema.define(version: 20140917072058) do
   add_index "comikets", ["event_no"], name: "index_comikets_on_event_no", unique: true, using: :btree
 
   create_table "notifications", force: true do |t|
-    t.string   "title",                  null: false
-    t.text     "content",                null: false
-    t.integer  "status",     default: 1, null: false
+    t.string   "title",                    null: false
+    t.text     "content",                  null: false
+    t.integer  "status",       default: 1, null: false
+    t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
