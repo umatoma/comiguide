@@ -1,7 +1,7 @@
 json.partial! 'json/user', user: @user
 json.notifications do
   json.array! @notifications do |notification|
-    json.(notification, :id, :title, :content, :status, :updated_at, :created_at)
+    json.partial! 'json/notification', notification: notification
   end
 end
 json.ckigyo_checklists do

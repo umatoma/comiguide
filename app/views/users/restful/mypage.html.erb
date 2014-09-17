@@ -37,30 +37,31 @@
         </div>
         <!-- //.col -->
         <div class="col-md-4">
-            <div class="panel panel-warning">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-xs-2">
-                            <i class="fa fa-bell fa-3x"></i>
-                        </div>
-                        <div class="col-xs-10 text-right">
-                            <div class="count">新着メッセージ {{ notifications.length }} 件</div>
-                            <div class="message">
-                              <%= link_to 'メッセージ一覧', notifications_path %>
-                            </div>
-                        </div>
-                    </div>
+          <div class="panel panel-warning">
+            <div class="panel-heading">
+              <div class="row">
+                <div class="col-xs-2">
+                  <i class="fa fa-bell fa-3x"></i>
                 </div>
-                <!-- //.panel-heading -->
-                <ul class="list-group">
-                  <li class="list-group-item">
-                    <b>新着メッセージ</b>
-                  </li>
-                  <li class="list-group-item" ng-repeat="notification in notifications | limitTo : 5">
-                    {{ notification.title }}
-                  </li>
-                </ul>
+                <div class="col-xs-10 text-right">
+                  <div class="count">新着メッセージ {{ notifications.length }} 件</div>
+                  <div class="message">
+                    <%= link_to 'メッセージ一覧', notifications_path %>
+                  </div>
+                </div>
+              </div>
             </div>
+            <!-- //.panel-heading -->
+            <ul class="list-group">
+              <li class="list-group-item">
+                <b>新着メッセージ</b>
+              </li>
+              <li class="list-group-item" ng-repeat="notification in notifications | limitTo : 5">
+                {{ notification.title }}
+                <span class="badge pull-right">{{ notification.published_at | date : 'MM/dd HH:mm' }}</span>
+              </li>
+            </ul>
+          </div>
         </div>
         <!-- //.col -->
       </div>
