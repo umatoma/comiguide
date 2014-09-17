@@ -25,6 +25,14 @@
       update: (data) ->
         $http.put("/admin/notifications/#{this.id}.json", data)
 
+      updateAll: ->
+        data =
+          notification:
+            title: this.title
+            content: this.content
+            status: this.status
+        this.update(data)
+
       destroy: ->
         $http.delete("/admin/notifications/#{this.id}.json")
 
@@ -32,4 +40,7 @@
         this.title = null
         this.content = null
         this.status = 1
+
+      statusName: ->
+        (@status_options.filter (x) => x.key == @status)[0].value
 ]

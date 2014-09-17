@@ -42,17 +42,28 @@
     <!-- //.col -->
     <div class="col-md-6">
       <div class="notifications">
-        <div class="panel panel-default panel-notification"
-             ng-repeat="notification in notifications">
-          <div class="panel-heading">
-            <span class="label label-default pull-right">
-              <i class="fa fa-tag"></i> {{ notification.status_name }}
-            </span>
-            <h3 class="panel-title">{{ notification.title }}</h3>
+        <div class="notification-wrapper" ng-repeat="notification in notifications">
+          <div class="panel panel-default panel-notification">
+            <div class="panel-heading">
+              <span class="label label-default pull-right">
+                <i class="fa fa-tag"></i> {{ notification.statusName() }}
+              </span>
+              <h3 class="panel-title">{{ notification.title }}</h3>
+            </div>
+            <div class="panel-body">{{ notification.content }}</div>
+            <div class="panel-footer">
+              <div class="pull-right">
+                <div class="btn btn-update btn-xs" ng-click="notification.updateFormActive = !notification.updateFormActive">
+                  <i class="fa fa-pencil-square-o"></i> Edit
+                </div>
+              </div>
+              <%= Notification.human_attribute_name(:created_at) %> : {{ notification.created_at | date : 'yy/MM/dd HH:mm' }}
+            </div>
           </div>
-          <div class="panel-body">{{ notification.content }}</div>
-          <div class="panel-footer">
-            <%= Notification.human_attribute_name(:created_at) %> : {{ notification.created_at | date : 'yy/MM/dd HH:mm' }}
+          <div class="panel panel-default" ng-show="!!notification.updateFormActive">
+            <div class="panel-body">
+              <%= render 'admin/notifications/form_update' %>
+            </div>
           </div>
         </div>
       </div>
