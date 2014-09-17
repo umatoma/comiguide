@@ -178,8 +178,8 @@ namespace :create_data do
         attributes = {
           comic1_id: row[1].to_i,
           name: row[2],
-          pos_x: row[3].to_i,
-          pos_y: row[4].to_i
+          pos_x: row[3].to_i - 1,
+          pos_y: row[4].to_i - 2
         }
         C1block.new(attributes).save!
       end
@@ -203,8 +203,8 @@ namespace :create_data do
           c1block_id: c1block_ids[row[2].to_i],
           space_no: row[3].to_i,
           layout: 1,
-          pos_x: row[4].to_i,
-          pos_y: row[5].to_i
+          pos_x: row[4].to_i - 1,
+          pos_y: row[5].to_i - 2
         }
         C1layout.new(attributes).save!
       end

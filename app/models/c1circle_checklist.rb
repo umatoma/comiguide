@@ -1,6 +1,11 @@
 class C1circleChecklist < ActiveRecord::Base
   include Colors
 
+  SPACE_NO_SUB_NAME_HASH = {
+    0 => 'a',
+    1 => 'b'
+  }
+
   # ----------------------------------------------------------
   # Relation
   # ----------------------------------------------------------
@@ -18,4 +23,12 @@ class C1circleChecklist < ActiveRecord::Base
   validates :circle_name,  presence: true
   validates :color,        presence: true
   validates :rank,         presence: true, numericality: true
+
+  def layout_info_simple
+    "#{c1layout.layout_info_simple}#{space_no_sub_name}"
+  end
+
+  def space_no_sub_name
+    SPACE_NO_SUB_NAME_HASH[space_no_sub]
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140824115033) do
+ActiveRecord::Schema.define(version: 20140917072058) do
 
   create_table "c1blocks", force: true do |t|
     t.integer "comic1_id", null: false
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 20140824115033) do
     t.integer  "user_id",                        null: false
     t.integer  "comic1_id",                      null: false
     t.integer  "c1layout_id",                    null: false
-    t.string   "space_no_sub",                   null: false
+    t.integer  "space_no_sub",                   null: false
     t.string   "circle_name",                    null: false
     t.string   "circle_url"
     t.string   "comment"
