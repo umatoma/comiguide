@@ -67,7 +67,7 @@
     padding: 50px 0;
 
     &.section-left {
-      background-color: $color-link-water;
+      background-color: $color-clouds;
     }
 
     &.section-right {
@@ -75,7 +75,16 @@
       border-top: 1px solid #e7e7e7;
     }
 
+    .section-images {
+      text-align: center;
+
+      .fa {
+        font-size: 24em;
+      }
+    }
+
     .section-heading {
+      font-weight: bold;
       margin-bottom: 30px;
     }
 
@@ -83,6 +92,14 @@
       border-top: 3px solid #e7e7e7;
       float: left;
       width: 200px;
+    }
+
+    @media(max-width: 767px) {
+      .section-images {
+        .fa {
+          font-size: 16em;
+        }
+      }
     }
   }
 
