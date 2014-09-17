@@ -25,13 +25,28 @@ class Notification < ActiveRecord::Base
   # Scope
   # ----------------------------------------------------------
   scope :publish, -> { where(status: STATUS[:publish]) }
-  scope :draft, -> { where(status: STATUS[:draft]) }
-  scope :close, -> { where(status: STATUS[:close]) }
-  scope :recent, -> { where(Notification.arel_table[:created_at].gt(1.month.ago)) }
+  scope :draft,   -> { where(status: STATUS[:draft]) }
+  scope :close,   -> { where(status: STATUS[:close]) }
+  scope :recent,  -> { where(Notification.arel_table[:created_at].gt(1.month.ago)) }
 
   default_scope { order(id: :desc) }
 
+  # ----------------------------------------------------------
+  # Callback
+  # ----------------------------------------------------------
+  before_update :set_published_at, if: -> { status_changed? && publish? }
+
+  def publish?
+    status == STATUS[:publish]
+  end
+
   def status_name
     STATUS_NAME[status]
+  end
+
+  private
+
+  def set_published_at
+    self.published_at = DateTime.now
   end
 end
