@@ -34,6 +34,7 @@ class Notification < ActiveRecord::Base
   # ----------------------------------------------------------
   # Callback
   # ----------------------------------------------------------
+  before_create :set_published_at, if: -> { publish? }
   before_update :set_published_at, if: -> { status_changed? && publish? }
 
   def publish?
