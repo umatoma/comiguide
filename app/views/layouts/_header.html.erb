@@ -13,7 +13,7 @@
         <a class="dropdown-toggle" href="#" >ComicMarket <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li class="dropdown-header">C<%= Comiket::MAIN_ID %></li>
-          <li><%= link_to '企業ブース', comiket_ckigyos_path(comiket_id: Comiket::MAIN_ID) %></li>
+          <li><%= link_to '企業ブースチェックリスト', comiket_ckigyos_path(comiket_id: Comiket::MAIN_ID) %></li>
           <li><%= link_to 'サークルチェックリスト', comiket_ccircle_checklists_path(comiket_id: Comiket::MAIN_ID) %></li>
           <li class="divider"></li>
           <li><a href="/comike/beginner">コミケ初参加の人へ</a></li>
@@ -26,7 +26,6 @@
         <a class="dropdown-toggle" href="#">COMIC1 <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li class="dropdown-header">COMIC1☆<%= Comic1::MAIN_ID %></li>
-          <li><%= link_to 'サークル一覧', comic1_c1circles_path(comic1_id: Comic1::MAIN_ID) %></li>
           <li><%= link_to 'サークルチェックリスト', comic1_c1circle_checklists_path(comic1_id: Comic1::MAIN_ID) %></li>
         </ul>
       </li>
