@@ -1,28 +1,43 @@
+<% set_page_sub_title t('views.ckigyo_checklists.index.title', comiket_id: @comiket.id) %>
 
 <%= render 'share/page_title' %>
 
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-7" id="ckigyos_controller" ng-controller="CkigyosCtrl" comiket-id="<%= @comiket.id %>">
+  　<div class="panel panel-default hidden-xs hidden-sm">
+      <div class="panel-body">
+        <div class="ckigyo-map-wrapper">
+          <a href="javascript:void(0);"
+             style="{{ ckigyo.map_style }}"
+             ckigyo-id="{{ ckigyo.id }}"
+             ng-repeat="ckigyo in ckigyos" ckigyo-modal>{{ ckigyo.kigyo_no }}</a>
+        </div>
+      </div>
+    </div>
     <div class="panel panel-default">
       <div class="panel-heading">
+        <div class="pull-right btn btn-xs btn-default" ng-click="toggleListActive()">
+          <i class="fa" ng-class="{ 'fa-toggle-on': list_active, 'fa-toggle-off': !list_active }"></i>
+        </div>
         <h3 class="panel-title">企業ブース一覧</h3>
       </div>
-      <ul class="media-list">
-        <% @ckigyo_checklists.each do |checklist| %>
-          <li class="media">
-            <a class="pull-left" href="#">
-              <img class="media-object" src="http://placehold.jp/64x64.png">
-            </a>
-            <div class="media-body">
-              <h4 class="media-heading"><%= checklist.ckigyo.name %></h4>
-              <p></p>
-            </div>
-          </li>
-        <% end %>
+      <ul class="list-group" ng-show="list_active">
+        <li class="list-group-item" ng-repeat="ckigyo in ckigyos | orderBy:list_order">
+          <a href="javascript:void(0);" ckigyo-id="{{ ckigyo.id }}" ckigyo-modal>
+            {{ ckigyo.full_info }}
+          </a>
+          <span class="pull-right">
+            <button class="btn btn-default btn-xs">
+              <i class="fa fa-plus" ng-click="createCheckList(ckigyo)"></i>
+            </button>
+          </span>
+        </li>
       </ul>
     </div>
-  </div><!-- //col-md-6 -->
-  <div class="col-md-6">
-
-  </div><!-- //col-md-6 -->
+  </div>
+  <!-- //.col -->
+  <div class="col-md-5">
+    <%= render 'ckigyo_checklists/checklists', comiket: @comiket  %>
+  </div>
+  <!-- //.col -->
 </div>

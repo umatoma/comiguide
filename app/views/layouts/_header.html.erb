@@ -13,13 +13,11 @@
         <a class="dropdown-toggle" href="#" >ComicMarket <span class="caret"></span></a>
         <ul class="dropdown-menu">
           <li class="dropdown-header">C<%= Comiket::MAIN_ID %></li>
-          <li><%= link_to '企業ブース', comiket_ckigyos_path(comiket_id: Comiket::MAIN_ID) %></li>
-          <li><%= link_to 'サークルチェックリスト', comiket_ccircle_checklists_path(comiket_id: Comiket::MAIN_ID) %></li>
-          <li class="divider"></li>
-          <li><a href="/comike/beginner">コミケ初参加の人へ</a></li>
-          <li><a href="/comike/items">コミケ当日の持ち物</a></li>
-          <li><a href="/comike/traffic">コミケの交通情報</a></li>
-          <li><a target="_blank" href="http://cmapviewer.rikeidame.net/">CMapViewer</a></li>
+          <li><%= link_to '企業ブース一覧', comiket_ckigyos_path(comiket_id: Comiket::MAIN_ID) %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to '企業ブースチェックリスト', comiket_ckigyo_checklists_path(comiket_id: Comiket::MAIN_ID) %></li>
+            <li><%= link_to 'サークルチェックリスト', comiket_ccircle_checklists_path(comiket_id: Comiket::MAIN_ID) %></li>
+          <% end %>
         </ul>
       </li>
       <li dropdown>
@@ -27,7 +25,9 @@
         <ul class="dropdown-menu">
           <li class="dropdown-header">COMIC1☆<%= Comic1::MAIN_ID %></li>
           <li><%= link_to 'サークル一覧', comic1_c1circles_path(comic1_id: Comic1::MAIN_ID) %></li>
-          <li><%= link_to 'サークルチェックリスト', comic1_c1circle_checklists_path(comic1_id: Comic1::MAIN_ID) %></li>
+          <% if user_signed_in? %>
+            <li><%= link_to 'サークルチェックリスト', comic1_c1circle_checklists_path(comic1_id: Comic1::MAIN_ID) %></li>
+          <% end %>
         </ul>
       </li>
       <% if user_signed_in? && current_user.has_role?(:admin) %>

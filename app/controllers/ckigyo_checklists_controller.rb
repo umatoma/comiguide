@@ -2,12 +2,17 @@ class CkigyoChecklistsController < ApplicationController
   authorize_resource
 
   def index
-    @comiket = Comiket.includes(:ckigyos).find(params[:comiket_id])
-    @ckigyos = @comiket.ckigyos
-    @ckigyo_checklists = @comiket.ckigyo_checklists
-                                 .includes(ckigyo: :comiket)
-                                 .where(user: current_user)
+    @comiket = Comiket.find(params[:comiket_id])
+    if request.format.symbol == :json
+      @ckigyos = @comiket.ckigyos
+      @ckigyo_checklists = @comiket
+        .ckigyo_checklists
+        .includes(ckigyo: :comiket)
+        .where(user: current_user)
+    end
+
     respond_to do |format|
+      format.html
       format.json
     end
   end

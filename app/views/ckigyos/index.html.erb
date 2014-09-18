@@ -26,26 +26,19 @@
           <a href="javascript:void(0);" ckigyo-id="{{ ckigyo.id }}" ckigyo-modal>
             {{ ckigyo.full_info }}
           </a>
-          <span class="pull-right">
-            <% if user_signed_in? %>
-              <button class="btn btn-default btn-xs">
-                <i class="fa fa-plus" ng-click="createCheckList(ckigyo)"></i>
-              </button>
-            <% end %>
-          </span>
         </li>
       </ul>
     </div>
-  </div><!-- //col-md-7 -->
+  </div>
+  <!-- //.col -->
   <div class="col-md-5">
-    <% if user_signed_in? %>
-      <%= render "/ckigyo_checklists/checklists", comiket: @comiket  %>
-    <% else %>
+    <% unless user_signed_in? %>
       <div class="alert alert-info">
         <%= t('views.ckigyos.index.register_message') %><br>
         <%= link_to t('views.users.sign_up'), new_user_registration_path, class: 'btn btn-default' %>
         <%= link_to t('views.users.sign_in'), new_user_session_path, class: 'btn btn-default' %>
       </div>
     <% end %>
-  </div><!-- //col-md-5 -->
+  </div>
+  <!-- //.col -->
 </div>
