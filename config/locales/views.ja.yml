@@ -41,12 +41,16 @@ ja:
         blank_checklist_message: 'チェックリストがありません。'
         register_message: 'ユーザー登録をすることでチェックリストを作成することが出来ます。'
         btn_close: '閉じる'
+    ckigyo_checklists:
+      index:
+        title: 'C%{comiket_id} 企業ブースチェックリスト'
     ccircle_checklists:
       index:
         title: 'C%{comiket_id} サークルチェックリスト'
     c1circles:
       index:
         title: 'COMIC1☆%{comic1_id} サークル一覧'
+        register_message: 'ユーザー登録をすることでチェックリストを作成することが出来ます。'
     c1circle_checklists:
       index:
         title: 'COMIC1☆%{comic1_id} サークルチェックリスト'

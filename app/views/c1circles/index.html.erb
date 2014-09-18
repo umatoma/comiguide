@@ -6,10 +6,19 @@
   <div class="col-md-2">
 
   </div>
-  <div class="col-md-5">
-
-  </div>
+  <!-- //.col -->
   <div class="col-md-5">
     <%= render 'c1circles/c1circles', comic1: @comic1 %>
   </div>
+  <!-- //.col -->
+  <div class="col-md-5">
+    <% unless user_signed_in? %>
+      <div class="alert alert-info">
+        <%= t('views.c1circles.index.register_message') %><br>
+        <%= link_to t('views.users.sign_up'), new_user_registration_path, class: 'btn btn-default' %>
+        <%= link_to t('views.users.sign_in'), new_user_session_path, class: 'btn btn-default' %>
+      </div>
+    <% end %>
+  </div>
+  <!-- //.col -->
 </div>
