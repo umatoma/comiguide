@@ -4,7 +4,17 @@
 
 <div class="row">
   <div class="col-md-2">
-
+    <form ng-controller="C1circleSearchCtrl">
+      <label>サークル検索</label>
+      <div class="input-group">
+        <input class="form-control" placeholder="Search" type="text" ng-model="searchKeyword">
+        <span class="input-group-btn">
+          <button class="btn btn-default" ng-click="doSearch()">
+            <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+    </form>
   </div>
   <!-- //.col -->
   <div class="col-md-5">

@@ -1,5 +1,5 @@
 # ----------------------------------------------------------
-# AngularC1circleCheckListController
+# AngularC1circlesController
 # ----------------------------------------------------------
 @comiguideApp.controller 'C1circlesCtrl',
 ['$scope', '$attrs', '$http','C1circle',
@@ -23,6 +23,15 @@
           page: $scope.c1circleCurrentPages
       $http.get(url, config).success (data) ->
         $scope.c1circles = []
+        angular.forEach data.c1circles, (v, k) ->
+          $scope.c1circles.push new C1circle(v)
+
+    $scope.$on "doC1circleSearch", (e, params) ->
+      url = "/comic1s/#{$scope.comic1_id}/c1circles/search.json"
+      $http.get(url, { params: params }).success (data) ->
+        $scope.c1circles = []
+        $scope.c1circleCurrentPages = data.current_page
+        $scope.c1circleTotalCount = data.total_count
         angular.forEach data.c1circles, (v, k) ->
           $scope.c1circles.push new C1circle(v)
 ]
