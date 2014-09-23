@@ -85,7 +85,11 @@ Rails.application.routes.draw do
   # Comic1s
   # -----------------------------------------------------
   resources :comic1s, only: [:index, :show] do
-    resources :c1circles, only: [:index]
+    resources :c1circles, only: [:index] do
+      collection do
+        get :search
+      end
+    end
     resources :c1circle_checklists, only: [:index] do
       collection do
         get :create_map
