@@ -14,3 +14,9 @@
   authToken = $("meta[name=\"csrf-token\"]").attr("content")
   $httpProvider.defaults.headers.common["X-CSRF-TOKEN"] = authToken
 ]
+
+# ----------------------------------------------------------
+# Filters
+# ----------------------------------------------------------
+@comiguideApp.filter 'nl2br', ->
+  (input) -> input.replace(/\n/g, '<br>')
