@@ -45,6 +45,10 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) << :username
   end
 
+  def request_json?
+    request.format.symbol == :json
+  end
+
   private
 
   def initialize_variables
