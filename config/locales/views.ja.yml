@@ -54,6 +54,9 @@ ja:
     c1circle_checklists:
       index:
         title: 'COMIC1☆%{comic1_id} サークルチェックリスト'
+    notifications:
+      index:
+        title: 'お知らせ'
     admin:
       home:
         layouts:
