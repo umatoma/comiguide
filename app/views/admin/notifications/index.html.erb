@@ -60,7 +60,7 @@
                   <i class="fa fa-trash"></i> Delete
                 </div>
               </div>
-              <%= Notification.human_attribute_name(:created_at) %> : {{ notification.created_at | date : 'yy/MM/dd HH:mm' }}
+              <%= Notification.human_attribute_name(:created_at) %> : {{ notification.created_at | date : 'yyyy/MM/dd HH:mm' }}
             </div>
           </div>
           <div class="panel panel-default" ng-show="!!notification.updateFormActive">
