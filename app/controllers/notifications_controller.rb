@@ -2,8 +2,15 @@ class NotificationsController < ApplicationController
   authorize_resource
 
   def index
-    @notifications = Notification.all
+    if request_json?
+      @notifications = Notification
+        .publish
+        .page(params[:page])
+        .per(15)
+    end
+
     respond_to do |format|
+      format.html
       format.json
     end
   end
