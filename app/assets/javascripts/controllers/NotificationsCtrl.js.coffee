@@ -16,7 +16,7 @@
         $scope.notifications.push new Notification(v)
 
     $scope.pageChanged = ->
-      url = "notifications.json"
+      url = "/notifications.json"
       config =
         params:
           page: $scope.notificationCurrentPages

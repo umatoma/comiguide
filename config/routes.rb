@@ -120,5 +120,6 @@ Rails.application.routes.draw do
   namespace :admin do
     get :layouts, controller: :home
     resources :notifications, only: [:index, :show, :create, :update, :destroy]
+    resources :users, only: [:index]
   end
 end

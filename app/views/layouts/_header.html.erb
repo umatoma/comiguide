@@ -37,6 +37,7 @@
       <li dropdown>
         <a class="dropdown-toggle" href="#">Admin <span class="caret"></span></a>
         <ul class="dropdown-menu">
+          <li><%= link_to t('views.admin.users.index.title'), admin_users_path %></li>
           <li><%= link_to t('views.admin.notifications.index.title'), admin_notifications_path %></li>
           <li><%= link_to t('views.admin.home.layouts.title'), admin_layouts_path %></li>
         </ul>
