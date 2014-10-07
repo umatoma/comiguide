@@ -1,1 +1,50 @@
-<h1>Admin::UsersController#index</h1>
+<% set_page_sub_title t('views.admin.users.index.title') %>
+
+<%= render 'share/page_title' %>
+
+<div class="row">
+  <div class="col-md-2">
+
+  </div>
+  <!-- //.col -->
+
+  <div class="col-md-8">
+    <div class="table-responsive" ng-controller="AdminUsersCtrl">
+      <table class="table table-condensed table-striped">
+        <tr>
+          <th><%= User.human_attribute_name(:id) %></th>
+          <th><%= User.human_attribute_name(:username) %></th>
+          <th><%= User.human_attribute_name(:email) %></th>
+          <th><%= User.human_attribute_name(:confirmed_at) %></th>
+          <th><%= User.human_attribute_name(:last_sign_in_at) %></th>
+        </tr>
+        <tr ng-repeat="user in users">
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.confirmed_at | date : 'yyyy/MM/dd HH:mm' }}</td>
+          <td>{{ user.last_sign_in_at | date : 'yyyy/MM/dd HH:mm' }}</td>
+        </tr>
+      </table>
+      <pagination boundary-links="true"
+                  total-items="userTotalCount"
+                  num-pages="userTotalPages"
+                  ng-model="userCurrentPages"
+                  ng-change="pageChanged()"
+                  items-per-page="15"
+                  max-size="5"
+                  align="false"
+                  previous-text="&lsaquo;"
+                  next-text="&rsaquo;"
+                  first-text="&laquo;"
+                  last-text="&raquo;">
+      </pagination>
+    </div>
+  </div>
+  <!-- //.col -->
+
+  <div class="col-md-2">
+
+  </div>
+  <!-- //.col -->
+</div>

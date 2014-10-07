@@ -64,3 +64,6 @@ ja:
       notifications:
         index:
           title: 'お知らせ'
+      users:
+        index:
+          title: 'ユーザー'
