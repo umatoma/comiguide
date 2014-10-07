@@ -30,6 +30,9 @@
           <% end %>
         </ul>
       </li>
+      <li>
+        <%= link_to t('views.notifications.index.title'), notifications_path %>
+      </li>
       <% if user_signed_in? && current_user.has_role?(:admin) %>
       <li dropdown>
         <a class="dropdown-toggle" href="#">Admin <span class="caret"></span></a>
