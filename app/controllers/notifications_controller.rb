@@ -1,6 +1,4 @@
 class NotificationsController < ApplicationController
-  authorize_resource
-
   def index
     if request_json?
       @notifications = Notification

@@ -56,11 +56,6 @@ class Ability
       can [:update, :destroy], C1circleChecklist do |c1circle_checklist|
         c1circle_checklist.user == user
       end
-
-      # ------------------------------------------------------------
-      # Notification
-      # ------------------------------------------------------------
-      can [:index, :show], Notification
     end
   end
 end
