@@ -1,0 +1,22 @@
+<div class="nav nav-pills nav-stacked nav-sidebar hidden-xs hidden-sm">
+  <% if user_signed_in? %>
+    <li><%= link_to t('views.users.mypage'), mypage_users_path %></li>
+    <li><%= link_to t('views.users.edit'), edit_user_registration_path %></li>
+    <li><%= link_to '企業ブースチェックリスト', comiket_ckigyo_checklists_path(comiket_id: Comiket::MAIN_ID) %></li>
+    <li><%= link_to 'コミケチェックリスト', comiket_ccircle_checklists_path(comiket_id: Comiket::MAIN_ID) %></li>
+    <li><%= link_to 'COMIC1チェックリスト', comic1_c1circle_checklists_path(comic1_id: Comic1::MAIN_ID) %></li>
+  <% else %>
+    <li>
+      <%= link_to new_user_registration_path do %>
+       <i class="fa fa-chevron-circle-up"></i> <%= t('views.users.sign_up') %>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to new_user_session_path do %>
+       <i class="fa fa-sign-in"></i> <%= t('views.users.sign_in') %>
+      <% end %>
+    </li>
+    <li><%= link_to '企業ブース一覧', comiket_ckigyos_path(comiket_id: Comiket::MAIN_ID) %></li>
+    <li><%= link_to 'COMIC1サークル一覧', comic1_c1circles_path(comic1_id: Comic1::MAIN_ID) %></li>
+  <% end %>
+</div>

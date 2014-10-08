@@ -3,6 +3,11 @@
 <%= render 'share/page_title' %>
 
 <div class="row">
+  <div class="col-md-2">
+    <%= render 'share/side_nav' %>
+  </div>
+  <!-- //.col -->
+
   <div class="col-md-7" id="ckigyos_controller" ng-controller="CkigyosCtrl" comiket-id="<%= @comiket.id %>">
   　<div class="panel panel-default hidden-xs hidden-sm">
       <div class="panel-body">
@@ -31,7 +36,8 @@
     </div>
   </div>
   <!-- //.col -->
-  <div class="col-md-5">
+
+  <div class="col-md-3">
     <% unless user_signed_in? %>
       <div class="alert alert-info">
         <%= t('views.ckigyos.index.register_message') %><br>
