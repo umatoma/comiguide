@@ -2,7 +2,8 @@
   <p class="footer-links">
     <%= link_to 'Home', root_path %>
     <%= link_to 'Contact', '/contact' %>
-    <%= link_to 'About', '/about' %>
+    <%= link_to t('views.home.about.title'), about_path %>
+    <%= link_to t('views.home.terms.title'), terms_path %>
     <%= link_to 'Blog', 'http://rikeidame.blog.jp/', target: :_blank %>
     <%= link_to 'Twitter', 'https://twitter.com/umatoma', target: :_blank %>
   </p>

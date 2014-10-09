@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   root 'home#index'
   get :about, controller: :home
   get :contact, controller: :home
+  get :terms, controller: :home
 
   # -----------------------------------------------------
   # Templates

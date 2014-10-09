@@ -1,5 +1,10 @@
 ja:
   views:
+    home:
+      about:
+        title: 'ComiGuideについて'
+      terms:
+        title: '利用規約'
     users:
       sign_in: 'ログイン'
       sign_up: 'ユーザー登録'
