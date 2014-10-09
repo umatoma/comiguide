@@ -22,13 +22,25 @@ class C1circlesController < ApplicationController
       .page(params[:page])
       .per(15)
 
-    %i(name kana).each do |sym|
-      next if params[sym].blank?
-      @c1circles = @c1circles.where(C1circle.arel_table[sym].matches("%#{params[sym]}%"))
-    end
+    @c1circles = @c1circles.where(search_query) if search_query
 
     respond_to do |format|
       format.json
     end
+  end
+
+  private
+
+  def search_query
+    query = nil
+    %i(name kana).each do |sym|
+      next if params[sym].blank?
+      if query
+        query = query.or(C1circle.arel_table[sym].matches("%#{params[sym]}%"))
+      else
+        query = C1circle.arel_table[sym].matches("%#{params[sym]}%")
+      end
+    end
+    query
   end
 end
