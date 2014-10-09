@@ -4,8 +4,8 @@
     <%= link_to t('views.home.about.title'), about_path %>
     <%= link_to t('views.home.terms.title'), terms_path %>
     <%= link_to t('views.home.contact.title'), contact_path %>
-    <%= link_to 'Blog', 'http://rikeidame.blog.jp/', target: :_blank %>
-    <%= link_to 'Twitter', 'https://twitter.com/umatoma', target: :_blank %>
+    <%= link_to Settings.blog_name, Settings.blog_url, target: :_blank %>
+    <%= link_to '@umatoma', 'https://twitter.com/umatoma', target: :_blank %>
   </p>
   <p class="text-center">
     Copyright &copy; <%= Date.today.year %> <%= link_to 'umatoma', 'https://twitter.com/umatoma', target: :_blank %>. All Rights Reserved.

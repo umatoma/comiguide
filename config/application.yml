@@ -6,6 +6,7 @@ defaults: &defaults
   email_my: 'umatomakun@gmail.com'
   name_my: 'umatoma'
   twitter_url: 'https://twitter.com/umatoma'
+  blog_name: 'comiguide’s blog'
   blog_url: 'http://comiguide.hatenablog.com/'
 
 development:
