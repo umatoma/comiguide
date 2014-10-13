@@ -1,0 +1,4 @@
+json.users_count @users_count
+json.ccircle_checklists_count @ccircle_checklists_count
+json.ckigyo_checklists_count @ckigyo_checklists_count
+json.c1circle_checklists_count @c1circle_checklists_count

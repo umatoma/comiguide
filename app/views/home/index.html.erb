@@ -1,145 +1,147 @@
-<div class="intro-header">
-  <div class="intro-message">
-    <h1><%= Settings.site_name %></h1>
-    <h3>ComicMarket &amp; COMIC1 participants support site.</h3>
-    <hr class="intro-divider">
-    <ul class="list-inline intro-social-buttons">
-      <li>
-        <%= link_to Settings.twitter_url, class: 'btn btn-default btn-lg', target: '_blank' do %>
-          <i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter@umatoma</span>
-        <% end %>
-      </li>
-      <li>
-        <%= link_to Settings.blog_url, class: 'btn btn-default btn-lg', target: '_blank' do %>
-          <i class="fa fa-wordpress fa-fw"></i> <span class="network-name">comiguide’s blog</span>
-        <% end %>
-      </li>
-    </ul>
-  </div>
-</div>
-<!-- //.intro-header -->
-
-<div class="content-section section-right">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-        <hr class="section-heading-spacer">
-        <div class="clearfix"></div>
-        <h2 class="section-heading">登録データ数</h2>
-        <p class="lead">
-          ・ユーザー数：<strong><%= @users_count %></strong><br>
-          ・コミケサークルチェックリスト数：<strong><%= @ccircle_checklists_count %></strong><br>
-          ・コミケ企業ブースチェックリスト数：<strong><%= @ckigyo_checklists_count %></strong><br>
-          ・COMIC1サークルチェックリスト数：<strong><%= @c1circle_checklists_count %></strong><br>
-        </p>
-      </div>
-      <div class="col-lg-5 col-sm-pull-6 col-sm-6 section-images">
-        <i class="fa fa-bar-chart"></i>
-      </div>
-    </div>
-  </div>
-  <!-- //.container -->
-</div>
-<!-- //.content-section -->
-
-<div class="content-section section-left">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 col-sm-6">
-        <hr class="section-heading-spacer">
-        <div class="clearfix"></div>
-        <h2 class="section-heading">イベントの情報を確認</h2>
-        <p class="lead">
-          コミックマーケットやCOMIC1の情報を確認することが出来ます。<br>
-          <br>
-          ・サークル情報<br>
-          ・企業ブース情報<br>
-          ・etc
-        </p>
-      </div>
-      <div class="col-lg-5 col-lg-offset-2 col-sm-6 section-images">
-        <i class="fa fa-info-circle"></i>
-      </div>
-    </div>
-  </div>
-  <!-- //.container -->
-</div>
-<!-- //.content-section -->
-
-<div class="content-section section-right">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-        <hr class="section-heading-spacer">
-        <div class="clearfix"></div>
-        <h2 class="section-heading">チェックリスト作成</h2>
-        <p class="lead">
-          自分だけのチェックリストを作成することが出来ます。<br>
-          サークルチェックリストだけでなく、企業ブースチェックリストを作成することも可能です。<br>
-          <br>
-          ※ チェックリスト作成にはユーザー登録が必要となります。
-        </p>
-      </div>
-      <div class="col-lg-5 col-sm-pull-6 col-sm-6 section-images">
-        <i class="fa fa-list-alt"></i>
-      </div>
-    </div>
-  </div>
-  <!-- //.container -->
-</div>
-<!-- //.content-section -->
-
-<div class="content-section section-left">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-5 col-sm-6">
-        <hr class="section-heading-spacer">
-        <div class="clearfix"></div>
-        <h2 class="section-heading">チェックリストをPDFで出力</h2>
-        <p class="lead">
-          作成したチェックリストはPDFとして出力することが出来ます。<br>
-          PDFを印刷すれば自分だけの宝の地図の完成です！
-        </p>
-      </div>
-      <div class="col-lg-5 col-lg-offset-2 col-sm-6 section-images">
-        <i class="fa fa-file-pdf-o"></i>
-      </div>
-    </div>
-  </div>
-  <!-- //.container -->
-</div>
-<!-- //.content-section -->
-
-<div class="banner">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-6">
-        <h2>ComiGuideを始める <i class="fa fa-thumbs-o-up"></i></h2>
-      </div>
-      <div class="col-lg-6">
-        <ul class="list-inline banner-social-buttons">
-          <% if user_signed_in? %>
-            <li>
-              <%= link_to mypage_users_path, class: 'btn btn-default btn-lg' do %>
-                <i class="fa fa-home"></i> <span class="network-name"><%= t('views.users.mypage') %></span>
-              <% end %>
-            </li>
-          <% else %>
-            <li>
-              <%= link_to new_user_registration_path, class: 'btn btn-default btn-lg' do %>
-                <i class="fa fa-chevron-circle-up"></i> <span class="network-name"><%= t('views.users.sign_up') %></span>
-              <% end %>
-            </li>
-            <li>
-              <%= link_to new_user_session_path, class: 'btn btn-default btn-lg' do %>
-                <i class="fa fa-sign-in"></i> <span class="network-name"><%= t('views.users.sign_in') %></span>
-              <% end %>
-            </li>
+<div ng-controller="HomeIndexCtrl">
+  <div class="intro-header">
+    <div class="intro-message">
+      <h1><%= Settings.site_name %></h1>
+      <h3>ComicMarket &amp; COMIC1 participants support site.</h3>
+      <hr class="intro-divider">
+      <ul class="list-inline intro-social-buttons">
+        <li>
+          <%= link_to Settings.twitter_url, class: 'btn btn-default btn-lg', target: '_blank' do %>
+            <i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter@umatoma</span>
           <% end %>
-        </ul>
-      </div>
+        </li>
+        <li>
+          <%= link_to Settings.blog_url, class: 'btn btn-default btn-lg', target: '_blank' do %>
+            <i class="fa fa-wordpress fa-fw"></i> <span class="network-name">comiguide’s blog</span>
+          <% end %>
+        </li>
+      </ul>
     </div>
   </div>
-  <!-- //.container -->
+  <!-- //.intro-header -->
+
+  <div class="content-section section-right">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+          <hr class="section-heading-spacer">
+          <div class="clearfix"></div>
+          <h2 class="section-heading">登録データ数</h2>
+          <p class="lead">
+            ・ユーザー数：<strong>{{ usersCount }}</strong><br>
+            ・コミケサークルチェックリスト数：<strong>{{ ccircleChecklistsCount }}</strong><br>
+            ・コミケ企業ブースチェックリスト数：<strong>{{ ckigyoChecklistsCount }}</strong><br>
+            ・COMIC1サークルチェックリスト数：<strong>{{ c1circleChecklistsCount }}</strong><br>
+          </p>
+        </div>
+        <div class="col-lg-5 col-sm-pull-6 col-sm-6 section-images">
+          <i class="fa fa-bar-chart"></i>
+        </div>
+      </div>
+    </div>
+    <!-- //.container -->
+  </div>
+  <!-- //.content-section -->
+
+  <div class="content-section section-left">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-sm-6">
+          <hr class="section-heading-spacer">
+          <div class="clearfix"></div>
+          <h2 class="section-heading">イベントの情報を確認</h2>
+          <p class="lead">
+            コミックマーケットやCOMIC1の情報を確認することが出来ます。<br>
+            <br>
+            ・サークル情報<br>
+            ・企業ブース情報<br>
+            ・etc
+          </p>
+        </div>
+        <div class="col-lg-5 col-lg-offset-2 col-sm-6 section-images">
+          <i class="fa fa-info-circle"></i>
+        </div>
+      </div>
+    </div>
+    <!-- //.container -->
+  </div>
+  <!-- //.content-section -->
+
+  <div class="content-section section-right">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+          <hr class="section-heading-spacer">
+          <div class="clearfix"></div>
+          <h2 class="section-heading">チェックリスト作成</h2>
+          <p class="lead">
+            自分だけのチェックリストを作成することが出来ます。<br>
+            サークルチェックリストだけでなく、企業ブースチェックリストを作成することも可能です。<br>
+            <br>
+            ※ チェックリスト作成にはユーザー登録が必要となります。
+          </p>
+        </div>
+        <div class="col-lg-5 col-sm-pull-6 col-sm-6 section-images">
+          <i class="fa fa-list-alt"></i>
+        </div>
+      </div>
+    </div>
+    <!-- //.container -->
+  </div>
+  <!-- //.content-section -->
+
+  <div class="content-section section-left">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-5 col-sm-6">
+          <hr class="section-heading-spacer">
+          <div class="clearfix"></div>
+          <h2 class="section-heading">チェックリストをPDFで出力</h2>
+          <p class="lead">
+            作成したチェックリストはPDFとして出力することが出来ます。<br>
+            PDFを印刷すれば自分だけの宝の地図の完成です！
+          </p>
+        </div>
+        <div class="col-lg-5 col-lg-offset-2 col-sm-6 section-images">
+          <i class="fa fa-file-pdf-o"></i>
+        </div>
+      </div>
+    </div>
+    <!-- //.container -->
+  </div>
+  <!-- //.content-section -->
+
+  <div class="banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <h2>ComiGuideを始める <i class="fa fa-thumbs-o-up"></i></h2>
+        </div>
+        <div class="col-lg-6">
+          <ul class="list-inline banner-social-buttons">
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to mypage_users_path, class: 'btn btn-default btn-lg' do %>
+                  <i class="fa fa-home"></i> <span class="network-name"><%= t('views.users.mypage') %></span>
+                <% end %>
+              </li>
+            <% else %>
+              <li>
+                <%= link_to new_user_registration_path, class: 'btn btn-default btn-lg' do %>
+                  <i class="fa fa-chevron-circle-up"></i> <span class="network-name"><%= t('views.users.sign_up') %></span>
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_user_session_path, class: 'btn btn-default btn-lg' do %>
+                  <i class="fa fa-sign-in"></i> <span class="network-name"><%= t('views.users.sign_in') %></span>
+                <% end %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- //.container -->
+  </div>
+  <!-- //.banner -->
 </div>
-<!-- //.banner -->
