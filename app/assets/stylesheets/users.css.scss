@@ -5,3 +5,32 @@
     }
   }
 }
+
+#new_users_registrations {
+  background: url('/assets/users_sign_up_background.jpg') no-repeat center center;
+  background-size: cover;
+
+  .content-wrapper {
+    border-radius: 10px;
+    margin-bottom: 190px;
+    margin-top: 50px;
+    padding: 15px 20px;
+  }
+
+  .welcome-wrapper {
+    background-color: rgba(#000, .4);
+    border-radius: 5px;
+    padding: 25px 20px;
+  }
+
+  .welcome-title {
+    color: #fff;
+    font-size: 36px;
+    margin-bottom: 30px;
+  }
+
+  .welcome-message {
+    color: #fff;
+    font-size: 20px;
+  }
+}

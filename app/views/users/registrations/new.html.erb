@@ -1,38 +1,55 @@
-<% set_page_sub_title t('views.users.sign_up') %>
+<div class="content-wrapper">
+  <% set_page_sub_title t('views.users.sign_up') %>
 
-<%= render 'share/page_title' %>
+  <div class="row">
+    <div class="col-md-offset-1 col-md-10">
+      <%= render 'share/page_title' %>
+    </div>
+    <div class="col-md-offset-1 col-md-6">
+      <div class="welcome-wrapper">
+        <h4 class="welcome-title">
+          ComiGuideへようこそ
+        </h4>
+        <p class="welcome-message">
+          ユーザー登録をすることで自分だけのチェックリストを作成することが出来ます。<br>
+          サークルチェックリストだけでなく、企業ブースチェックリストを作成することも可能ですよ。<br>
+          <br>
+          また、作成したチェックリストはPDFとして出力することも。<br>
+          PDFを印刷すれば自分だけの宝の地図の完成です！<br>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="well">
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render 'share/validation_errors', resource: resource %>
 
-<div class="row">
-  <div class="col-md-4">
-    <div class="well">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-        <%= render 'share/validation_errors', resource: resource %>
+          <div class="form-group">
+            <%= f.label :username %>
+            <%= f.text_field :username, autofocus: true, class: "form-control" %>
+          </div>
 
-        <div class="form-group">
-          <%= f.label :username %>
-          <%= f.text_field :username, autofocus: true, class: "form-control" %>
-        </div>
+          <div class="form-group">
+            <%= f.label :email %>
+            <%= f.email_field :email, class: "form-control" %>
+          </div>
 
-        <div class="form-group">
-          <%= f.label :email %>
-          <%= f.email_field :email, class: "form-control" %>
-        </div>
+          <div class="form-group">
+            <%= f.label :password %>
+            <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+          </div>
 
-        <div class="form-group">
-          <%= f.label :password %>
-          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-        </div>
+          <div class="form-group">
+            <%= f.label :password_confirmation %>
+            <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+          </div>
 
-        <div class="form-group">
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-        </div>
+          <div><%= f.submit t('views.users.sign_up'), class: "btn btn-submit" %></div>
+        <% end %>
+      </div><!-- //.well -->
 
-        <div><%= f.submit t('views.users.sign_up'), class: "btn btn-submit" %></div>
-      <% end %>
-    </div><!-- //.well -->
+      <%= render "users/shared/links" %>
 
-    <%= render "users/shared/links" %>
-
+    </div>
   </div>
 </div>
