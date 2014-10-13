@@ -1,5 +1,9 @@
 @import 'values';
 
+body {
+  background: url('/assets/background.png') repeat center center;
+}
+
 .content-main-wrapper {
   padding: 70px 20px 15px 20px;
 }
