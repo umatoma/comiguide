@@ -6,5 +6,4 @@
       $scope.ccircleChecklistsCount = data.ccircle_checklists_count
       $scope.ckigyoChecklistsCount = data.ckigyo_checklists_count
       $scope.c1circleChecklistsCount = data.c1circle_checklists_count
-      console.log(data)
 ]
