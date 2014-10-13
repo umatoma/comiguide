@@ -1,5 +1,9 @@
 @import 'values';
 
+body {
+  background: url('/assets/background.png') repeat center center;
+}
+
 .content-main-wrapper {
   padding: 70px 20px 15px 20px;
 }
@@ -44,10 +48,19 @@
   padding-top: 50px;
 
   .footer-links {
+    margin-bottom: 25px;
     text-align: center;
 
     a {
       margin: 5px 10px;
+    }
+  }
+
+  @media(max-width: 767px) {
+    .footer-links {
+      a {
+        display: block;
+      }
     }
   }
 }

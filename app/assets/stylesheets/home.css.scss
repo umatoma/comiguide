@@ -50,8 +50,12 @@
 
     ul.intro-social-buttons > li {
       display: block;
-      margin-bottom: 20px;
-      padding: 0;
+      margin-bottom: 5px;
+      padding: 0 20px 0 25px;
+
+      .btn {
+        display: block;
+      }
 
       &:last-child {
         margin-bottom: 0;
@@ -127,20 +131,6 @@
       ul.banner-social-buttons {
         float: left;
         margin-top: 15px;
-      }
-    }
-
-    @media(max-width: 767px) {
-      ul.banner-social-buttons {
-        > li {
-          display: block;
-          margin-bottom: 20px;
-          padding: 0;
-        }
-
-        > li:last-child {
-          margin-bottom: 0;
-        }
       }
     }
   }

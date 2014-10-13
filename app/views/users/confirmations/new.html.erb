@@ -1,11 +1,9 @@
 <% set_page_sub_title t('views.users.new_confirmation') %>
 
-<div class="page-header">
-  <h1><%= t('views.users.new_confirmation') %></h1>
-</div>
-
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-offset-4 col-md-4">
+    <%= render 'share/page_title' %>
+
     <div class="well">
       <%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
         <%= render 'share/validation_errors', resource: resource %>
@@ -18,7 +16,7 @@
         <div><%= f.submit t('views.users.confirmations.new.form_submit'), class: "btn btn-submit" %></div>
       <% end %>
     </div>
+
+    <%= render "users/shared/links" %>
   </div>
 </div>
-
-<%= render "users/shared/links" %>

@@ -1,9 +1,9 @@
 <% set_page_sub_title t('views.users.sign_in') %>
 
-<%= render 'share/page_title' %>
-
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-offset-4 col-md-4">
+    <%= render 'share/page_title' %>
+
     <div class="well">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
         <div class="form-group">
@@ -16,7 +16,7 @@
           <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
         </div>
 
-        <div><%= f.submit t('views.users.sign_in'), class: "btn btn-submit" %></div>
+        <div><%= f.submit t('views.users.sign_in'), class: "btn btn-update" %></div>
       <% end %>
     </div><!-- //.well -->
 
