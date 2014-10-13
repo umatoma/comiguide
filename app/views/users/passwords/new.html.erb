@@ -1,9 +1,9 @@
 <% set_page_sub_title t('views.users.new_password') %>
 
-<%= render 'share/page_title' %>
-
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-offset-4 col-md-4">
+    <%= render 'share/page_title' %>
+
     <div class="well">
       <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
         <%= render 'share/validation_errors', resource: resource %>
@@ -16,7 +16,7 @@
         <div><%= f.submit t('views.users.passwords.new.form_submit'), class: "btn btn-submit" %></div>
       <% end %>
     </div>
+
+    <%= render "users/shared/links" %>
   </div>
 </div>
-
-<%= render "users/shared/links" %>
