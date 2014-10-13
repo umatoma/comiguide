@@ -17,6 +17,11 @@ class User < ActiveRecord::Base
   validates :username, presence: true
 
   # ----------------------------------------------------------
+  # Scope
+  # ----------------------------------------------------------
+  scope :confirmed, -> { where.not(confirmed_at: nil) }
+
+  # ----------------------------------------------------------
   # Callback
   # ----------------------------------------------------------
   after_create :add_role_normal
