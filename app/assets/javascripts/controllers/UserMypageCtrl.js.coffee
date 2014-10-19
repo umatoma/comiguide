@@ -5,6 +5,7 @@
 ['$scope', '$attrs', '$http', 'User', 'CkigyoChecklist', 'CcircleChecklist', 'C1circleChecklist', 'Notification',
   ($scope, $attrs, $http, User, CkigyoChecklist, CcircleChecklist, C1circleChecklist, Notification) ->
     $scope.comiket_id = $attrs.comiketId
+    $scope.comic1_id = $attrs.comic1Id
     $scope.ccircle_checklists = []
     $scope.ckigyo_checklists = []
     $scope.c1circle_checklists = []
