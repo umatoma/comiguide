@@ -65,7 +65,7 @@ class CcircleChecklistsController < ApplicationController
       if pdf.valid?
         format.pdf do
           pdf.draw
-          send_data pdf.render, filename: "ccircle_checklist_#{Time.now.to_i}.pdf", disposition: 'inline'
+          send_data pdf.render, filename: checklist_filename('pdf'), disposition: 'inline'
         end
       else
         format.pdf { head :no_content }
@@ -73,9 +73,15 @@ class CcircleChecklistsController < ApplicationController
     end
   end
 
-  # ----------------------------------------------------------
-  # PrivateMethod
-  # ----------------------------------------------------------
+  def download
+    @comiket = Comiket.find(params[:comiket_id])
+    @ccircle_checklists = @comiket.ccircle_checklists.includes(clayout: { cblock: :carea }).where(user: current_user)
+    respond_to do |format|
+      format.csv do
+        send_data CcircleChecklist.csv_for_download(@ccircle_checklists), filename: checklist_filename('csv')
+      end
+    end
+  end
 
   private
 
@@ -87,5 +93,9 @@ class CcircleChecklistsController < ApplicationController
   def update_params
     params.require(:ccircle_checklist)
           .permit(:clayout_id, :day, :circle_name, :circle_url, :comment, :cost, :color)
+  end
+
+  def checklist_filename(extention)
+    "ccircle_checklist_#{Time.now.to_i}.#{extention}"
   end
 end
