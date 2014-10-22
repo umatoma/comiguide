@@ -18,4 +18,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def destroy
     super
   end
+
+  protected
+
+  def after_update_path_for(resource)
+    mypage_users_path
+  end
 end

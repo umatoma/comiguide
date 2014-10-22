@@ -3,62 +3,87 @@
 <%= render 'share/page_title' %>
 
 <div class="row">
-    <div class="col-md-2">
-      <%= render 'share/side_nav' %>
-    </div>
-
-  <div class="col-md-4">
-    <div class="well">
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-        <%= render 'share/validation_errors', resource: resource %>
-
-        <div class="form-group">
-          <%= f.label :username %>
-          <%= f.text_field :username, autofocus: true, class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :email %>
-          <%= f.email_field :email, class: "form-control" %>
-        </div>
-
-        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-        <% end %>
-
-        <div class="form-group">
-          <%= f.label :password %> <i>(<%= t('views.users.registrations.edit.form_message_password') %>)</i>
-          <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :password_confirmation %>
-          <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
-        </div>
-
-        <div class="form-group">
-          <%= f.label :current_password %> <i>(<%= t('views.users.registrations.edit.form_message_current_password') %>)</i>
-          <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
-        </div>
-
-        <div><%= f.submit t('views.users.registrations.edit.form_submit'), class: "btn btn-update" %></div>
-      <% end %>
-    </div>
-    <!-- //.well -->
-
-    <div class="panel panel-danger">
-      <div class="panel-heading">
-        <h3 class="panel-title"><%= t('views.users.registrations.edit.cancel_title') %></h3>
-      </div>
-      <div class="panel-body">
-        <%= button_to t('views.users.registrations.edit.form_delete'),
-             registration_path(resource_name),
-             class: "btn btn-xs btn-delete",
-             data: { confirm: t('views.users.registrations.edit.confirm_delete') },
-             method: :delete %>
-      </div>
-    </div>
-    <!-- //.panel -->
+  <div class="col-md-2">
+    <%= render 'share/side_nav' %>
   </div>
-  <!-- //.col -->
+
+  <div class="col-md-10">
+    <%= render 'share/validation_errors', resource: resource %>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="well">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <div class="form-group">
+              <%= f.label :username %>
+              <%= f.text_field :username, autofocus: true, class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :email %>
+              <%= f.email_field :email, class: "form-control" %>
+            </div>
+
+            <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+              <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+            <% end %>
+
+            <div class="form-group">
+              <%= f.label :current_password %> <i>(<%= t('views.users.registrations.edit.form_message_current_password') %>)</i>
+              <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+            </div>
+
+            <div><%= f.submit t('views.users.registrations.edit.form_submit'), class: "btn btn-update" %></div>
+          <% end %>
+        </div>
+        <!-- //.well -->
+      </div>
+      <!-- //.col -->
+
+      <div class="col-md-6">
+        <div class="well">
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+            <div class="form-group">
+              <%= f.label :password %> <i>(<%= t('views.users.registrations.edit.form_message_password') %>)</i>
+              <%= f.password_field :password, autocomplete: "off", class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :password_confirmation %>
+              <%= f.password_field :password_confirmation, autocomplete: "off", class: "form-control" %>
+            </div>
+
+            <div class="form-group">
+              <%= f.label :current_password %> <i>(<%= t('views.users.registrations.edit.form_message_current_password') %>)</i>
+              <%= f.password_field :current_password, autocomplete: "off", class: "form-control" %>
+            </div>
+
+            <div><%= f.submit t('views.users.registrations.edit.form_password_update'), class: "btn btn-update" %></div>
+          <% end %>
+        </div>
+        <!-- //.well -->
+      </div>
+      <!-- //.col -->
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= t('views.users.registrations.edit.cancel_title') %></h3>
+          </div>
+          <div class="panel-body">
+            <%= button_to t('views.users.registrations.edit.form_delete'),
+                 registration_path(resource_name),
+                 class: "btn btn-xs btn-delete",
+                 data: { confirm: t('views.users.registrations.edit.confirm_delete') },
+                 method: :delete %>
+          </div>
+        </div>
+        <!-- //.panel -->
+      </div>
+      <!-- //.col -->
+    </div>
+    <!-- //.row -->
+  </div>
 </div>

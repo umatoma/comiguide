@@ -28,9 +28,10 @@ ja:
           form_submit: 'パスワード再設定'
       registrations:
         edit:
-          form_message_password: 'パスワードを変更しない場合は入力しないで下さい。'
+          form_message_password: '設定するパスワードを入力してください。'
           form_message_current_password: '設定の変更には現在のパスワードが必要です。'
           form_submit: 'ユーザー情報更新'
+          form_password_update: 'パスワード変更'
           cancel_title: 'ユーザー情報削除'
           form_delete: 'ユーザー情報を削除する'
           confirm_delete: '本当に削除しますか？'
