@@ -36,7 +36,7 @@ class Ability
       # ------------------------------------------------------------
       # CkigyoChecklist
       # ------------------------------------------------------------
-      can [:index, :create, :create_map, :download_csv], CkigyoChecklist
+      can [:index, :create, :create_map, :download], CkigyoChecklist
       can [:update, :destroy], CkigyoChecklist do |ckigyo_checklist|
         ckigyo_checklist.user == user
       end
@@ -44,7 +44,7 @@ class Ability
       # ------------------------------------------------------------
       # CcircleChecklist
       # ------------------------------------------------------------
-      can [:index, :create, :create_map, :download_csv], CcircleChecklist
+      can [:index, :create, :create_map, :download], CcircleChecklist
       can [:update, :destroy], CcircleChecklist do |ccircle_checklist|
         ccircle_checklist.user == user
       end
@@ -52,7 +52,7 @@ class Ability
       # ------------------------------------------------------------
       # C1circleChecklist
       # ------------------------------------------------------------
-      can [:index, :create, :create_map, :download_csv], C1circleChecklist
+      can [:index, :create, :create_map, :download], C1circleChecklist
       can [:update, :destroy], C1circleChecklist do |c1circle_checklist|
         c1circle_checklist.user == user
       end

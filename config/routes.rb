@@ -45,13 +45,13 @@ Rails.application.routes.draw do
     resources :ckigyo_checklists, only: [:index] do
       collection do
         get :create_map
-        get :download_csv
+        get :download
       end
     end
     resources :ccircle_checklists, only: [:index] do
       collection do
         get :create_map
-        get :download_csv
+        get :download
       end
     end
   end
@@ -96,7 +96,7 @@ Rails.application.routes.draw do
     resources :c1circle_checklists, only: [:index] do
       collection do
         get :create_map
-        get :download_csv
+        get :download
       end
     end
   end
