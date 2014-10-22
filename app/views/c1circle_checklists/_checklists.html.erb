@@ -10,9 +10,26 @@
       <i class="fa fa-sort"></i>
     </button>
     <ul class="dropdown-menu" role="menu">
-      <li><a href="javascript:void(0);" ng-click="setListOrder('-id')">Id</a></li>
-      <li><a href="javascript:void(0);" ng-click="setListOrder('day')">Day</a></li>
-      <li><a href="javascript:void(0);" ng-click="setListOrder('circle_name')">CircleName</a></li>
+      <li>
+        <a href="javascript:void(0);" ng-click="setListOrder('-id')">
+          <%= C1circleChecklist.human_attribute_name(:id) %>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0);" ng-click="setListOrder('c1block_id')">
+          <%= C1block.model_name.human %>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0);" ng-click="setListOrder('circle_name')">
+          <%= C1circleChecklist.human_attribute_name(:circle_name) %>
+        </a>
+      </li>
+      <li>
+        <a href="javascript:void(0);" ng-click="setListOrder('color')">
+          <%= C1circleChecklist.human_attribute_name(:color) %>
+        </a>
+      </li>
     </ul>
   </div>
   <div class="btn-group">

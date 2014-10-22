@@ -50,6 +50,7 @@ ja:
         created_at: '登録日時'
         updated_at: '更新日時'
       ccircle_checklist:
+        id: 'ID'
         user_id: 'ユーザーID'
         comiket_id: 'コミケID'
         clayout_id: 'レイアウトID'
@@ -63,6 +64,7 @@ ja:
         created_at: '登録日時'
         updated_at: '更新日時'
       c1circle_checklist:
+        id: 'ID'
         user_id: 'ユーザーID'
         comic1_id: 'COMIC1ID'
         c1layout_id: 'レイアウトID'
