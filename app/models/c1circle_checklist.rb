@@ -24,6 +24,24 @@ class C1circleChecklist < ActiveRecord::Base
   validates :color,        presence: true
   validates :rank,         presence: true, numericality: true
 
+  def self.csv_for_download(c1circle_checklists)
+    csv_data = CSV.generate do |csv|
+      c1circle_checklists.each do |checklist|
+        csv << [
+          checklist.c1layout.c1block.name,
+          checklist.c1layout.space_no,
+          checklist.space_no_sub_name,
+          checklist.circle_name,
+          checklist.circle_url,
+          checklist.comment,
+          checklist.cost,
+          checklist.color
+        ]
+      end
+    end
+    csv_data.encode(Encoding::SJIS)
+  end
+
   def layout_info_simple
     "#{c1layout.layout_info_simple}#{space_no_sub_name}"
   end

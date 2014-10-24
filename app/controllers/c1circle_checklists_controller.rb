@@ -57,7 +57,17 @@ class C1circleChecklistsController < ApplicationController
     pdf = C1circleChecklistMapPdf.new(comic1_id: @comic1.id, user_id: current_user.id)
     respond_to do |format|
       format.pdf do
-        send_data pdf.render, filename: "c1circle_checklist_#{Time.now.to_i}.pdf", disposition: 'inline'
+        send_data pdf.render, filename: checklist_filename('pdf'), disposition: 'inline'
+      end
+    end
+  end
+
+  def download
+    @comic1 = Comic1.find(params[:comic1_id])
+    @c1circle_checklists = @comic1.c1circle_checklists.includes(c1layout: :c1block).where(user: current_user)
+    respond_to do |format|
+      format.csv do
+        send_data C1circleChecklist.csv_for_download(@c1circle_checklists), filename: checklist_filename('csv')
       end
     end
   end
@@ -76,5 +86,9 @@ class C1circleChecklistsController < ApplicationController
   def update_params
     params.require(:c1circle_checklist)
           .permit(:c1layout_id, :space_no_sub, :circle_name, :circle_url, :comment, :cost, :color)
+  end
+
+  def checklist_filename(extention)
+    "c1circle_checklist_#{Time.now.to_i}.#{extention}"
   end
 end

@@ -56,14 +56,20 @@ class CkigyoChecklistsController < ApplicationController
     respond_to do |format|
       format.pdf do
         pdf = CkigyoChecklistMapPdf.new(@comiket.id, current_user.id)
-        send_data pdf.render, filename: "ckigyo_checklist_#{Time.now.to_i}.pdf", disposition: 'inline'
+        send_data pdf.render, filename: checklist_filename('pdf'), disposition: 'inline'
       end
     end
   end
 
-  # ----------------------------------------------------------
-  # PrivateMethod
-  # ----------------------------------------------------------
+  def download
+    @comiket = Comiket.find(params[:comiket_id])
+    @ckigyo_checklists = @comiket.ckigyo_checklists.includes(:ckigyo).where(user: current_user)
+    respond_to do |format|
+      format.csv do
+        send_data CkigyoChecklist.csv_for_download(@ckigyo_checklists), filename: checklist_filename('csv')
+      end
+    end
+  end
 
   private
 
@@ -73,5 +79,9 @@ class CkigyoChecklistsController < ApplicationController
 
   def update_params
     params.require(:ckigyo_checklist).permit(:comment, :cost, :color)
+  end
+
+  def checklist_filename(extention)
+    "ckigyo_checklist_#{Time.now.to_i}.#{extention}"
   end
 end

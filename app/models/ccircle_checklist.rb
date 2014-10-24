@@ -18,4 +18,27 @@ class CcircleChecklist < ActiveRecord::Base
   validates :circle_name, presence: true
   validates :color,       presence: true
   validates :rank,        presence: true, numericality: true
+
+  def self.csv_for_download(ccircle_checklists)
+    csv_data = CSV.generate do |csv|
+      ccircle_checklists.each do |checklist|
+        csv << [
+          checklist.day_name,
+          checklist.clayout.cblock.carea.name,
+          checklist.clayout.cblock.name,
+          checklist.clayout.space_no,
+          checklist.circle_name,
+          checklist.circle_url,
+          checklist.comment,
+          checklist.cost,
+          checklist.color
+        ]
+      end
+    end
+    csv_data.encode(Encoding::SJIS)
+  end
+
+  def day_name
+    "#{day}日目"
+  end
 end
