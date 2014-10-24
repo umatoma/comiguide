@@ -19,9 +19,9 @@ class CcircleChecklist < ActiveRecord::Base
   validates :color,       presence: true
   validates :rank,        presence: true, numericality: true
 
-  def self.csv_for_download(ckigyo_checklists)
+  def self.csv_for_download(ccircle_checklists)
     csv_data = CSV.generate do |csv|
-      ckigyo_checklists.each do |checklist|
+      ccircle_checklists.each do |checklist|
         csv << [
           checklist.day_name,
           checklist.clayout.cblock.carea.name,
