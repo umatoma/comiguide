@@ -11,6 +11,28 @@ namespace :create_data do
     :clayouts,
     :ccircle_checklists]
 
+  task users: :environment do
+    csv = CSV.parse(File.read(Rails.root.join('lib/tasks/users.csv')), headers: true, col_sep: "`")
+    User.transaction do
+      csv.each do |row|
+        next if row.size == 0
+        password = SecureRandom.hex(8)
+        attributes = {
+          id: row[0].to_i,
+          username: row[1],
+          email: row[4],
+          created_at: Time.at(row[9].to_i),
+          updated_at: Time.at(row[10].to_i),
+          password: password
+        }
+        user = User.new(attributes)
+        user.skip_confirmation!
+        user.save!
+        puts "id: #{user.id}, password: #{password}"
+      end
+    end
+  end
+
   task comikets: :environment do
     Comiket.transaction do
       Comiket.new(id: 83, event_no: 83, event_name: :C83, kigyo_w: 29, kigyo_h: 36).save!
