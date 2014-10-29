@@ -14,4 +14,10 @@ class Users::Mailer < Devise::Mailer
     @token = token
     devise_mail(record, :unlock_instructions, opts)
   end
+
+  def reset_user_info(user, password)
+    @user = user
+    @password = password
+    mail to: @user.email, subject: t('mailer.users.reset_user_info.subject')
+  end
 end

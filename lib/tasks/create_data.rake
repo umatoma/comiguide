@@ -2,6 +2,7 @@ require 'csv'
 
 namespace :create_data do
   task all: [
+    :users,
     :comikets,
     :ckigyos,
     :ckigyo_links,
@@ -9,23 +10,55 @@ namespace :create_data do
     :careas,
     :cblocks,
     :clayouts,
-    :ccircle_checklists]
+    :ccircle_checklists,
+    :comic1s,
+    :c1blocks,
+    :c1layouts,
+    :c1circles,
+    :c1circle_checklists
+  ]
+
+  task users: :environment do
+    csv = CSV.parse(File.read(Rails.root.join('lib/tasks/users.csv')), headers: true, col_sep: "`")
+    ActiveRecord::Base.transaction do
+      csv.each do |row|
+        next if row.size == 0
+        password = SecureRandom.hex(8)
+        username = /\A\w+@undefined\z/.match(row[4]) ? "backup_#{row[1]}" : row[1]
+        updated_at = row[10].to_i.zero? ? Time.at(row[9].to_i) : Time.at(row[10].to_i)
+        attributes = {
+          id: row[0].to_i,
+          username: username,
+          email: row[4],
+          created_at: Time.at(row[9].to_i),
+          updated_at: updated_at,
+          password: password
+        }
+        user = User.new(attributes)
+        user.skip_confirmation!
+        user.save!
+        puts "id: #{row[0].to_i}, password: #{password}"
+      end
+    end
+  end
 
   task comikets: :environment do
     Comiket.transaction do
       Comiket.new(id: 83, event_no: 83, event_name: :C83, kigyo_w: 29, kigyo_h: 36).save!
       Comiket.new(id: 84, event_no: 84, event_name: :C84, kigyo_w: 29, kigyo_h: 36).save!
       Comiket.new(id: 85, event_no: 85, event_name: :C85, kigyo_w: 29, kigyo_h: 36).save!
+      Comiket.new(id: 86, event_no: 86, event_name: :C86, kigyo_w: 29, kigyo_h: 36).save!
     end
   end
 
   task ckigyos: :environment do
     comikets = Comiket.all
-    csv = CSV.parse(File.read(Rails.root.join('lib/tasks/ckigyos.csv')), headers: false, col_sep: "`")
+    csv = CSV.parse(File.read(Rails.root.join('lib/tasks/ckigyos.csv')), headers: true, col_sep: "`")
     Ckigyo.transaction do
       csv.each do |row|
         next if row.size == 0
         comiket = comikets.find { |x| x.event_no == row[1].to_i }
+        next if comiket.blank?
         attributes = {
           comiket_id: comiket.id,
           kigyo_no: row[2],
@@ -43,7 +76,7 @@ namespace :create_data do
   task ckigyo_links: :environment do
     comikets = Comiket.all
     ckigyos = Ckigyo.all
-    csv = CSV.parse(File.read(Rails.root.join('lib/tasks/ckigyo_links.csv')), headers: false, col_sep: "`")
+    csv = CSV.parse(File.read(Rails.root.join('lib/tasks/ckigyo_links.csv')), headers: true, col_sep: "`")
     Ckigyo.transaction do
       csv.each do |row|
         next if row.size == 0
@@ -60,7 +93,7 @@ namespace :create_data do
 
   task ckigyo_checklists: :environment do
     ckigyos = Ckigyo.all
-    csv = CSV.parse(File.read(Rails.root.join('lib/tasks/ckigyo_checklists.csv')), headers: false, col_sep: "`")
+    csv = CSV.parse(File.read(Rails.root.join('lib/tasks/ckigyo_checklists.csv')), headers: true, col_sep: "`")
     Ckigyo.transaction do
       csv.each do |row|
         next if row.size == 0
