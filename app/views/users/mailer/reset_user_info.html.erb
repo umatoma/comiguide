@@ -1,0 +1,22 @@
+<p><%= @user.username %> 様</p>
+
+<p>平素よりComiGuideをご利用いただき、誠に有難うございます。</p>
+
+<p>
+  突然ではありますがサービスのリニューアルに伴い、パスワードを初期化させていただきました。<br>
+  お手数ではありますが、次回ログインの際は下記メールアドレス・パスワードをご利用ください。<br>
+</p>
+
+<p>
+  【メールアドレス】<%= @user.email %><br>
+  【パスワード】<%= @password %><br>
+  <%= link_to new_user_session_url, new_user_session_url %>
+</p>
+<p>
+  また、パスワードを再設定する場合は下記リンクから行うことができます。<br>
+  <%= link_to new_user_password_url, new_user_password_url %>
+</p>
+
+<p>ご迷惑をお掛けしますが、よろしくお願い致します。</p>
+
+<%= render 'share/mailer/footer' %>

@@ -1,0 +1,5 @@
+ja:
+  mailer:
+    users:
+      reset_user_info:
+        subject: 【ComiGuide】ユーザー情報が初期化されました

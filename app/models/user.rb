@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
   # ----------------------------------------------------------
   after_create :add_role_normal
 
+  def undefined_passsword?
+    !!/\A\w+@undefined\z/.match(email)
+  end
+
   private
 
   def add_role_normal
