@@ -1,8 +1,7 @@
 namespace :users do
   task reset_password_all: :environment do
-    users = User.all.limit(5)
     User.transaction do
-      users.each do |user|
+      User.all.each do |user|
         next if user.undefined_passsword?
 
         password = SecureRandom.hex(4)
