@@ -132,11 +132,9 @@ body {
   }
 }
 
-#ckigyos_show {
-  .modal-ckigyo-checklists {
-    .ckigyo-checklist {
-      border-left: solid 5px #000;
-    }
+.modal-ckigyo-checklists {
+  .list-group-item.ckigyo-checklist {
+    border-left: solid 5px;
   }
 }
 
