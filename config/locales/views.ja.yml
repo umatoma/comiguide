@@ -1,5 +1,9 @@
 ja:
   views:
+    layouts:
+      application:
+        description: 'コミックマーケットやCOMIC1に関する情報をまとめています。'
+        keywords: 'ComiGuide,コミックマーケット,コミケ,企業ブース,Comiket,COMIC1,チェックリスト'
     home:
       about:
         title: 'ComiGuideについて'

@@ -3,8 +3,8 @@
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <meta name="description" content="<%= @page_description %>" />
-  <meta name="keywords" content="<%= @page_keywords.join(',') %>" />
+  <meta name="description" content="<%= t('views.layouts.application.description') %>" />
+  <meta name="keywords" content="<%= t('views.layouts.application.keywords') %>" />
   <title>ComiGuide<%= " | #{yield(:title)}" if content_for?(:title) %></title>
 
   <%= favicon_link_tag '/assets/favicon.ico' %>
