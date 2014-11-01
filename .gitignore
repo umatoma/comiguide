@@ -23,5 +23,6 @@
 .DS_Store
 .idea
 .secret
+.env
 /public/assets
 /config/database.yml
