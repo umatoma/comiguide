@@ -24,5 +24,6 @@
 .idea
 .secret
 .env
+production.key
 /public/assets
 /config/database.yml
