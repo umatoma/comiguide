@@ -61,14 +61,14 @@ namespace :deploy do
   desc "Copy the database.yml"
   task :copy_database_yml do
     on roles(:app, :db) do
-      execute 'cp', "#{deploy_to}/config/database.yml", "#{release_path}/config/database.yml"
+      execute 'cp', "#{shared_path}/config/database.yml", "#{release_path}/config/database.yml"
     end
   end
 
   desc "Copy the .env"
   task :copy_dotenv do
     on roles(:app, :db) do
-      execute 'cp', "#{deploy_to}/.env", "#{release_path}/.env"
+      execute 'cp', "#{shared_path}/.env", "#{release_path}/.env"
     end
   end
 
