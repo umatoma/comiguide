@@ -11,16 +11,16 @@ set :repo_url, 'git@github.com:umatoma/comiguide.git'
 set :deploy_to, '/var/www/apps/comiguide'
 
 # Default value for :scm is :git
-# set :scm, :git
+set :scm, :git
 
 # Default value for :format is :pretty
-# set :format, :pretty
+set :format, :pretty
 
 # Default value for :log_level is :debug
-# set :log_level, :debug
+set :log_level, :debug
 
 # Default value for :pty is false
-# set :pty, true
+set :pty, true
 
 # Default value for :linked_files is []
 # set :linked_files, %w{config/database.yml}
@@ -32,17 +32,16 @@ set :linked_dirs, %w{bin log tmp/pids tmp/cache tmp/sockets vendor/bundle public
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
 # Default value for keep_releases is 5
-# set :keep_releases, 5
+set :keep_releases, 5
 
+set :use_sudo, false
 set :rbenv_type, :user
 set :rbenv_ruby, '2.1.2'
 set :rbenv_prefix, "RBENV_ROOT=#{fetch(:rbenv_path)} RBENV_VERSION=#{fetch(:rbenv_ruby)} #{fetch(:rbenv_path)}/bin/rbenv exec"
 set :rbenv_map_bins, %w{rake gem bundle ruby rails}
 set :rbenv_roles, :all
-set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
 
 namespace :deploy do
-
   desc 'Restart application'
   task :restart do
     invoke 'unicorn:restart'
@@ -59,4 +58,77 @@ namespace :deploy do
     end
   end
 
+  desc "Copy the database.yml"
+  task :copy_database_yml do
+    on roles(:app, :db) do
+      execute 'cp', "#{deploy_to}/config/database.yml", "#{release_path}/config/database.yml"
+    end
+  end
+
+  desc "Copy the .env"
+  task :copy_dotenv do
+    on roles(:app, :db) do
+      execute 'cp', "#{deploy_to}/.env", "#{release_path}/.env"
+    end
+  end
+
+  after :updating, :copy_database_yml
+  after :updating, :copy_dotenv
+end
+
+namespace :unicorn do
+  task :environment do
+    set :unicorn_pid, "#{shared_path}/tmp/pids/unicorn.pid"
+    set :unicorn_config, "#{current_path}/config/unicorn.rb"
+  end
+
+  def start_unicorn
+    within current_path do
+      execute :bundle, :exec, :unicorn_rails, "-c #{fetch(:unicorn_config)} -E #{fetch(:rails_env)} -p 3000 -D"
+    end
+  end
+
+  def stop_unicorn
+    execute :kill, "-s QUIT $(< #{fetch(:unicorn_pid)})"
+  end
+
+  def reload_unicorn
+    execute :kill, "-s USR2 $(< #{fetch(:unicorn_pid)})"
+  end
+
+  def force_stop_unicorn
+    execute :kill, "$(< #{fetch(:unicorn_pid)})"
+  end
+
+  desc "Start unicorn server"
+  task start: :environment do
+    on roles(:app) do
+      start_unicorn
+    end
+  end
+
+  desc "Stop unicorn server gracefully"
+  task stop: :environment do
+    on roles(:app) do
+      stop_unicorn
+    end
+  end
+
+  desc "Restart unicorn server gracefully"
+  task restart: :environment do
+    on roles(:app) do
+      if test("[ -f #{fetch(:unicorn_pid)} ]")
+        reload_unicorn
+      else
+        start_unicorn
+      end
+    end
+  end
+
+  desc "Stop unicorn server immediately"
+  task force_stop: :environment do
+    on roles(:app) do
+      force_stop_unicorn
+    end
+  end
 end

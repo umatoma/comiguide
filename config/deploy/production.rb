@@ -1,4 +1,6 @@
 set :branch, 'master'
+set :rails_env, 'production'
+set :migration_role, 'db'
 
 # Simple Role Syntax
 # ==================
@@ -6,9 +8,9 @@ set :branch, 'master'
 # is considered to be the first unless any hosts have the primary
 # property set.  Don't declare `role :all`, it's a meta role.
 
-role :app, %w{ubuntu@157.7.234.99}
-role :web, %w{ubuntu@157.7.234.99}
-role :db,  %w{ubuntu@157.7.234.99}
+# role :app, %w{ubuntu@157.7.234.99}
+# role :web, %w{ubuntu@157.7.234.99}
+# role :db,  %w{ubuntu@157.7.234.99}
 
 
 # Extended Server Syntax
