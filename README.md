@@ -78,6 +78,12 @@ production:
 
 ```
 server {
+    listen 80;
+    server_name comiguide.net;
+    return 301 https://$host$request_uri;
+}
+
+server {
     listen 443 ssl;
     server_name comiguide.net;
 
