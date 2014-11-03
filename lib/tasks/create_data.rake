@@ -24,7 +24,7 @@ namespace :create_data do
       csv.each do |row|
         next if row.size == 0
         password = SecureRandom.hex(8)
-        username = /\A\w+@undefined\z/.match(row[4]) ? "backup_#{row[1]}" : row[1]
+        username = /\A.+@undefined\z/i.match(row[4]) ? "backup_#{row[1]}" : row[1]
         updated_at = row[10].to_i.zero? ? Time.at(row[9].to_i) : Time.at(row[10].to_i)
         attributes = {
           id: row[0].to_i,
