@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   # ----------------------------------------------------------
   # Validation
   # ----------------------------------------------------------
-  validates :username, presence: true
+  validates :username, presence: true, format: { with: /\A[a-zA-Z0-9\-_]+\Z/i }
 
   # ----------------------------------------------------------
   # Scope
