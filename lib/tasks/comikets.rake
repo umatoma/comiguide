@@ -15,4 +15,17 @@ namespace :comikets do
       end
     end
   end
+
+  task create_ckigyo_links_c87: :environment do
+    ActiveRecord::Base.transaction do
+      ckigyos = Ckigyo.where(comiket_id: 87)
+      csv = CSV.parse(File.read('lib/tasks/ckigyo_links_c87.csv'), headers: false)
+      csv.each do |row|
+        ckigyo_link = CkigyoLink.new
+        ckigyo_link.ckigyo_id = ckigyos.find { |x| x.kigyo_no == row[0].to_i }.id
+        ckigyo_link.url = row[1]
+        ckigyo_link.save!
+      end
+    end
+  end
 end
