@@ -1,7 +1,7 @@
 <!-- form.form-create-ccircle-checklist -->
 <form class="form-create-ccircle-checklist" name="form_create" onSubmit="return false;">
   <div class="row">
-    <div class="col-xs-6 col-md-3">
+    <div class="col-xs-6">
       <div class="form-group">
         <label><%= CcircleChecklist.human_attribute_name(:day) %></label>
         <select name="day"
@@ -11,7 +11,7 @@
         </select>
       </div>
     </div>
-    <div class="col-xs-6 col-md-3">
+    <div class="col-xs-6">
       <div class="form-group">
         <label><%= Carea.model_name.human %></label>
         <select name="carea_id"
@@ -21,7 +21,10 @@
         </select>
       </div>
     </div>
-    <div class="col-xs-6 col-md-3">
+  </div>
+  <!-- //.row -->
+  <div class="row">
+    <div class="col-xs-4">
       <div class="form-group">
         <label><%= Cblock.model_name.human %></label>
         <select name="cblock_id"
@@ -31,13 +34,23 @@
         </select>
       </div>
     </div>
-    <div class="col-xs-6 col-md-3">
+    <div class="col-xs-4">
       <div class="form-group">
         <label><%= Clayout.model_name.human %></label>
         <select name="clayout_id"
                 data-ng-options="l.id as l.space_no for l in new_ccircle_checklist.clayouts"
                 class="form-control"
                 data-ng-model="new_ccircle_checklist.clayout_id">
+        </select>
+      </div>
+    </div>
+    <div class="col-xs-4">
+      <div class="form-group">
+        <label><%= CcircleChecklist.human_attribute_name(:space_no_sub) %></label>
+        <select name="space_no_sub"
+                data-ng-options="s.key as s.value for s in new_ccircle_checklist.space_no_subs"
+                class="form-control"
+                data-ng-model="new_ccircle_checklist.space_no_sub">
         </select>
       </div>
     </div>

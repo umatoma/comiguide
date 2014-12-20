@@ -2,6 +2,7 @@ json.ccircle_checklists do
   json.array! ccircle_checklists do |checklist|
     json.(checklist, :id,
                      :clayout_id,
+                     :space_no_sub,
                      :day,
                      :circle_name,
                      :circle_url,

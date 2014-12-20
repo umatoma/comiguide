@@ -9,6 +9,7 @@
       this.carea_id = null
       this.cblock_id = null
       this.clayout_id = null
+      this.space_no_sub = 'a'
       this.day = 1
       this.circle_name = null
       this.circle_url = null
@@ -16,6 +17,10 @@
       this.cost = null
       this.color = 'black'
 
+      this.space_no_subs = [
+        { key: 'a', value: 'a' },
+        { key: 'b', value: 'b' }
+      ]
       this.days = [
         { key: 1, value: '１日目' },
         { key: 2, value: '2日目' },
@@ -48,6 +53,7 @@
         ccircle_checklist:
           comiket_id: this.comiket_id
           clayout_id: this.clayout_id
+          space_no_sub: this.space_no_sub
           day: this.day
           circle_name: this.circle_name
           circle_url: this.circle_url
@@ -64,6 +70,7 @@
         ccircle_checklist:
           clayout_id: this.clayout_id
           day: this.day
+          space_no_sub: this.space_no_sub
           circle_name: this.circle_name
           circle_url: this.circle_url
           comment: this.comment
@@ -76,6 +83,7 @@
 
     initAttributes: ->
       this.clayout_id = this.careas[0].id
+      this.space_no_sub = 'a'
       this.day = 1
       this.circle_name = null
       this.circle_url = null
@@ -93,7 +101,7 @@
       cblock = (self.cblocks.filter (x) -> x.id == self.cblock_id)[0]
       clayout = (self.clayouts.filter (x) -> x.id == self.clayout_id)[0]
       if carea && cblock && clayout
-        "#{self.day}日目 #{carea.name} #{cblock.name} - #{clayout.space_no} #{self.circle_name}"
+        "#{self.day}日目 #{carea.name} #{cblock.name} - #{clayout.space_no}#{self.space_no_sub} #{self.circle_name}"
       else
         null
 ]

@@ -8,6 +8,7 @@
     $scope.list_order = "-id"
     $scope.create_form_active = false
     $scope.ccircle_checklists = []
+    $scope.draw_map_line = true
 
     $http.get("/comikets/#{$scope.comiket_id}/ccircle_checklists.json").success (data) ->
       $scope.new_ccircle_checklist = new CcircleChecklist(data.new_ccircle_checklist)
@@ -52,4 +53,9 @@
 
     $scope.toggleCreateFormActive = ->
       $scope.create_form_active = !$scope.create_form_active
+
+    $scope.createMapPath = (cmap_id, day) ->
+      params = $.param(cmap_id: cmap_id, day: day, line: $scope.draw_map_line)
+      "/comikets/#{$scope.comiket_id}/ccircle_checklists/create_map.pdf?#{params}"
+
 ]

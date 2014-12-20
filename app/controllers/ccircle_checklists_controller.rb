@@ -59,7 +59,8 @@ class CcircleChecklistsController < ApplicationController
       comiket_id: @comiket.id,
       user_id: current_user.id,
       cmap_id: params[:cmap_id],
-      day: params[:day]
+      day: params[:day],
+      draw_line: params[:line]
     )
     respond_to do |format|
       if pdf.valid?
@@ -87,12 +88,12 @@ class CcircleChecklistsController < ApplicationController
 
   def create_params
     params.require(:ccircle_checklist)
-          .permit(:comiket_id, :clayout_id, :day, :circle_name, :circle_url, :comment, :cost, :color)
+          .permit(:comiket_id, :clayout_id, :space_no_sub, :day, :circle_name, :circle_url, :comment, :cost, :color)
   end
 
   def update_params
     params.require(:ccircle_checklist)
-          .permit(:clayout_id, :day, :circle_name, :circle_url, :comment, :cost, :color)
+          .permit(:clayout_id, :space_no_sub, :day, :circle_name, :circle_url, :comment, :cost, :color)
   end
 
   def checklist_filename(extention)

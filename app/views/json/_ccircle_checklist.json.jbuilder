@@ -1,6 +1,7 @@
 json.(ccircle_checklist, :id,
                           :comiket_id,
                           :clayout_id,
+                          :space_no_sub,
                           :day,
                           :circle_name,
                           :circle_url,

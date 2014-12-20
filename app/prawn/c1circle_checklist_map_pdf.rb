@@ -1,7 +1,7 @@
 class C1circleChecklistMapPdf < Prawn::Document
   include ActiveModel::Validations
 
-  attr_accessor :comic1_id, :user_id
+  attr_accessor :comic1_id, :user_id, :draw_line
 
   validates :comic1_id, presence: true, numericality: true
   validates :user_id,    presence: true, numericality: true
@@ -35,9 +35,13 @@ class C1circleChecklistMapPdf < Prawn::Document
       .includes(c1layout: :c1block)
       .where(user_id: user_id)
 
-    c1circle_checklists.each_slice(12).with_index do |checklists, index|
-      start_new_page unless index == 0
-      draw_content_east(c1blocks, c1layouts, checklists)
+    if c1circle_checklists.blank?
+      draw_content_east(c1blocks, c1layouts, [])
+    else
+      c1circle_checklists.each_slice(12).with_index do |checklists, index|
+        start_new_page unless index == 0
+        draw_content_east(c1blocks, c1layouts, checklists)
+      end
     end
     draw_footer
   end
@@ -117,6 +121,7 @@ class C1circleChecklistMapPdf < Prawn::Document
           end
         end
 
+        next unless draw_line?
         c1layout_pos = c1layout_positions_hash[checklist.c1layout_id]
         stroke do
           line_x = line_c1layout_x(c1layout_pos[:absolute_left], c1layout_pos[:right])
@@ -173,5 +178,9 @@ class C1circleChecklistMapPdf < Prawn::Document
     box_right = box_left + right
     margin = 20
     (box_right + box_left).to_f / 2.0 - margin
+  end
+
+  def draw_line?
+    draw_line == 'true'
   end
 end

@@ -1,7 +1,7 @@
 class CcircleChecklistMapPdf < Prawn::Document
   include ActiveModel::Validations
 
-  attr_accessor :comiket_id, :user_id, :cmap_id, :day, :hoge_id
+  attr_accessor :comiket_id, :user_id, :cmap_id, :day, :hoge_id, :draw_line
 
   validates :comiket_id, presence: true, numericality: true
   validates :user_id,    presence: true, numericality: true
@@ -42,15 +42,21 @@ class CcircleChecklistMapPdf < Prawn::Document
       .where(day: day)
       .where(clayout_id: clayouts.map(&:id))
 
-    if west?
-      ccircle_checklists.each_slice(20).with_index do |checklists, index|
-        start_new_page unless index == 0
-        draw_content_west(cblocks, clayouts, checklists)
+    slice_cnt = west? ? 20 : 12
+    if ccircle_checklists.blank?
+      if west?
+        draw_content_west(cblocks, clayouts, [])
+      else
+        draw_content_east(cblocks, clayouts, [])
       end
     else
-      ccircle_checklists.each_slice(12).with_index do |checklists, index|
+      ccircle_checklists.each_slice(slice_cnt).with_index do |checklists, index|
         start_new_page unless index == 0
-        draw_content_east(cblocks, clayouts, checklists)
+        if west?
+          draw_content_west(cblocks, clayouts, checklists)
+        else
+          draw_content_east(cblocks, clayouts, checklists)
+        end
       end
     end
     draw_footer
@@ -120,7 +126,7 @@ class CcircleChecklistMapPdf < Prawn::Document
           y = y2 = index - 6
         end
         list_datum = [
-          { x: 0 + x_margin, x2: 1 + x_margin, text: checklist.clayout.layout_info_simple },
+          { x: 0 + x_margin, x2: 1 + x_margin, text: checklist.layout_info_simple },
           { x: 2 + x_margin, x2: 7 + x_margin, text: checklist.circle_name },
           { x: 8 + x_margin, x2: 17 + x_margin, text: checklist.comment },
           { x: 18 + x_margin, x2: 19 + x_margin, text: checklist.cost }
@@ -133,6 +139,7 @@ class CcircleChecklistMapPdf < Prawn::Document
           end
         end
 
+        next unless draw_line?
         clayout_pos = clayout_positions_hash[checklist.clayout_id]
         stroke do
           line_x = line_clayout_x(clayout_pos[:absolute_left], clayout_pos[:right])
@@ -202,7 +209,7 @@ class CcircleChecklistMapPdf < Prawn::Document
         x_margin = 0
         y = y2 = index
         list_datum = [
-          { x: 0 + x_margin, x2: 1 + x_margin, text: checklist.clayout.layout_info_simple },
+          { x: 0 + x_margin, x2: 1 + x_margin, text: checklist.layout_info_simple },
           { x: 2 + x_margin, x2: 7 + x_margin, text: checklist.circle_name },
           { x: 8 + x_margin, x2: 17 + x_margin, text: checklist.comment },
           { x: 18 + x_margin, x2: 19 + x_margin, text: checklist.cost }
@@ -215,6 +222,7 @@ class CcircleChecklistMapPdf < Prawn::Document
           end
         end
 
+        next unless draw_line?
         clayout_pos = clayout_positions_hash[checklist.clayout_id]
         stroke do
           line_x = line_clayout_x(clayout_pos[:absolute_left], clayout_pos[:right]) - list_box_x
@@ -275,5 +283,9 @@ class CcircleChecklistMapPdf < Prawn::Document
 
   def west?
     cmap_id == 3 || cmap_id == '3'
+  end
+
+  def draw_line?
+    draw_line == 'true'
   end
 end

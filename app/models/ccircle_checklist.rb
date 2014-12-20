@@ -11,13 +11,16 @@ class CcircleChecklist < ActiveRecord::Base
   # ----------------------------------------------------------
   # Validation
   # ----------------------------------------------------------
-  validates :user_id,     presence: true, numericality: true
-  validates :comiket_id,  presence: true, numericality: true
-  validates :clayout_id,  presence: true, numericality: true
-  validates :day,         presence: true, numericality: true
-  validates :circle_name, presence: true
-  validates :color,       presence: true
-  validates :rank,        presence: true, numericality: true
+  validates :user_id,      presence: true, numericality: true
+  validates :comiket_id,   presence: true, numericality: true
+  validates :clayout_id,   presence: true, numericality: true
+  validates :space_no_sub, presence: true
+  validates :day,          presence: true, numericality: true
+  validates :circle_name,  presence: true
+  validates :color,        presence: true
+  validates :rank,         presence: true, numericality: true
+
+  enum space_no_sub: [:a, :b]
 
   def self.csv_for_download(ccircle_checklists)
     csv_data = CSV.generate do |csv|
@@ -27,6 +30,7 @@ class CcircleChecklist < ActiveRecord::Base
           checklist.clayout.cblock.carea.name,
           checklist.clayout.cblock.name,
           checklist.clayout.space_no,
+          checklist.space_no_sub,
           checklist.circle_name,
           checklist.circle_url,
           checklist.comment,
@@ -40,5 +44,9 @@ class CcircleChecklist < ActiveRecord::Base
 
   def day_name
     "#{day}日目"
+  end
+
+  def layout_info_simple
+    "#{clayout.layout_info_simple}#{space_no_sub}"
   end
 end

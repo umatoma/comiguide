@@ -1,5 +1,12 @@
 class CkigyoChecklistMapPdf < Prawn::Document
-  def initialize(comiket_id, user_id)
+  include ActiveModel::Validations
+
+  attr_accessor :comiket_id, :user_id, :draw_line
+
+  validates :comiket_id, presence: true, numericality: true
+  validates :user_id,    presence: true, numericality: true
+
+  def initialize(attributes = {})
     super(
       page_layout: :landscape,
       margin: 20,
@@ -14,6 +21,10 @@ class CkigyoChecklistMapPdf < Prawn::Document
       }
     )
 
+    attributes.each do |name, value|
+      send("#{name}=", value)
+    end
+
     font 'lib/assets/ipaexg.ttf'
     font_size 9
 
@@ -23,10 +34,15 @@ class CkigyoChecklistMapPdf < Prawn::Document
       .includes(:ckigyo)
       .where(user_id: user_id)
 
-    ckigyo_checklists.each_slice(22).with_index do |checklists, index|
-      start_new_page unless index == 0
+    if ckigyo_checklists.blank?
       draw_header
-      draw_content(comiket, ckigyos, checklists)
+      draw_content(comiket, ckigyos, [])
+    else
+      ckigyo_checklists.each_slice(22).with_index do |checklists, index|
+        start_new_page unless index == 0
+        draw_header
+        draw_content(comiket, ckigyos, checklists)
+      end
     end
     draw_footer
   end
@@ -75,6 +91,7 @@ class CkigyoChecklistMapPdf < Prawn::Document
         end
       end
 
+      next unless draw_line?
       ckigyo_pos = ckigyo_positions_hash[checklist.ckigyo_id]
       stroke do
         line_x = line_ckigyo_x(ckigyo_pos[:absolute_left], ckigyo_pos[:right])
@@ -126,5 +143,9 @@ class CkigyoChecklistMapPdf < Prawn::Document
     box_left = absolute_left
     box_right = box_left + right
     (box_right + box_left).to_f / 2.0 - 20
+  end
+
+  def draw_line?
+    draw_line == 'true'
   end
 end
