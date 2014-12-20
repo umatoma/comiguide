@@ -55,7 +55,7 @@ class CkigyoChecklistsController < ApplicationController
     @comiket = Comiket.find(params[:comiket_id])
     respond_to do |format|
       format.pdf do
-        pdf = CkigyoChecklistMapPdf.new(@comiket.id, current_user.id)
+        pdf = CkigyoChecklistMapPdf.new(comiket_id: @comiket.id, user_id: current_user.id, draw_line: params[:line])
         send_data pdf.render, filename: checklist_filename('pdf'), disposition: 'inline'
       end
     end
