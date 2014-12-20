@@ -54,7 +54,7 @@ class C1circleChecklistsController < ApplicationController
 
   def create_map
     @comic1 = Comic1.find(params[:comic1_id])
-    pdf = C1circleChecklistMapPdf.new(comic1_id: @comic1.id, user_id: current_user.id)
+    pdf = C1circleChecklistMapPdf.new(comic1_id: @comic1.id, user_id: current_user.id, draw_line: params[:line])
     respond_to do |format|
       format.pdf do
         send_data pdf.render, filename: checklist_filename('pdf'), disposition: 'inline'

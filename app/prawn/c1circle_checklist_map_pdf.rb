@@ -1,7 +1,7 @@
 class C1circleChecklistMapPdf < Prawn::Document
   include ActiveModel::Validations
 
-  attr_accessor :comic1_id, :user_id
+  attr_accessor :comic1_id, :user_id, :draw_line
 
   validates :comic1_id, presence: true, numericality: true
   validates :user_id,    presence: true, numericality: true
@@ -121,6 +121,7 @@ class C1circleChecklistMapPdf < Prawn::Document
           end
         end
 
+        next unless draw_line?
         c1layout_pos = c1layout_positions_hash[checklist.c1layout_id]
         stroke do
           line_x = line_c1layout_x(c1layout_pos[:absolute_left], c1layout_pos[:right])
@@ -177,5 +178,9 @@ class C1circleChecklistMapPdf < Prawn::Document
     box_right = box_left + right
     margin = 20
     (box_right + box_left).to_f / 2.0 - margin
+  end
+
+  def draw_line?
+    draw_line == 'true'
   end
 end
