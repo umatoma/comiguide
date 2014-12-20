@@ -1,7 +1,7 @@
 class CcircleChecklistMapPdf < Prawn::Document
   include ActiveModel::Validations
 
-  attr_accessor :comiket_id, :user_id, :cmap_id, :day, :hoge_id
+  attr_accessor :comiket_id, :user_id, :cmap_id, :day, :hoge_id, :draw_line
 
   validates :comiket_id, presence: true, numericality: true
   validates :user_id,    presence: true, numericality: true
@@ -139,6 +139,7 @@ class CcircleChecklistMapPdf < Prawn::Document
           end
         end
 
+        next unless draw_line?
         clayout_pos = clayout_positions_hash[checklist.clayout_id]
         stroke do
           line_x = line_clayout_x(clayout_pos[:absolute_left], clayout_pos[:right])
@@ -221,6 +222,7 @@ class CcircleChecklistMapPdf < Prawn::Document
           end
         end
 
+        next unless draw_line?
         clayout_pos = clayout_positions_hash[checklist.clayout_id]
         stroke do
           line_x = line_clayout_x(clayout_pos[:absolute_left], clayout_pos[:right]) - list_box_x
@@ -281,5 +283,9 @@ class CcircleChecklistMapPdf < Prawn::Document
 
   def west?
     cmap_id == 3 || cmap_id == '3'
+  end
+
+  def draw_line?
+    draw_line == 'true'
   end
 end

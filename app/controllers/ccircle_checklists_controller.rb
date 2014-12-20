@@ -59,7 +59,8 @@ class CcircleChecklistsController < ApplicationController
       comiket_id: @comiket.id,
       user_id: current_user.id,
       cmap_id: params[:cmap_id],
-      day: params[:day]
+      day: params[:day],
+      draw_line: params[:line]
     )
     respond_to do |format|
       if pdf.valid?

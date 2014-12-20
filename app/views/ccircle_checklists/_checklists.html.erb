@@ -222,15 +222,15 @@
           <div class="panel panel-default">
             <div class="panel-heading"><%= day %>日目</div>
             <ul class="list-group">
-              <a class="list-group-item" ng-href="{{ createMapPath(1, <%= day %>) }}">東123マップ</a>
-              <a class="list-group-item" ng-href="{{ createMapPath(2, <%= day %>) }}">東456マップ</a>
-              <a class="list-group-item" ng-href="{{ createMapPath(3, <%= day %>) }}">西12マップ</a>
+              <a class="list-group-item" ng-href="{{ createMapPath(1, <%= day %>) }}" target="_blank">東123マップ</a>
+              <a class="list-group-item" ng-href="{{ createMapPath(2, <%= day %>) }}" target="_blank">東456マップ</a>
+              <a class="list-group-item" ng-href="{{ createMapPath(3, <%= day %>) }}" target="_blank">西12マップ</a>
             </ul>
           </div>
         <% end %>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-dark" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
