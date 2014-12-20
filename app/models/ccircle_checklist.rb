@@ -11,13 +11,14 @@ class CcircleChecklist < ActiveRecord::Base
   # ----------------------------------------------------------
   # Validation
   # ----------------------------------------------------------
-  validates :user_id,     presence: true, numericality: true
-  validates :comiket_id,  presence: true, numericality: true
-  validates :clayout_id,  presence: true, numericality: true
-  validates :day,         presence: true, numericality: true
-  validates :circle_name, presence: true
-  validates :color,       presence: true
-  validates :rank,        presence: true, numericality: true
+  validates :user_id,      presence: true, numericality: true
+  validates :comiket_id,   presence: true, numericality: true
+  validates :clayout_id,   presence: true, numericality: true
+  validates :space_no_sub, presence: true
+  validates :day,          presence: true, numericality: true
+  validates :circle_name,  presence: true
+  validates :color,        presence: true
+  validates :rank,         presence: true, numericality: true
 
   enum space_no_sub: [:a, :b]
 
@@ -29,6 +30,7 @@ class CcircleChecklist < ActiveRecord::Base
           checklist.clayout.cblock.carea.name,
           checklist.clayout.cblock.name,
           checklist.clayout.space_no,
+          checklist.space_no_sub,
           checklist.circle_name,
           checklist.circle_url,
           checklist.comment,

@@ -87,12 +87,12 @@ class CcircleChecklistsController < ApplicationController
 
   def create_params
     params.require(:ccircle_checklist)
-          .permit(:comiket_id, :clayout_id, :day, :circle_name, :circle_url, :comment, :cost, :color)
+          .permit(:comiket_id, :clayout_id, :space_no_sub, :day, :circle_name, :circle_url, :comment, :cost, :color)
   end
 
   def update_params
     params.require(:ccircle_checklist)
-          .permit(:clayout_id, :day, :circle_name, :circle_url, :comment, :cost, :color)
+          .permit(:clayout_id, :space_no_sub, :day, :circle_name, :circle_url, :comment, :cost, :color)
   end
 
   def checklist_filename(extention)
