@@ -19,6 +19,8 @@ class CcircleChecklist < ActiveRecord::Base
   validates :color,       presence: true
   validates :rank,        presence: true, numericality: true
 
+  enum space_no_sub: [:a, :b]
+
   def self.csv_for_download(ccircle_checklists)
     csv_data = CSV.generate do |csv|
       ccircle_checklists.each do |checklist|

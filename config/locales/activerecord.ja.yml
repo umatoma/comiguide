@@ -54,6 +54,7 @@ ja:
         user_id: 'ユーザーID'
         comiket_id: 'コミケID'
         clayout_id: 'レイアウトID'
+        space_no_sub: 'a/b'
         day: '日程'
         circle_name: 'サークル名'
         circle_url: 'サークルURL'

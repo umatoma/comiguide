@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140917100339) do
+ActiveRecord::Schema.define(version: 20141220102830) do
 
   create_table "c1blocks", force: true do |t|
     t.integer "comic1_id", null: false
@@ -105,16 +105,17 @@ ActiveRecord::Schema.define(version: 20140917100339) do
   add_index "cblocks", ["pos_y"], name: "index_cblocks_on_pos_y", using: :btree
 
   create_table "ccircle_checklists", force: true do |t|
-    t.integer  "user_id",                       null: false
-    t.integer  "comiket_id",                    null: false
-    t.integer  "clayout_id",                    null: false
-    t.integer  "day",                           null: false
-    t.string   "circle_name",                   null: false
+    t.integer  "user_id",                        null: false
+    t.integer  "comiket_id",                     null: false
+    t.integer  "clayout_id",                     null: false
+    t.integer  "space_no_sub", default: 0,       null: false
+    t.integer  "day",                            null: false
+    t.string   "circle_name",                    null: false
     t.string   "circle_url"
     t.string   "comment"
     t.string   "cost"
-    t.string   "color",       default: "black", null: false
-    t.integer  "rank",        default: 1,       null: false
+    t.string   "color",        default: "black", null: false
+    t.integer  "rank",         default: 1,       null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
