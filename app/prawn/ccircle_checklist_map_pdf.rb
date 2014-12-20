@@ -126,7 +126,7 @@ class CcircleChecklistMapPdf < Prawn::Document
           y = y2 = index - 6
         end
         list_datum = [
-          { x: 0 + x_margin, x2: 1 + x_margin, text: checklist.clayout.layout_info_simple },
+          { x: 0 + x_margin, x2: 1 + x_margin, text: checklist.layout_info_simple },
           { x: 2 + x_margin, x2: 7 + x_margin, text: checklist.circle_name },
           { x: 8 + x_margin, x2: 17 + x_margin, text: checklist.comment },
           { x: 18 + x_margin, x2: 19 + x_margin, text: checklist.cost }
@@ -208,7 +208,7 @@ class CcircleChecklistMapPdf < Prawn::Document
         x_margin = 0
         y = y2 = index
         list_datum = [
-          { x: 0 + x_margin, x2: 1 + x_margin, text: checklist.clayout.layout_info_simple },
+          { x: 0 + x_margin, x2: 1 + x_margin, text: checklist.layout_info_simple },
           { x: 2 + x_margin, x2: 7 + x_margin, text: checklist.circle_name },
           { x: 8 + x_margin, x2: 17 + x_margin, text: checklist.comment },
           { x: 18 + x_margin, x2: 19 + x_margin, text: checklist.cost }

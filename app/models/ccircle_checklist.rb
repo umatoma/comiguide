@@ -45,4 +45,8 @@ class CcircleChecklist < ActiveRecord::Base
   def day_name
     "#{day}日目"
   end
+
+  def layout_info_simple
+    "#{clayout.layout_info_simple}#{space_no_sub}"
+  end
 end
