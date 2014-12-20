@@ -3,7 +3,7 @@
     <li><%= link_to t('views.users.mypage'), mypage_users_path %></li>
     <li><%= link_to t('views.users.edit'), edit_user_registration_path %></li>
     <li><%= link_to '企業ブースチェックリスト', comiket_ckigyo_checklists_path(comiket_id: Comiket::MAIN_ID) %></li>
-    <li><%= link_to 'コミケチェックリスト', comiket_ccircle_checklists_path(comiket_id: Comiket::MAIN_ID) %></li>
+    <li><%= link_to 'サークルチェックリスト', comiket_ccircle_checklists_path(comiket_id: Comiket::MAIN_ID) %></li>
     <li><%= link_to 'COMIC1チェックリスト', comic1_c1circle_checklists_path(comic1_id: Comic1::MAIN_ID) %></li>
   <% else %>
     <li>
