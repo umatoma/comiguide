@@ -23,10 +23,15 @@ class CkigyoChecklistMapPdf < Prawn::Document
       .includes(:ckigyo)
       .where(user_id: user_id)
 
-    ckigyo_checklists.each_slice(22).with_index do |checklists, index|
-      start_new_page unless index == 0
+    if ckigyo_checklists.blank?
       draw_header
-      draw_content(comiket, ckigyos, checklists)
+      draw_content(comiket, ckigyos, [])
+    else
+      ckigyo_checklists.each_slice(22).with_index do |checklists, index|
+        start_new_page unless index == 0
+        draw_header
+        draw_content(comiket, ckigyos, checklists)
+      end
     end
     draw_footer
   end

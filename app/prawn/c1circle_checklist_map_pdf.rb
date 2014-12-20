@@ -35,9 +35,13 @@ class C1circleChecklistMapPdf < Prawn::Document
       .includes(c1layout: :c1block)
       .where(user_id: user_id)
 
-    c1circle_checklists.each_slice(12).with_index do |checklists, index|
-      start_new_page unless index == 0
-      draw_content_east(c1blocks, c1layouts, checklists)
+    if c1circle_checklists.blank?
+      draw_content_east(c1blocks, c1layouts, [])
+    else
+      c1circle_checklists.each_slice(12).with_index do |checklists, index|
+        start_new_page unless index == 0
+        draw_content_east(c1blocks, c1layouts, checklists)
+      end
     end
     draw_footer
   end

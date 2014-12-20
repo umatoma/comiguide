@@ -42,15 +42,21 @@ class CcircleChecklistMapPdf < Prawn::Document
       .where(day: day)
       .where(clayout_id: clayouts.map(&:id))
 
-    if west?
-      ccircle_checklists.each_slice(20).with_index do |checklists, index|
-        start_new_page unless index == 0
-        draw_content_west(cblocks, clayouts, checklists)
+    slice_cnt = west? ? 20 : 12
+    if ccircle_checklists.blank?
+      if west?
+        draw_content_west(cblocks, clayouts, [])
+      else
+        draw_content_east(cblocks, clayouts, [])
       end
     else
-      ccircle_checklists.each_slice(12).with_index do |checklists, index|
+      ccircle_checklists.each_slice(slice_cnt).with_index do |checklists, index|
         start_new_page unless index == 0
-        draw_content_east(cblocks, clayouts, checklists)
+        if west?
+          draw_content_west(cblocks, clayouts, checklists)
+        else
+          draw_content_east(cblocks, clayouts, checklists)
+        end
       end
     end
     draw_footer
