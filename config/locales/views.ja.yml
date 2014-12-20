@@ -60,6 +60,9 @@ ja:
       index:
         title: 'C%{comiket_id} サークルチェックリスト'
       checklists:
+        map_modal_title: 'PDFマップ'
+        map_line_true: 'ラインあり'
+        map_line_false: 'ラインなし'
         create_panel_title: 'チェックリスト作成'
     c1circles:
       index:

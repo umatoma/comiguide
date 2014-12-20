@@ -38,17 +38,9 @@
     </button>
   </div>
   <div class="btn-group" dropdown>
-    <button type="button" class="btn btn-default dropdown-toggle">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="modal" data-target="#ccircle_checklist_modal">
       <i class="fa fa-file-pdf-o"></i>
     </button>
-    <ul class="dropdown-menu" role="menu">
-      <% (1..3).each do |day| %>
-        <li class="dropdown-header"><%= day %>日目</li>
-        <li><%= link_to '東123マップ', create_map_comiket_ccircle_checklists_path(cmap_id: 1, day: day, format: :pdf), target: :_blank %></li>
-        <li><%= link_to '東456マップ', create_map_comiket_ccircle_checklists_path(cmap_id: 2, day: day, format: :pdf), target: :_blank %></li>
-        <li><%= link_to '西12マップ', create_map_comiket_ccircle_checklists_path(cmap_id: 3, day: day, format: :pdf), target: :_blank %></li>
-      <% end %>
-    </ul>
   </div>
   <div class="btn-group" dropdown>
     <button type="button" class="btn btn-default dropdown-toggle">
@@ -207,3 +199,40 @@
   </li>
 </ul>
 <!-- //.ccircle-checklists -->
+
+<div class="modal fade" id="ccircle_checklist_modal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span><span class="sr-only">Close</span>
+        </button>
+        <h4 class="modal-title"><%= t('views.ccircle_checklists.checklists.map_modal_title') %></h4>
+      </div>
+      <div class="modal-body">
+        <p class="btn-group">
+          <label class="btn btn-primary" ng-model="draw_map_line" btn-radio="true">
+            <%= t('views.ccircle_checklists.checklists.map_line_true') %>
+          </label>
+          <label class="btn btn-primary" ng-model="draw_map_line" btn-radio="false">
+            <%= t('views.ccircle_checklists.checklists.map_line_false') %>
+          </label>
+        </p>
+        <% (1..3).each do |day| %>
+          <div class="panel panel-default">
+            <div class="panel-heading"><%= day %>日目</div>
+            <ul class="list-group">
+              <a class="list-group-item" ng-href="{{ createMapPath(1, <%= day %>) }}">東123マップ</a>
+              <a class="list-group-item" ng-href="{{ createMapPath(2, <%= day %>) }}">東456マップ</a>
+              <a class="list-group-item" ng-href="{{ createMapPath(3, <%= day %>) }}">西12マップ</a>
+            </ul>
+          </div>
+        <% end %>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- //.modal -->
