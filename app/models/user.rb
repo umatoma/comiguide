@@ -26,6 +26,10 @@ class User < ActiveRecord::Base
   # ----------------------------------------------------------
   after_create :add_role_normal
 
+  def remember_me
+    true
+  end
+
   def undefined_passsword?
     !!/\A.+@undefined\z/i.match(email)
   end
