@@ -11,7 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141220102830) do
+ActiveRecord::Schema.define(version: 20141223141718) do
+
+  create_table "api_tokens", force: true do |t|
+    t.integer  "user_id",    null: false
+    t.string   "token",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "api_tokens", ["token"], name: "index_api_tokens_on_token", unique: true, using: :btree
+  add_index "api_tokens", ["user_id"], name: "index_api_tokens_on_user_id", unique: true, using: :btree
 
   create_table "c1blocks", force: true do |t|
     t.integer "comic1_id", null: false
