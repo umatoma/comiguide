@@ -1,5 +1,5 @@
 class Api::V1::CkigyoChecklistsController < Api::V1::BaseController
-  load_and_authorize_resource only: [:update]
+  load_and_authorize_resource only: [:update, :destroy]
 
   def index
     @comiket = Comiket.find(params[:id])
@@ -14,6 +14,10 @@ class Api::V1::CkigyoChecklistsController < Api::V1::BaseController
 
   def update
     @ckigyo_checklist.update!(ckigyo_checklist_update_params)
+  end
+
+  def destroy
+    @ckigyo_checklist.destroy!
   end
 
   private

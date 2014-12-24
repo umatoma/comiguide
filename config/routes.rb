@@ -143,7 +143,7 @@ Rails.application.routes.draw do
           resources :ckigyo_checklists, only: [:index]
         end
       end
-      resources :ckigyo_checklists, only: [:create, :update]
+      resources :ckigyo_checklists, only: [:create, :update, :destroy]
     end
   end
 end
