@@ -140,6 +140,7 @@ Rails.application.routes.draw do
       resources :comikets, only: [] do
         member do
           resources :ckigyos, only: [:index]
+          resources :ckigyo_checklists, only: [:index]
         end
       end
     end
