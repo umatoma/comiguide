@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
   # ----------------------------------------------------------
   has_many :ckigyo_checklists
   has_many :ccircle_checklists
+  has_many :c1circle_checklists
+  has_one :api_token, dependent: :destroy
 
   # ----------------------------------------------------------
   # Validation
