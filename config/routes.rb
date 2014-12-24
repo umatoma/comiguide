@@ -137,6 +137,11 @@ Rails.application.routes.draw do
           post :sign_in
         end
       end
+      resources :comikets, only: [] do
+        member do
+          resources :ckigyos, only: [:index]
+        end
+      end
     end
   end
 end
