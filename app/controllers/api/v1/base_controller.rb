@@ -10,6 +10,7 @@ class Api::V1::BaseController < ActionController::Base
   skip_before_action :initialize_variables
   skip_before_action :verify_authenticity_token
 
+  before_action :validate_request_format
   before_action :authenticate_user_from_api_token
 
   rescue_from ActionController::ParameterMissing, with: :parameter_missing
@@ -35,5 +36,9 @@ class Api::V1::BaseController < ActionController::Base
 
   def record_not_found(exception)
     render json: { error: exception.message }, status: :not_found
+  end
+
+  def validate_request_format
+    render json: { error: '404 Not Found' }, status: :not_found unless json_request?
   end
 end
