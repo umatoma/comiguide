@@ -147,6 +147,7 @@ Rails.application.routes.draw do
         resources :clayouts, only: [:index]
       end
       resources :ckigyo_checklists, only: [:create, :update, :destroy]
+      resources :ccircle_checklists, only: [:create, :update, :destroy]
     end
   end
 end
