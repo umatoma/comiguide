@@ -15,6 +15,8 @@ class Api::V1::BaseController < ActionController::Base
   rescue_from ActionController::ParameterMissing, with: :parameter_missing
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
 
+  protected
+
   def authenticate_user_from_api_token
     render json: { error: '401 Unauthorized' }, status: :unauthorized unless current_user
   end
