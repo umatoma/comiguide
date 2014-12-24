@@ -137,6 +137,7 @@ Rails.application.routes.draw do
           post :sign_in
         end
       end
+
       resources :comikets, only: [] do
         resources :ckigyos, only: [:index]
         resources :ckigyo_checklists, only: [:index]
@@ -148,6 +149,11 @@ Rails.application.routes.draw do
       end
       resources :ckigyo_checklists, only: [:create, :update, :destroy]
       resources :ccircle_checklists, only: [:create, :update, :destroy]
+
+      resources :comic1s, only: [] do
+        resources :c1circle_checklists, only: [:index]
+      end
+      resources :c1circle_checklists, only: [:create, :update, :destroy]
     end
   end
 end
