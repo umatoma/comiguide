@@ -151,7 +151,11 @@ Rails.application.routes.draw do
       resources :ccircle_checklists, only: [:create, :update, :destroy]
 
       resources :comic1s, only: [] do
+        resources :c1blocks, only: [:index]
         resources :c1circle_checklists, only: [:index]
+      end
+      resources :c1blocks, only: [] do
+        resources :c1layouts, only: [:index]
       end
       resources :c1circle_checklists, only: [:create, :update, :destroy]
     end
