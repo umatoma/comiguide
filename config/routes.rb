@@ -140,6 +140,7 @@ Rails.application.routes.draw do
       resources :comikets, only: [] do
         resources :ckigyos, only: [:index]
         resources :ckigyo_checklists, only: [:index]
+        resources :ccircle_checklists, only: [:index]
       end
       resources :careas, only: [:index]
       resources :cblocks, only: [] do
