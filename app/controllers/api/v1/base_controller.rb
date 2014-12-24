@@ -25,7 +25,7 @@ class Api::V1::BaseController < ActionController::Base
   end
 
   def current_ability
-    @current_ability ||= ApiAbility.new(current_user)
+    @api_current_ability ||= ApiAbility.new(current_user)
   end
 
   def current_user
