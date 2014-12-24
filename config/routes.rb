@@ -138,10 +138,12 @@ Rails.application.routes.draw do
         end
       end
       resources :comikets, only: [] do
-        member do
-          resources :ckigyos, only: [:index]
-          resources :ckigyo_checklists, only: [:index]
-        end
+        resources :ckigyos, only: [:index]
+        resources :ckigyo_checklists, only: [:index]
+      end
+      resources :careas, only: [:index]
+      resources :cblocks, only: [] do
+        resources :clayouts, only: [:index]
       end
       resources :ckigyo_checklists, only: [:create, :update, :destroy]
     end

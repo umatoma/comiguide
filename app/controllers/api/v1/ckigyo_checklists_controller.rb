@@ -2,7 +2,7 @@ class Api::V1::CkigyoChecklistsController < Api::V1::BaseController
   load_and_authorize_resource only: [:update, :destroy]
 
   def index
-    @comiket = Comiket.find(params[:id])
+    @comiket = Comiket.find(params[:comiket_id])
     @ckigyo_checklists = @comiket.ckigyo_checklists.where(user_id: current_user.id)
   end
 
