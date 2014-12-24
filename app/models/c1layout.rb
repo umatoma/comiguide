@@ -3,6 +3,7 @@ class C1layout < ActiveRecord::Base
   # Relation
   # ----------------------------------------------------------
   belongs_to :c1block
+  has_many :c1circles
   has_many :c1circle_checklists
 
   # ----------------------------------------------------------
