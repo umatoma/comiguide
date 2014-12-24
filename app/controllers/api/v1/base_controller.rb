@@ -15,11 +15,16 @@ class Api::V1::BaseController < ActionController::Base
 
   rescue_from ActionController::ParameterMissing, with: :parameter_missing
   rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from CanCan::AccessDenied, with: :access_denied
 
   protected
 
   def authenticate_user_from_api_token
     render json: { error: '401 Unauthorized' }, status: :unauthorized unless current_user
+  end
+
+  def current_ability
+    @current_ability ||= ApiAbility.new(current_user)
   end
 
   def current_user
@@ -28,6 +33,10 @@ class Api::V1::BaseController < ActionController::Base
 
   def json_request?
     request.format.json?
+  end
+
+  def access_denied(exception)
+    render json: { error: exception.message }, status: :unauthorized
   end
 
   def parameter_missing(exception)
