@@ -64,6 +64,11 @@ ja:
         map_line_true: 'ラインあり'
         map_line_false: 'ラインなし'
         create_panel_title: 'チェックリスト作成'
+        tooltip_reload: '再読み込み'
+        tooltip_sort: '並び順'
+        tooltip_create: 'リスト追加'
+        tooltip_pdf: 'PDFマップ'
+        tooltip_download: 'ダウンロード'
     c1circles:
       index:
         title: 'COMIC1☆%{comic1_id} サークル一覧'
