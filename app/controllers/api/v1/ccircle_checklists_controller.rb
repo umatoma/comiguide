@@ -5,8 +5,13 @@ class Api::V1::CcircleChecklistsController < Api::V1::BaseController
     @comiket = Comiket.find(params[:comiket_id])
     @ccircle_checklists = @comiket
                           .ccircle_checklists
-                          .includes(clayout: :cblock)
+                          .includes(clayout: { cblock: :carea })
                           .where(user_id: current_user.id)
+    if params[:cmap_id].present?
+      @ccircle_checklists = @ccircle_checklists
+                            .merge(Carea.where(cmap_id: params[:cmap_id]))
+                            .references(:carea)
+    end
   end
 
   def create
