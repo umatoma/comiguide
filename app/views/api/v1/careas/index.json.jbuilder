@@ -1,10 +1,7 @@
-json.careas do
-  json.array! @careas do |carea|
-    json.(carea, :id, :cmap_id, :name, :simple_name)
-    json.cblocks do
-      json.array! carea.cblocks do |cblock|
-        json.(cblock, :id, :carea_id, :name)
-      end
-    end
+json.careas @careas do |carea|
+  json.partial! 'api/v1/json/carea', carea: carea
+
+  json.cblocks carea.cblocks do |cblock|
+    json.partial! 'api/v1/json/cblock', cblock: cblock
   end
 end
