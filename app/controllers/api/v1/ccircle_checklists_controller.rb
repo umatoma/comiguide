@@ -7,6 +7,11 @@ class Api::V1::CcircleChecklistsController < Api::V1::BaseController
                           .ccircle_checklists
                           .includes(clayout: { cblock: :carea })
                           .where(user_id: current_user.id)
+
+    if params[:day].present?
+      @ccircle_checklists = @ccircle_checklists.where(day: params[:day])
+    end
+
     if params[:cmap_id].present?
       @ccircle_checklists = @ccircle_checklists
                             .merge(Carea.where(cmap_id: params[:cmap_id]))
