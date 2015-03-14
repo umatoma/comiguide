@@ -3,7 +3,10 @@ class Api::V1::C1circleChecklistsController < Api::V1::BaseController
 
   def index
     @comic1 = Comic1.find(params[:comic1_id])
-    @c1circle_checklists = @comic1.c1circle_checklists.where(user_id: current_user.id)
+    @c1circle_checklists = @comic1
+                           .c1circle_checklists
+                           .includes(c1layout: :c1block)
+                           .where(user_id: current_user.id)
   end
 
   def create
