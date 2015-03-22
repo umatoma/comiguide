@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141223141718) do
+ActiveRecord::Schema.define(version: 20150322131340) do
 
   create_table "api_tokens", force: true do |t|
     t.integer  "user_id",    null: false
@@ -73,11 +73,13 @@ ActiveRecord::Schema.define(version: 20141223141718) do
   add_index "c1circles", ["name"], name: "index_c1circles_on_name", using: :btree
 
   create_table "c1layouts", force: true do |t|
-    t.integer "c1block_id", null: false
-    t.integer "space_no",   null: false
-    t.integer "layout",     null: false
-    t.integer "pos_x",      null: false
-    t.integer "pos_y",      null: false
+    t.integer "c1block_id",             null: false
+    t.integer "space_no",               null: false
+    t.integer "layout",                 null: false
+    t.integer "pos_x",                  null: false
+    t.integer "pos_y",                  null: false
+    t.integer "map_pos_x",  default: 0, null: false
+    t.integer "map_pos_y",  default: 0, null: false
   end
 
   add_index "c1layouts", ["c1block_id"], name: "index_c1layouts_on_c1block_id", using: :btree
