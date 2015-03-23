@@ -4,7 +4,7 @@
       self = @
       this.comic1_id = null
       this.c1layout_id = null
-      this.space_no_sub = 0
+      this.space_no_sub = 'a'
       this.name = null
       this.kana = null
       this.url = null
@@ -13,22 +13,17 @@
       this.c1layout = null
 
       this.space_no_subs = [
-        { key: 0, value: 'a' },
-        { key: 1, value: 'b' }
+        { key: 'a', value: 'a' },
+        { key: 'b', value: 'b' }
       ]
 
       angular.forEach attr, (v, k) ->
         self[k] = v
 
-    spaceNoSubName: ->
-      self = @
-      (self.space_no_subs.filter (x) -> x.key == self.space_no_sub)[0].value
-
     spaceInfo: ->
       block_name = this.c1layout.c1block.name
       space_no = this.c1layout.space_no
-      space_no_sub_name = this.spaceNoSubName()
-      "#{block_name}-#{space_no}-#{space_no_sub_name}"
+      "#{block_name}-#{space_no}-#{this.space_no_sub}"
 
     fullInfo: ->
       "#{this.spaceInfo()} #{this.name}"

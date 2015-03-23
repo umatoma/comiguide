@@ -6,7 +6,7 @@
       this.comic1_id = null
       this.c1block_id = null
       this.c1layout_id = null
-      this.space_no_sub = 0
+      this.space_no_sub = 'a'
       this.circle_name = null
       this.circle_url = null
       this.comment = null
@@ -19,8 +19,8 @@
       this.c1blocks = []
       this.c1layouts = []
       this.space_no_subs = [
-        { key: 0, value: 'a' },
-        { key: 1, value: 'b' }
+        { key: 'a', value: 'a' },
+        { key: 'b', value: 'b' }
       ]
 
       angular.forEach attr, (v, k) ->
@@ -65,7 +65,7 @@
 
     initAttributes: ->
       this.c1block_id = this.c1blocks[0].id
-      this.space_no_sub = 0
+      this.space_no_sub = 'a'
       this.circle_name = null
       this.circle_url = null
       this.comment = null
@@ -82,16 +82,12 @@
         self.c1layout_id = data.c1layouts[0].id
         self.c1layouts = data.c1layouts
 
-    spaceNoSubName: ->
-      self = @
-      (self.space_no_subs.filter (x) -> x.key == self.space_no_sub)[0].value
-
     fullInfo:->
       self = @
       c1block = (self.c1blocks.filter (x) -> x.id == self.c1block_id)[0]
       c1layout = (self.c1layouts.filter (x) -> x.id == self.c1layout_id)[0]
       if c1block && c1layout
-        "#{c1block.name} - #{c1layout.space_no}#{self.spaceNoSubName()} #{self.circle_name}"
+        "#{c1block.name} - #{c1layout.space_no}#{self.space_no_sub} #{self.circle_name}"
       else
         null
 ]

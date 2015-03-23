@@ -1,11 +1,6 @@
 class C1circleChecklist < ActiveRecord::Base
   include Colors
 
-  SPACE_NO_SUB_NAME_HASH = {
-    0 => 'a',
-    1 => 'b'
-  }
-
   # ----------------------------------------------------------
   # Relation
   # ----------------------------------------------------------
@@ -18,11 +13,13 @@ class C1circleChecklist < ActiveRecord::Base
   # ----------------------------------------------------------
   validates :user_id,      presence: true, numericality: true
   validates :comic1_id,    presence: true, numericality: true
-  validates :c1layout_id,   presence: true, numericality: true
-  validates :space_no_sub, presence: true, numericality: true
+  validates :c1layout_id,  presence: true, numericality: true
+  validates :space_no_sub, presence: true
   validates :circle_name,  presence: true
   validates :color,        presence: true
   validates :rank,         presence: true, numericality: true
+
+  enum space_no_sub: [:a, :b]
 
   def self.csv_for_download(c1circle_checklists)
     csv_data = CSV.generate do |csv|
@@ -30,7 +27,7 @@ class C1circleChecklist < ActiveRecord::Base
         csv << [
           checklist.c1layout.c1block.name,
           checklist.c1layout.space_no,
-          checklist.space_no_sub_name,
+          checklist.space_no_sub,
           checklist.circle_name,
           checklist.circle_url,
           checklist.comment,
@@ -43,10 +40,6 @@ class C1circleChecklist < ActiveRecord::Base
   end
 
   def layout_info_simple
-    "#{c1layout.layout_info_simple}#{space_no_sub_name}"
-  end
-
-  def space_no_sub_name
-    SPACE_NO_SUB_NAME_HASH[space_no_sub]
+    "#{c1layout.layout_info_simple}#{space_no_sub}"
   end
 end
