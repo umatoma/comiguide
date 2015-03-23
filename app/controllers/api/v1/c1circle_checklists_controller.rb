@@ -10,7 +10,7 @@ class Api::V1::C1circleChecklistsController < Api::V1::BaseController
   end
 
   def create
-    @c1circle_checklist = CcircleChecklist.new(c1circle_checklist_create_params)
+    @c1circle_checklist = C1circleChecklist.new(c1circle_checklist_create_params)
     @c1circle_checklist.user = current_user
     @c1circle_checklist.save!
   end
