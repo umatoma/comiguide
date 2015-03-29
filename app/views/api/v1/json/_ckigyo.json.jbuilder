@@ -1,1 +1,2 @@
-json.extract! ckigyo, :id, :comiket_id, :kigyo_no, :name, :x, :y, :w, :h
+json.extract! ckigyo, :id, :comiket_id, :kigyo_no, :name
+json.extract! ckigyo, :x, :y, :w, :h, :map_pos_x, :map_pos_y
