@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: ckigyo_checklists
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer          not null
+#  ckigyo_id  :integer          not null
+#  comment    :string(255)
+#  cost       :string(255)
+#  color      :string(255)      default("black"), not null
+#  rank       :integer          default(1), not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 require 'csv'
 
 class CkigyoChecklist < ActiveRecord::Base

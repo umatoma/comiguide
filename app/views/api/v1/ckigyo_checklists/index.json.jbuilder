@@ -1,8 +1,7 @@
-json.comiket do
-  json.(@comiket, :id, :event_name)
-end
-json.ckigyo_checklists do
-  json.array! @ckigyo_checklists do |checklist|
-    json.(checklist, :id, :ckigyo_id, :comment, :cost, :color, :updated_at, :created_at)
+json.ckigyo_checklists @ckigyo_checklists do |checklist|
+  json.partial! 'api/v1/json/ckigyo_checklist', ckigyo_checklist: checklist
+
+  json.ckigyo do
+    json.partial! 'api/v1/json/ckigyo', ckigyo: checklist.ckigyo
   end
 end

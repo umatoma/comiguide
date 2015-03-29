@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: api_tokens
+#
+#  id         :integer          not null, primary key
+#  user_id    :integer          not null
+#  token      :string(255)      not null
+#  created_at :datetime
+#  updated_at :datetime
+#
+
 class ApiToken < ActiveRecord::Base
   # ----------------------------------------------------------
   # Association

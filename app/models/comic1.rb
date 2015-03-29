@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: comic1s
+#
+#  id         :integer          not null, primary key
+#  event_no   :integer          not null
+#  event_name :string(255)      not null
+#
+
 class Comic1 < ActiveRecord::Base
   # ----------------------------------------------------------
   # Constant

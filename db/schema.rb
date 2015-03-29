@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150322131340) do
+ActiveRecord::Schema.define(version: 20150329142843) do
 
   create_table "api_tokens", force: true do |t|
     t.integer  "user_id",    null: false
@@ -174,6 +174,8 @@ ActiveRecord::Schema.define(version: 20150322131340) do
     t.integer "y",                      null: false
     t.integer "w",          default: 1, null: false
     t.integer "h",          default: 1, null: false
+    t.integer "map_pos_x",  default: 0, null: false
+    t.integer "map_pos_y",  default: 0, null: false
   end
 
   add_index "ckigyos", ["comiket_id", "kigyo_no"], name: "index_ckigyos_on_comiket_id_and_kigyo_no", unique: true, using: :btree

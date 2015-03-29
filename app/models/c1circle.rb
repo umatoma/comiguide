@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: c1circles
+#
+#  id           :integer          not null, primary key
+#  comic1_id    :integer          not null
+#  c1layout_id  :integer          not null
+#  space_no_sub :integer          not null
+#  name         :string(255)      not null
+#  kana         :string(255)      not null
+#  url          :string(255)
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 class C1circle < ActiveRecord::Base
   # ----------------------------------------------------------
   # Relation

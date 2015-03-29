@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: c1layouts
+#
+#  id         :integer          not null, primary key
+#  c1block_id :integer          not null
+#  space_no   :integer          not null
+#  layout     :integer          not null
+#  pos_x      :integer          not null
+#  pos_y      :integer          not null
+#  map_pos_x  :integer          default(0), not null
+#  map_pos_y  :integer          default(0), not null
+#
+
 class C1layout < ActiveRecord::Base
   # ----------------------------------------------------------
   # Relation

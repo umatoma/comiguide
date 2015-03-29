@@ -1,3 +1,3 @@
 json.ckigyo_checklist do
-  json.(@ckigyo_checklist, :id, :ckigyo_id, :comment, :cost, :color, :updated_at, :created_at)
+  json.partial! 'api/v1/json/ckigyo_checklist', ckigyo_checklist: @ckigyo_checklist
 end
