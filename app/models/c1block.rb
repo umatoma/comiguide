@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: c1blocks
+#
+#  id        :integer          not null, primary key
+#  comic1_id :integer          not null
+#  name      :string(255)      not null
+#  pos_x     :integer          not null
+#  pos_y     :integer          not null
+#
+
 class C1block < ActiveRecord::Base
   # ----------------------------------------------------------
   # Relation

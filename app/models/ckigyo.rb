@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: ckigyos
+#
+#  id         :integer          not null, primary key
+#  comiket_id :integer          not null
+#  kigyo_no   :integer          not null
+#  name       :string(255)      not null
+#  x          :integer          not null
+#  y          :integer          not null
+#  w          :integer          default(1), not null
+#  h          :integer          default(1), not null
+#  map_pos_x  :integer          default(0), not null
+#  map_pos_y  :integer          default(0), not null
+#
+
 class Ckigyo < ActiveRecord::Base
   # ----------------------------------------------------------
   # Relation

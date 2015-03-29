@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: notifications
+#
+#  id           :integer          not null, primary key
+#  title        :string(255)      not null
+#  content      :text             not null
+#  status       :integer          default(1), not null
+#  published_at :datetime
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 class Notification < ActiveRecord::Base
   # ----------------------------------------------------------
   # Constant

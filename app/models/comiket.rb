@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: comikets
+#
+#  id         :integer          not null, primary key
+#  event_no   :integer          not null
+#  event_name :string(255)      not null
+#  kigyo_w    :integer          not null
+#  kigyo_h    :integer          not null
+#
+
 class Comiket < ActiveRecord::Base
   # ----------------------------------------------------------
   # Constant

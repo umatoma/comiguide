@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: c1circle_checklists
+#
+#  id           :integer          not null, primary key
+#  user_id      :integer          not null
+#  comic1_id    :integer          not null
+#  c1layout_id  :integer          not null
+#  space_no_sub :integer          not null
+#  circle_name  :string(255)      not null
+#  circle_url   :string(255)
+#  comment      :string(255)
+#  cost         :string(255)
+#  color        :string(255)      default("black"), not null
+#  rank         :integer          default(1), not null
+#  created_at   :datetime
+#  updated_at   :datetime
+#
+
 class C1circleChecklist < ActiveRecord::Base
   include Colors
 
