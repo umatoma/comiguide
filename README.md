@@ -84,7 +84,7 @@ server {
 }
 
 server {
-    listen 443 ssl;
+    listen 443 ssl spdy;
     server_name comiguide.net;
 
     keepalive_timeout 5;
