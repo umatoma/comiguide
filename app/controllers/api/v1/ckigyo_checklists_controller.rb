@@ -30,6 +30,6 @@ class Api::V1::CkigyoChecklistsController < Api::V1::BaseController
   end
 
   def ckigyo_checklist_update_params
-    params.require(:ckigyo_checklist).permit(:comment, :cost, :color)
+    params.require(:ckigyo_checklist).permit(:ckigyo_id, :comment, :cost, :color)
   end
 end
