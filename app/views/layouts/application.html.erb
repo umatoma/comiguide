@@ -19,7 +19,7 @@
 
   <title>ComiGuide<%= " | #{yield(:title)}" if content_for?(:title) %></title>
 
-  <%= favicon_link_tag '/assets/favicon.ico' %>
+  <%= favicon_link_tag '/favicon.ico' %>
 
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <% @page_stylesheets.each do |style| %>
