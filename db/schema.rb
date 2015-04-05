@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405092223) do
+ActiveRecord::Schema.define(version: 20150405093348) do
 
   create_table "api_tokens", force: true do |t|
     t.integer  "user_id",    null: false
@@ -76,9 +76,9 @@ ActiveRecord::Schema.define(version: 20150405092223) do
   create_table "c1layouts", force: true do |t|
     t.integer "c1block_id",             null: false
     t.integer "space_no",               null: false
-    t.integer "layout",                 null: false
-    t.integer "pos_x",                  null: false
-    t.integer "pos_y",                  null: false
+    t.integer "layout",     default: 1, null: false
+    t.integer "pos_x",      default: 0, null: false
+    t.integer "pos_y",      default: 0, null: false
     t.integer "map_pos_x",  default: 0, null: false
     t.integer "map_pos_y",  default: 0, null: false
   end
