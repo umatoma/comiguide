@@ -24,7 +24,11 @@ namespace :comic1s do
 
     comic1 = Comic1.where(id: 9, event_no: 9, event_name: 'COMIC1☆9').first_or_create
     table.each do |row|
-
+      # block_name,space_no,space_no_sub,circle_name,circle_kana
+      block = C1block
+              .where(comic1_id: comic1.id)
+              .where(name: row[:block_name])
+              .first_or_create
     end
   end
 end
