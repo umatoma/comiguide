@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405085405) do
+ActiveRecord::Schema.define(version: 20150405092223) do
 
   create_table "api_tokens", force: true do |t|
     t.integer  "user_id",    null: false
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20150405085405) do
     t.integer "map_pos_y",  default: 0, null: false
   end
 
+  add_index "c1layouts", ["c1block_id", "space_no"], name: "index_c1layouts_on_c1block_id_and_space_no", unique: true, using: :btree
   add_index "c1layouts", ["c1block_id"], name: "index_c1layouts_on_c1block_id", using: :btree
   add_index "c1layouts", ["layout"], name: "index_c1layouts_on_layout", using: :btree
   add_index "c1layouts", ["pos_x"], name: "index_c1layouts_on_pos_x", using: :btree
