@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405093348) do
+ActiveRecord::Schema.define(version: 20150405094623) do
 
   create_table "api_tokens", force: true do |t|
     t.integer  "user_id",    null: false
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 20150405093348) do
     t.datetime "updated_at"
   end
 
+  add_index "c1circles", ["c1layout_id", "space_no_sub"], name: "index_c1circles_on_c1layout_id_and_space_no_sub", unique: true, using: :btree
   add_index "c1circles", ["c1layout_id"], name: "index_c1circles_on_c1layout_id", using: :btree
   add_index "c1circles", ["comic1_id"], name: "index_c1circles_on_comic1_id", using: :btree
   add_index "c1circles", ["kana"], name: "index_c1circles_on_kana", using: :btree
