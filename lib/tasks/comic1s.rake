@@ -25,7 +25,7 @@ namespace :comic1s do
     ActiveRecord::Base.transaction do
       comic1 = Comic1.where(id: 9, event_no: 9, event_name: 'COMIC1☆9').first_or_create
       table.each do |row|
-        # block_name,space_no,space_no_sub,circle_name,circle_kana
+        # block_name,space_no,space_no_sub,circle_name,circle_kana,url
         block = C1block
                 .where(comic1_id: comic1.id)
                 .where(name: row[:block_name])
@@ -35,6 +35,15 @@ namespace :comic1s do
                  .where(c1block_id: block.id)
                  .where(space_no: row[:space_no])
                  .first_or_create
+
+        circle = C1circle.new
+        circle.comic1 = comic1
+        circle.c1layout = layout
+        circle.space_no_sub = row[:space_no_sub]
+        circle.name = row[:circle_name]
+        circle.kana = row[:circle_kana]
+        circle.url = row[:url] if row[:url].present?
+        circle.save
       end
     end
   end
