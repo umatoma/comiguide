@@ -22,13 +22,20 @@ namespace :comic1s do
   task comic1_9_circle_data: :environment do
     table = CSV.table(Rails.root.join('lib/tasks/comic1_9_circles.csv'))
 
-    comic1 = Comic1.where(id: 9, event_no: 9, event_name: 'COMIC1☆9').first_or_create
-    table.each do |row|
-      # block_name,space_no,space_no_sub,circle_name,circle_kana
-      block = C1block
-              .where(comic1_id: comic1.id)
-              .where(name: row[:block_name])
-              .first_or_create
+    ActiveRecord::Base.transaction do
+      comic1 = Comic1.where(id: 9, event_no: 9, event_name: 'COMIC1☆9').first_or_create
+      table.each do |row|
+        # block_name,space_no,space_no_sub,circle_name,circle_kana
+        block = C1block
+                .where(comic1_id: comic1.id)
+                .where(name: row[:block_name])
+                .first_or_create
+
+        layout = C1layout
+                 .where(c1block_id: block.id)
+                 .where(space_no: row[:space_no])
+                 .first_or_create
+      end
     end
   end
 end
