@@ -23,7 +23,7 @@ class C1layout < ActiveRecord::Base
   # ----------------------------------------------------------
   # Validation
   # ----------------------------------------------------------
-  validates :c1block_id, presence: true, numericality: true
+  validates :c1block_id, presence: true, numericality: true, uniqueness: { scope: :space_no }
   validates :space_no,   presence: true, numericality: true
   validates :layout,     presence: true, numericality: true
   validates :pos_x,      presence: true, numericality: true
