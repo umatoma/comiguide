@@ -18,4 +18,13 @@ namespace :comic1s do
       end
     end
   end
+
+  task comic1_9_circle_data: :environment do
+    table = CSV.table(Rails.root.join('lib/tasks/comic1_9_circles.csv'))
+
+    comic1 = Comic1.where(id: 9, event_no: 9, event_name: 'COMIC1☆9').first_or_create
+    table.each do |row|
+
+    end
+  end
 end
