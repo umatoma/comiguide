@@ -20,7 +20,7 @@ class C1block < ActiveRecord::Base
   # ----------------------------------------------------------
   # Validation
   # ----------------------------------------------------------
-  validates :comic1_id, presence: true, numericality: true
+  validates :comic1_id, presence: true, numericality: true, uniqueness: { scope: :name }
   validates :name,      presence: true
   validates :pos_x,     presence: true, numericality: true
   validates :pos_y,     presence: true, numericality: true

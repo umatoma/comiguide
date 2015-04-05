@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150329142843) do
+ActiveRecord::Schema.define(version: 20150405094623) do
 
   create_table "api_tokens", force: true do |t|
     t.integer  "user_id",    null: false
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 20150329142843) do
     t.integer "pos_y",     null: false
   end
 
+  add_index "c1blocks", ["comic1_id", "name"], name: "index_c1blocks_on_comic1_id_and_name", unique: true, using: :btree
   add_index "c1blocks", ["comic1_id"], name: "index_c1blocks_on_comic1_id", using: :btree
   add_index "c1blocks", ["pos_x"], name: "index_c1blocks_on_pos_x", using: :btree
   add_index "c1blocks", ["pos_y"], name: "index_c1blocks_on_pos_y", using: :btree
@@ -67,6 +68,7 @@ ActiveRecord::Schema.define(version: 20150329142843) do
     t.datetime "updated_at"
   end
 
+  add_index "c1circles", ["c1layout_id", "space_no_sub"], name: "index_c1circles_on_c1layout_id_and_space_no_sub", unique: true, using: :btree
   add_index "c1circles", ["c1layout_id"], name: "index_c1circles_on_c1layout_id", using: :btree
   add_index "c1circles", ["comic1_id"], name: "index_c1circles_on_comic1_id", using: :btree
   add_index "c1circles", ["kana"], name: "index_c1circles_on_kana", using: :btree
@@ -75,13 +77,14 @@ ActiveRecord::Schema.define(version: 20150329142843) do
   create_table "c1layouts", force: true do |t|
     t.integer "c1block_id",             null: false
     t.integer "space_no",               null: false
-    t.integer "layout",                 null: false
-    t.integer "pos_x",                  null: false
-    t.integer "pos_y",                  null: false
+    t.integer "layout",     default: 1, null: false
+    t.integer "pos_x",      default: 0, null: false
+    t.integer "pos_y",      default: 0, null: false
     t.integer "map_pos_x",  default: 0, null: false
     t.integer "map_pos_y",  default: 0, null: false
   end
 
+  add_index "c1layouts", ["c1block_id", "space_no"], name: "index_c1layouts_on_c1block_id_and_space_no", unique: true, using: :btree
   add_index "c1layouts", ["c1block_id"], name: "index_c1layouts_on_c1block_id", using: :btree
   add_index "c1layouts", ["layout"], name: "index_c1layouts_on_layout", using: :btree
   add_index "c1layouts", ["pos_x"], name: "index_c1layouts_on_pos_x", using: :btree

@@ -18,4 +18,55 @@ namespace :comic1s do
       end
     end
   end
+
+  task comic1_9_circle_data: :environment do
+    table = CSV.table(Rails.root.join('lib/tasks/comic1_9_circles.csv'))
+
+    ActiveRecord::Base.transaction do
+      comic1 = Comic1.find(9)
+      table.each do |row|
+        layout = C1layout
+                 .joins(:c1block)
+                 .where(c1blocks: { name: row[:block_name] })
+                 .where(space_no: row[:space_no])
+                 .first
+
+        circle = C1circle.new
+        circle.comic1 = comic1
+        circle.c1layout = layout
+        circle.space_no_sub = row[:space_no_sub]
+        circle.name = row[:circle_name]
+        circle.kana = row[:circle_kana]
+        circle.url = row[:url] if row[:url].present?
+        circle.save
+      end
+    end
+  end
+
+  task comic1_9_layout_data: :environment do
+    block_table = CSV.table(Rails.root.join('lib/tasks/comic1_9_blocks.csv'))
+    layout_table = CSV.table(Rails.root.join('lib/tasks/comic1_9_layouts.csv'))
+    ActiveRecord::Base.transaction do
+      comic1 = Comic1.where(id: 9, event_no: 9, event_name: 'COMIC1☆9').first_or_create
+
+      block_table.each do |row|
+        c1block = C1block.new
+        c1block.comic1 = comic1
+        c1block.name = row[:name]
+        c1block.pos_x = row[:pos_x]
+        c1block.pos_y = row[:pos_y]
+        c1block.save
+      end
+
+      layout_table.each do |row|
+        c1block = C1block.find_by(comic1_id: 9, name: row[:name])
+        c1layout = C1layout.new
+        c1layout.c1block = c1block
+        c1layout.space_no = row[:space_no]
+        c1layout.pos_x = row[:pos_x]
+        c1layout.pos_y = row[:pos_y]
+        c1layout.save
+      end
+    end
+  end
 end
