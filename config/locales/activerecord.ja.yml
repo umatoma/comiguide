@@ -82,6 +82,7 @@ ja:
         title: 'タイトル'
         content: '本文'
         status: 'ステータス'
+        target: '通知対象'
         published_at: '公開日時'
         created_at: '登録日時'
         updated_at: '更新日時'

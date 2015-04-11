@@ -19,13 +19,18 @@ class Notification < ActiveRecord::Base
     publish: 1,
     draft: 2,
     close: 3
-  }
+  }.freeze
 
   STATUS_NAME = {
     1 => 'publish',
     2 => 'draft',
     3 => 'close'
-  }
+  }.freeze
+
+  # ----------------------------------------------------------
+  # Enum
+  # ----------------------------------------------------------
+  enum target: [:web, :android]
 
   # ----------------------------------------------------------
   # Validation
