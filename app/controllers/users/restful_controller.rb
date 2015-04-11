@@ -10,7 +10,7 @@ class Users::RestfulController < ApplicationController
     if request.format.symbol == :json
       @user = current_user
       @comiket = Comiket.find(Comiket::MAIN_ID)
-      @notifications = Notification.publish.recent
+      @notifications = Notification.publish.web.recent
       @ckigyo_checklists = @comiket.ckigyo_checklists
                                    .includes(ckigyo: :comiket)
                                    .where(user: current_user)
