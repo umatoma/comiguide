@@ -57,11 +57,11 @@ class Admin::NotificationsController < Admin::BaseController
   private
 
   def create_params
-    params.require(:notification).permit(:title, :content, :status)
+    params.require(:notification).permit(:title, :content, :status, :target)
   end
 
   def update_params
-    params.require(:notification).permit(:title, :content, :status)
+    params.require(:notification).permit(:title, :content, :status, :target)
   end
 
 end

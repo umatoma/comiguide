@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150405094623) do
+ActiveRecord::Schema.define(version: 20150411092945) do
 
   create_table "api_tokens", force: true do |t|
     t.integer  "user_id",    null: false
@@ -222,9 +222,11 @@ ActiveRecord::Schema.define(version: 20150405094623) do
     t.datetime "published_at"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "target",       default: 0, null: false
   end
 
   add_index "notifications", ["status"], name: "index_notifications_on_status", using: :btree
+  add_index "notifications", ["target"], name: "index_notifications_on_target", using: :btree
   add_index "notifications", ["title"], name: "index_notifications_on_title", using: :btree
 
   create_table "roles", force: true do |t|

@@ -19,6 +19,13 @@
             data-ng-model="notification.status">
     </select>
   </div>
+  <div class="form-group">
+    <label><%= Notification.human_attribute_name(:target) %></label>
+    <select class="form-control"
+            data-ng-options="t.key as t.value for t in notification.target_options"
+            data-ng-model="notification.target">
+    </select>
+  </div>
   <div class="btn btn-update btn-block" ng-click="updateNotification(notification)">
     Update
   </div>

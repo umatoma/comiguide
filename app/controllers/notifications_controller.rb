@@ -3,6 +3,7 @@ class NotificationsController < ApplicationController
     if request_json?
       @notifications = Notification
         .publish
+        .web
         .page(params[:page])
         .per(15)
     end

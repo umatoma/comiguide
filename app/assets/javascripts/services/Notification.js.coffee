@@ -9,6 +9,11 @@
           { key: 2, value: 'Draft' },
           { key: 3, value: 'Close' }
         ]
+        self.target_options = [
+          { key: 'web', value: 'web' },
+          { key: 'android', value: 'android' }
+        ]
+        self.target = 'web'
         self.status = 1
 
         angular.forEach attr, (v, k) ->
@@ -20,6 +25,7 @@
             title: this.title
             content: this.content
             status: this.status
+            target: this.target
         $http.post("/admin/notifications.json", data)
 
       update: (data) ->
@@ -31,6 +37,7 @@
             title: this.title
             content: this.content
             status: this.status
+            target: this.target
         this.update(data)
 
       destroy: ->
@@ -39,8 +46,12 @@
       initAttributes: ->
         this.title = null
         this.content = null
+        this.target = 'web'
         this.status = 1
 
       statusName: ->
         (@status_options.filter (x) => x.key == @status)[0].value
+
+      targetName: ->
+        (@target_options.filter (x) => x.key == @target)[0].value
 ]
