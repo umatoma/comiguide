@@ -1,20 +1,27 @@
 namespace :comic1s do
-  task comic1_8_map_data: :environment do
-    table = CSV.table(Rails.root.join('lib/tasks/comic1_8_map.csv'))
-    table.each do |row|
-      space_no = row[:space_no]
-      pos_x = row[:pos_x]
-      pos_y = row[:pos_y]
-      c1layout = C1layout
-                 .joins(c1block: :comic1)
-                 .where(space_no: space_no, pos_x: pos_x, pos_y: pos_y)
-                 .where(comic1s: { id: 8 })
-                 .first
+  namespace :comic1_map_data do
+    task comic1_9: :environment do
+      Rake::Task["comic1s:comic1_map_data:execute"].invoke("9")
+    end
 
-      map_pos_x = row[:map_pos_x]
-      map_pos_y = row[:map_pos_y]
-      if c1layout.update(map_pos_x: map_pos_x, map_pos_y: map_pos_y)
-        puts c1layout.attributes
+    task :execute, [:comic1_id] => :environment do |task, args|
+      comic1_id = args[:comic1_id]
+      table = CSV.table(Rails.root.join("lib/tasks/files/comic1_#{comic1_id}_map.csv"))
+      table.each do |row|
+        space_no = row[:space_no]
+        pos_x = row[:pos_x]
+        pos_y = row[:pos_y]
+        c1layout = C1layout
+                   .joins(c1block: :comic1)
+                   .where(space_no: space_no, pos_x: pos_x, pos_y: pos_y)
+                   .where(comic1s: { id: comic1_id })
+                   .first
+
+        map_pos_x = row[:map_pos_x]
+        map_pos_y = row[:map_pos_y]
+        if c1layout.update(map_pos_x: map_pos_x, map_pos_y: map_pos_y)
+          puts c1layout.attributes
+        end
       end
     end
   end
