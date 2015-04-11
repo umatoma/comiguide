@@ -158,6 +158,8 @@ Rails.application.routes.draw do
         resources :c1layouts, only: [:index]
       end
       resources :c1circle_checklists, only: [:create, :update, :destroy]
+
+      resources :notifications, only: [:index, :show]
     end
   end
 end
