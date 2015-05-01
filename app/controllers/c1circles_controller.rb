@@ -4,6 +4,7 @@ class C1circlesController < ApplicationController
     if request.format.symbol == :json
       @c1circles = @comic1.c1circles
         .includes(c1layout: :c1block)
+        .order(c1layout_id: :asc)
         .page(params[:page])
         .per(15)
     end
