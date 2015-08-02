@@ -11,11 +11,16 @@ namespace :comikets do
       csv.each do |row|
         kigyo_no = row[0].to_i
         name = row[1]
-        x = 0
-        y = 0
-        w = 0
-        h = 0
-        ckigyo = Ckigyo.new(comiket_id: comiket.id, kigyo_no: kigyo_no, name: name, x: x, y: y, w: w, h: h)
+        x = row[2].to_i
+        y = row[3].to_i
+        w = row[4].to_i
+        h = row[5].to_i
+        ckigyo = Ckigyo.where(comiket_id: comiket.id, kigyo_no: kigyo_no).first_or_initialize
+        ckigyo.name = name
+        ckigyo.x = x
+        ckigyo.y = y
+        ckigyo.w = w
+        ckigyo.h = h
         ckigyo.save!
       end
     end
