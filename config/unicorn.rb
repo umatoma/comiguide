@@ -10,7 +10,7 @@ preload_app true
 # 使用するポート番号を指定
 # 同一マシンでNginxとプロキシ組むならsocketのが高速らしい
 # listen /path/to/rails/tmp/unicorn.sock
-listen 3000
+listen '127.0.0.1:3000'
 
 # Capistranoを使うときに設定
 # pid /path/to/rails/tmp/pids/unicorn.pid
